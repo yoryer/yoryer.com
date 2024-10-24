@@ -1,0 +1,72 @@
+---
+const menuOptions = [
+  { name: "About", index: "01", link: "#" },
+  { name: "Skills", index: "02", link: "#" },
+  { name: "Work", index: "03", link: "#" },
+  { name: "Blog", index: "04", link: "#" },
+  { name: "Contact", index: "05", link: "#" },
+];
+---
+
+<header
+  id="header"
+  class="fixed top-0 w-full bg-blue-500 xl:py-9 lg:py-7 transition-all duration-300 z-50 border-b border-yankees-blue font-poppins backdrop-blur-md z-50"
+>
+  <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex-shrink-0">
+      <img src="/img/logo.svg" alt="Logo" class="xl:h-12 lg:h-10" />
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:block">
+      <ul class="flex space-x-8">
+        {
+          menuOptions.map((option) => (
+            <li>
+              <a
+                href={option.link}
+                class="text-white hover:text-rose transition-colors xl:text-lg"
+              >
+                {option.name}
+                <sup>{option.index}</sup>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="menuButton"
+      class="lg:hidden text-white hover:text-rose text-2xl"
+    >
+      ☰
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div
+    id="mobileMenu"
+    class="lg:hidden hidden absolute top-full left-0 w-full bg-blue-500 shadow-lg"
+  >
+    <nav class="px-4 py-2">
+      <ul class="space-y-2">
+        {
+          menuOptions.map((option) => (
+            <li>
+              <a
+                href={option.link}
+                class="text-white hover:text-rose transition-colors"
+              >
+                {option.name}
+                <sup>{option.index}</sup>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
