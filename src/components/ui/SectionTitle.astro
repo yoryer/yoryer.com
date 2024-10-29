@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  color: "blue" | "rose";
+}
+
+const { label, color } = Astro.props;
+
+let bgClass = "text-rose";
+if (color == "blue") {
+  bgClass = "text-battery-blue";
+}
+---
+<div class="relative inline-block w-full">
+  <span class={`font-poppins font-semibold text-6xl ${bgClass}`}>{label}</span>
+  <span class="absolute inset-0 flex items-center justify-start font-poppins font-semibold text-6xl text-white left-0.5 top-0.5">
+  {label} 
+  </span>
+</div>

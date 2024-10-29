@@ -1,50 +1,59 @@
 ---
 import Button from "@ui/Button.astro";
+import SectionContainer from "@ui/SectionContainer.astro";
 ---
 
 <!-- Hero Section -->
-<section
-  class="min-h-screen flex flex-col justify-center font-poppins xl:-mt-12 lg:-mt-14 overflow-hidden"
->
-  <div class="absolute top-0 right-0 overflow-hidden">
+<SectionContainer>
+  <section
+    class="h-screen flex flex-col justify-center font-poppins overflow-hidden -mt-16"
+  >
     <div
-      class="static w-screen h-screen flex items-center justify-center ml-[25%] xl:mt-10 lg:mt-8"
-      data-hover-container
+      class="absolute top-0 right-0 overflow-hidden opacity-20 md:opacity-100 portrait:pt-4"
     >
-      <img
-        class="absolute transition-all duration-500 -z-10"
-        src="/img/circles.svg"
-        data-target-image
-      />
-      <img class="absolute" src="/img/ai_avatar.webp" data-trigger-image />
-    </div>
-  </div>
-  <div class="container mx-auto max-w-6xl lg:mt-3">
-    <p
-      class="font-bold xl:text-[64px] lg:text-[48px] text-water tracking-normal leading-none"
-    >
-      Hello,
-    </p>
-    <p
-      class="font-medium xl:text-[48px] lg:text-[32px] text-water tracking-normal leading-none mt-2"
-    >
-      My name is <span
-        class="font-semibold xl:text-[50px] lg:text-[36px] text-light-sky-blue"
-        >Jorge</span
+      <div
+        class="static md:w-screen w-[200vw] h-screen flex items-center justify-center ml-[25%] xl:mt-10 lg:mt-8"
+        data-hover-container
       >
-      <p class="font-light xl:text-[32px] lg:text-[24px] text-silver mt-5">
-        I’m a software engineer with<br />
-        12+ years of experience building<br />
-        solutions for various types of<br />
-        companies and businesses.
+        <img
+          class="absolute transition-all duration-500 -z-10"
+          src="/img/circles.svg"
+          data-target-image
+        />
+        <img class="absolute" src="/img/ai_avatar.webp" data-trigger-image />
+      </div>
+    </div>
+    <div class="container mx-auto max-w-6xl lg:mt-3">
+      <p
+        class="font-bold xl:text-[64px] lg:text-[48px] text-[42px] text-water tracking-normal leading-none"
+      >
+        Hello,
       </p>
-    </p>
-  </div>
-  <div class="grid grid-cols-4 pt-10 xl:gap-x-4 lg:gap-x-2">
-    <Button type="outline" label="Read more" />
-    <Button type="primary" label="Download CV" />
-  </div>
-</section>
+      <p
+        class="font-medium xl:text-[48px] lg:text-[32px] text-[28px] text-water tracking-normal leading-none mt-2"
+      >
+        My name is <span
+          class="font-semibold xl:text-[50px] lg:text-[36px] text-[30px] text-light-sky-blue"
+          >Jorge</span
+        >
+        <p
+          class="font-light xl:text-[32px] lg:text-[24px] text-[20px] text-silver mt-5"
+        >
+          I’m a software engineer with<br />
+          12+ years of experience building<br />
+          solutions for various types of<br />
+          companies and businesses.
+        </p>
+      </p>
+    </div>
+    <div
+      class="grid md:grid-cols-4 grid-cols-2 pt-10 xl:gap-x-4 lg:gap-x-2 gap-x-2"
+    >
+      <Button type="outline" label="Read more" />
+      <Button type="primary" label="Download CV" />
+    </div>
+  </section>
+</SectionContainer>
 
 <script>
   function setupHoverEffect() {
