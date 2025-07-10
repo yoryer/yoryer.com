@@ -1,0 +1,265 @@
+---
+import SectionContainer from "@ui/SectionContainer.astro";
+import SectionTitle from "@ui/SectionTitle.astro";
+
+const skills = [
+  {
+    title: "Frontend",
+    icon: "/img/frontend_icon.svg",
+    description:
+      "I care about UI/UX. I build responsive and dynamic web applications using HTML, CSS, JavaScript and React.",
+  },
+  {
+    title: "Backend",
+    icon: "/img/backend_icon.svg",
+    description:
+      "I develop server-side applications and RESTful APIs. I work with databases and implement business logic with various frameworks and languages.",
+  },
+  {
+    title: "Mobile",
+    icon: "/img/mobile_icon.svg",
+    description:
+      "I create cross-platform mobile applications using frameworks like Flutter, delivering native-like experiences on iOS and Android.",
+  },
+];
+
+const experiences = [
+  {
+    id: "messagebird",
+    company: "MessageBird",
+    role: "Front-end Engineer",
+    period: "February 2021 - Present",
+    tasks: [
+      "Desarrollo de 6 aplicaciones móviles para entidades financieras utilizando Flutter, 3 de ellas ya publicadas.",
+      "Análisis y programación de una RESTful API en Spring Boot para gestionar usuarios y transacciones del área de empresas de un banco.",
+      "Implementación de pasarelas de pago aplicaciones móviles y web.",
+      "Programación y optimización de un sistema SMS Premium para atender a más de 100.000 suscriptores.",
+      "Creación de una aplicación de rastreo de dispositivos Android para prevenir que sean robados.",
+      "Coordinación de un equipo de 5 programadores para el desarrollo de una aplicación para una operadora de telefonía.",
+    ],
+    tags: ["PHP", "HTML", "CSS", "JS/TS", "Android", "iOS", "React"],
+  },
+  {
+    id: "open-technologies-2",
+    company: "Open Technologies",
+    role: "Software Engineer",
+    period: "February 2019 - February 2021",
+    tasks: [
+      "Desarrollo de aplicaciones móviles para Android y iOS.",
+      "Implementación de APIs RESTful para la integración con sistemas de terceros.",
+      "Optimización de bases de datos y consultas SQL.",
+    ],
+    tags: ["Java", "Kotlin", "Swift", "Node.js", "MongoDB"],
+  },
+  {
+    id: "freelancer",
+    company: "Freelancer",
+    role: "Full-stack Developer",
+    period: "March 2017 - February 2019",
+    tasks: [
+      "Desarrollo de sitios web y aplicaciones a medida para clientes.",
+      "Gestión de proyectos y comunicación directa con los clientes.",
+      "Implementación de soluciones de e-commerce.",
+    ],
+    tags: ["PHP", "Laravel", "JavaScript", "Vue.js", "MySQL"],
+  },
+  {
+    id: "open-technologies-1",
+    company: "Open Technologies",
+    role: "Web Developer",
+    period: "March 2015 - February 2017",
+    tasks: [
+      "Desarrollo y mantenimiento de plataformas web.",
+      "Integración de APIs de terceros.",
+      "Optimización de rendimiento web.",
+    ],
+    tags: ["PHP", "HTML", "CSS", "JavaScript", "jQuery"],
+  },
+  {
+    id: "htc-ltd",
+    company: "HTC Ltd",
+    role: "Junior Developer",
+    period: "March 2013 - February 2015",
+    tasks: [
+      "Asistencia en el desarrollo de software.",
+      "Pruebas y depuración de código.",
+      "Documentación técnica.",
+    ],
+    tags: ["C#", ".NET", "SQL Server"],
+  },
+];
+---
+
+<section class="mt-5 border-t border-yankees-blue min-h-screen">
+  <div class="w-full h-32 bg-gradient-to-b from-yankees-blue to-transparent">
+  </div>
+  <SectionContainer class="-mt-32 pb-16">
+    <div class="flex mb-24">
+      <div class="w-full">
+        <SectionTitle label="Skills &<br/>Experience" color="battery-blue" />
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 text-left mb-24">
+      {skills.map((skill) => (
+        <div>
+          <img src={skill.icon} alt={skill.title} class="w-16 h-16 text-battery-blue mb-4" />
+          <h3 class="text-[40px] font-medium mb-2 font-poppins">{skill.title}</h3>
+          <p class="text-[20px] text-silver font-normal font-poppins">{skill.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-24">
+      <h3 class="text-[32px] font-semibold mb-8 text-left">Professional experience</h3>
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/4 pr-8">
+          <ul class="space-y-6">
+            {experiences.map((exp) => (
+              <li>
+                <button
+                  class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light"
+                  data-experience-id={exp.id}
+                >
+                  <span class="mr-4">&#9635;</span>{exp.company}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="md:w-3/4 pl-8 border-l border-yankees-blue" id="experience-details">
+          <!-- Experience details will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </SectionContainer>
+</section>
+
+<script>
+  interface Experience {
+    id: string;
+    company: string;
+    role: string;
+    period: string;
+    tasks: string[];
+    tags: string[];
+  }
+
+  const experiencesData: Experience[] = [
+    {
+      id: "messagebird",
+      company: "MessageBird",
+      role: "Front-end Engineer",
+      period: "February 2021 - Present",
+      tasks: [
+        "Desarrollo de 6 aplicaciones móviles para entidades financieras utilizando Flutter, 3 de ellas ya publicadas.",
+        "Análisis y programación de una RESTful API en Spring Boot para gestionar usuarios y transacciones del área de empresas de un banco.",
+        "Implementación de pasarelas de pago aplicaciones móviles y web.",
+        "Programación y optimización de un sistema SMS Premium para atender a más de 100.000 suscriptores.",
+        "Creación de una aplicación de rastreo de dispositivos Android para prevenir que sean robados.",
+        "Coordinación de un equipo de 5 programadores para el desarrollo de una aplicación para una operadora de telefonía.",
+      ],
+      tags: ["PHP", "HTML", "CSS", "JS/TS", "Android", "iOS", "React"],
+    },
+    {
+      id: "open-technologies-2",
+      company: "Open Technologies",
+      role: "Software Engineer",
+      period: "February 2019 - February 2021",
+      tasks: [
+        "Desarrollo de aplicaciones móviles para Android y iOS.",
+        "Implementación de APIs RESTful para la integración con sistemas de terceros.",
+        "Optimización de bases de datos y consultas SQL.",
+      ],
+      tags: ["Java", "Kotlin", "Swift", "Node.js", "MongoDB"],
+    },
+    {
+      id: "freelancer",
+      company: "Freelancer",
+      role: "Full-stack Developer",
+      period: "March 2017 - February 2019",
+      tasks: [
+        "Desarrollo de sitios web y aplicaciones a medida para clientes.",
+        "Gestión de proyectos y comunicación directa con los clientes.",
+        "Implementación de soluciones de e-commerce.",
+      ],
+      tags: ["PHP", "Laravel", "JavaScript", "Vue.js", "MySQL"],
+    },
+    {
+      id: "open-technologies-1",
+      company: "Open Technologies",
+      role: "Web Developer",
+      period: "March 2015 - February 2017",
+      tasks: [
+        "Desarrollo y mantenimiento de plataformas web.",
+        "Integración de APIs de terceros.",
+        "Optimización de rendimiento web.",
+      ],
+      tags: ["PHP", "HTML", "CSS", "JavaScript", "jQuery"],
+    },
+    {
+      id: "htc-ltd",
+      company: "HTC Ltd",
+      role: "Junior Developer",
+      period: "March 2013 - February 2015",
+      tasks: [
+        "Asistencia en el desarrollo de software.",
+        "Pruebas y depuración de código.",
+        "Documentación técnica.",
+      ],
+      tags: ["C#", ".NET", "SQL Server"],
+    },
+  ];
+
+  const experienceDetailsContainer = document.getElementById("experience-details");
+
+  function renderExperienceDetails(experience: Experience) {
+    if (!experienceDetailsContainer) return;
+
+    experienceDetailsContainer.innerHTML = `
+      <h4 class="text-2xl font-medium mb-2">
+        ${experience.role} <span class="text-white/50">@</span> <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-battery-blue hover:underline">${experience.company}</a>
+      </h4>
+      <p class="text-silver mb-4 font-light">${experience.period}</p>
+      <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
+        ${experience.tasks.map((task: string) => `<li class="leading-loose font-light">${task}</li>`).join("")}
+      </ul>
+      <div class="flex flex-wrap gap-x-8 gap-y-2 mt-6">
+        ${experience.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-2 py-1 rounded-md text-sm">${tag}</span>`).join("")}
+      </div>
+    `;
+  }
+
+  function setupExperienceListeners() {
+    const experienceButtons = document.querySelectorAll("[data-experience-id]");
+    experienceButtons.forEach((buttonElement: Element) => {
+      const button = buttonElement as HTMLElement;
+      button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        experienceButtons.forEach((btn) => {
+          (btn as HTMLElement).dataset.active = "false";
+        });
+        // Add active class to the clicked button
+        button.dataset.active = "true";
+
+        const id = button.dataset.experienceId;
+        const selectedExperience = experiencesData.find((exp) => exp.id === id);
+        if (selectedExperience) {
+          renderExperienceDetails(selectedExperience);
+        }
+      });
+    });
+
+    // Render the first experience by default and set it as active
+    if (experiencesData.length > 0) {
+      renderExperienceDetails(experiencesData[0]);
+      const firstButton = document.querySelector(`[data-experience-id="${experiencesData[0].id}"]`);
+      if (firstButton) {
+        (firstButton as HTMLElement).dataset.active = "true";
+      }
+    }
+  }
+
+  setupExperienceListeners();
+  document.addEventListener("astro:page-load", setupExperienceListeners);
+</script>

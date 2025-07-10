@@ -1,8 +1,11 @@
 ---
 import About from "@components/About.astro";
+import Blog from "@components/Blog.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
 import Hero from "@components/Hero.astro";
+import Skills from "@components/Skills.astro";
+import Work from "@components/Work.astro";
 import "@styles/global.css";
 interface Props {
   title: string;
@@ -29,23 +32,9 @@ const { title, description } = Astro.props;
     <main>
       <Hero />
       <About />
-
-      <section class="py-16 border-t border-gray-200">
-        <h2 class="text-3xl font-bold mb-6">Section 2</h2>
-        <div class="grid gap-6">
-          <p class="text-gray-600">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo.
-          </p>
-          <p class="text-gray-600">
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-            fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt.
-          </p>
-        </div>
-      </section>
+      <Skills />
+      <Work />
+      <Blog />
     </main>
     <Footer />
   </body>
