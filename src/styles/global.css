@@ -12,3 +12,8 @@ body {
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
 }
+
+.active-menu {
+  color: #f43f5e !important; /* rose-500 */
+  background: rgba(244, 63, 94, 0.2);
+}

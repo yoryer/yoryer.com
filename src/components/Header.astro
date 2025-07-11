@@ -26,7 +26,7 @@ const menuOptions = [
             <li>
               <a
                 href={`#${option.name.toLowerCase()}`}
-                class="text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-3 py-2"
+                class="menu-link text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-3 py-2"
               >
                 {option.name}
                 <sup>{option.index}</sup>
@@ -58,7 +58,7 @@ const menuOptions = [
             <li>
               <a
                 href={`#${option.name.toLowerCase()}`}
-                class="block w-full text-lg px-6 py-4 rounded-md text-center text-white hover:text-rose hover:bg-rose/20 active:bg-rose/40 transition-colors font-semibold"
+                class="menu-link block w-full text-lg px-6 py-4 rounded-md text-center text-white hover:text-rose hover:bg-rose/20 active:bg-rose/40 transition-colors font-semibold"
               >
                 {option.name}
                 <sup>{option.index}</sup>
@@ -75,6 +75,13 @@ const menuOptions = [
   const menuButton = document.getElementById("menuButton");
   const mobileMenu = document.getElementById("mobileMenu");
   const header = document.getElementById("header");
+  const menuOptions = [
+    { name: "About", index: "01", link: "#about" },
+    { name: "Skills", index: "02", link: "#skills" },
+    { name: "Work", index: "03", link: "#work" },
+    { name: "Blog", index: "04", link: "#blog" },
+    { name: "Contact", index: "05", link: "#contact" },
+  ];
 
   // Helper: Smooth scroll with offset
   function scrollToSectionWithOffset(id: string) {
@@ -90,8 +97,8 @@ const menuOptions = [
   // Attach click listeners to all nav links (desktop & mobile)
   function setupNavLinks() {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", function (this: HTMLAnchorElement, e) {
-        const hash = this.getAttribute("href");
+      (link as HTMLAnchorElement).addEventListener("click", function (e: MouseEvent) {
+        const hash = (this as HTMLAnchorElement).getAttribute("href");
         if (hash && hash.startsWith("#")) {
           const id = hash.slice(1);
           if (document.getElementById(id)) {
@@ -107,12 +114,46 @@ const menuOptions = [
     });
   }
 
+  // Helper: Get all section IDs from menuOptions
+  const sectionIds = menuOptions.map(opt => opt.name.toLowerCase());
+
+  // Helper: Set active menu link
+  function setActiveMenu(id: string) {
+    document.querySelectorAll('.menu-link').forEach(link => {
+      const hash = link.getAttribute('href');
+      if (hash === `#${id}`) {
+        link.classList.add('active-menu');
+      } else {
+        link.classList.remove('active-menu');
+      }
+    });
+  }
+
+  // Scroll event handler to update active menu
+  function onScroll(): void {
+    let current = sectionIds[0];
+    for (const id of sectionIds) {
+      const section = document.getElementById(id);
+      if (section) {
+        const sectionTop = section.getBoundingClientRect().top - (header ? header.getBoundingClientRect().height : 0);
+        if (sectionTop <= 0) {
+          current = id;
+        }
+      }
+    }
+    setActiveMenu(current);
+  }
+
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
     });
   }
 
-  // Setup nav links on DOMContentLoaded (to ensure all links are present)
-  document.addEventListener("DOMContentLoaded", setupNavLinks);
+  // Setup nav links and scroll handler on DOMContentLoaded
+  document.addEventListener("DOMContentLoaded", () => {
+    setupNavLinks();
+    onScroll();
+  });
+  window.addEventListener('scroll', onScroll);
 </script>
