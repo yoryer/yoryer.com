@@ -18,6 +18,8 @@ export default {
       "light-sky-blue": "#7DCFFF",
       "battery-blue": "#2AC3DE",
       "french-blue": "#7AA2F7",
+      black: "#000000",
+      "dark-blue-gradient": "#071a2e",
     },
   },
   plugins: [],
