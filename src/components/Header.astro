@@ -121,7 +121,7 @@ const menuOptions = [
   function setActiveMenu(id: string) {
     document.querySelectorAll('.menu-link').forEach(link => {
       const hash = link.getAttribute('href');
-      if (hash === `#${id}`) {
+      if (id && hash === `#${id}`) {
         link.classList.add('active-menu');
       } else {
         link.classList.remove('active-menu');
@@ -131,11 +131,21 @@ const menuOptions = [
 
   // Scroll event handler to update active menu
   function onScroll(): void {
+    const firstSection = document.getElementById(sectionIds[0]);
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    if (firstSection) {
+      const firstSectionTop = firstSection.getBoundingClientRect().top - headerHeight;
+      // If above the first section, clear all active menu links
+      if (firstSectionTop > 0) {
+        setActiveMenu("");
+        return;
+      }
+    }
     let current = sectionIds[0];
     for (const id of sectionIds) {
       const section = document.getElementById(id);
       if (section) {
-        const sectionTop = section.getBoundingClientRect().top - (header ? header.getBoundingClientRect().height : 0);
+        const sectionTop = section.getBoundingClientRect().top - headerHeight;
         if (sectionTop <= 0) {
           current = id;
         }
