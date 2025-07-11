@@ -5,7 +5,6 @@ import SectionContainer from "@ui/SectionContainer.astro";
 
 <!-- Hero Section -->
 <SectionContainer>
-  
   <section class="h-screen flex flex-col justify-center font-poppins -mt-16">
     <div
       class="absolute top-0 right-0 overflow-hidden opacity-20 md:opacity-100 portrait:pt-4"
@@ -23,6 +22,7 @@ import SectionContainer from "@ui/SectionContainer.astro";
           class="absolute z-20 lg:z-30"
           src="/img/ai_avatar.webp"
           data-trigger-image
+          id="hero-hover-img"
         />
       </div>
     </div>
@@ -59,6 +59,36 @@ import SectionContainer from "@ui/SectionContainer.astro";
   </section>
 </SectionContainer>
 
+<style>
+  @keyframes bounce {
+    0% {
+      transform: scale(1);
+    }
+    20% {
+      transform: scale(1.15, 0.85);
+    }
+    40% {
+      transform: scale(0.95, 1.05);
+    }
+    60% {
+      transform: scale(1.05, 0.95);
+    }
+    80% {
+      transform: scale(0.98, 1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .bounce {
+    animation: bounce 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center;
+  }
+  #hero-hover-img {
+    transform-origin: center;
+  }
+</style>
+
 <script>
   function setupHoverEffect() {
     const name = document.getElementById("hero-name");
@@ -68,8 +98,8 @@ import SectionContainer from "@ui/SectionContainer.astro";
     function showHoverImg(e: MouseEvent) {
       if (!name || !hoverImg) return;
       const rect = name.getBoundingClientRect();
-      hoverImg.style.left = `${rect.left - (rect.width * 0.1)}px`;
-      hoverImg.style.top = `${rect.top - (rect.height * 2.1)}px`;
+      hoverImg.style.left = `${rect.left - rect.width * 0.1}px`;
+      hoverImg.style.top = `${rect.top - rect.height * 2.1}px`;
       hoverImg.style.width = `${rect.width * 1.5}px`;
       hoverImg.style.height = "auto";
       hoverImg.style.display = "block";
@@ -83,4 +113,47 @@ import SectionContainer from "@ui/SectionContainer.astro";
   }
   setupHoverEffect();
   document.addEventListener("astro:page-load", setupHoverEffect);
+
+  function manualBounce(img: HTMLElement) {
+    if (!img) return;
+    let start: number | null = null;
+    const duration = 200; // ms for up, then back down
+    const maxScale = 1.1;
+
+    function animateBounce(timestamp: number) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      let progress = elapsed / duration;
+
+      if (progress < 0.5) {
+        // Scale up
+        const scale = 1 + (maxScale - 1) * (progress / 0.5);
+        img.style.transform = `scale(${scale})`;
+        requestAnimationFrame(animateBounce);
+      } else if (progress < 1) {
+        // Scale down
+        const scale = maxScale - (maxScale - 1) * ((progress - 0.5) / 0.5);
+        img.style.transform = `scale(${scale})`;
+        requestAnimationFrame(animateBounce);
+      } else {
+        // End
+        img.style.transform = "scale(1)";
+      }
+    }
+
+    requestAnimationFrame(animateBounce);
+  }
+
+  function setupBounceEffect() {
+    const name = document.getElementById("hero-name");
+    const hoverImg = document.getElementById("hero-hover-img");
+    if (!name || !hoverImg) return;
+
+    name.addEventListener("click", () => {
+      if (hoverImg.style.display !== "block") return;
+      manualBounce(hoverImg);
+    });
+  }
+  setupBounceEffect();
+  document.addEventListener("astro:page-load", setupBounceEffect);
 </script>
