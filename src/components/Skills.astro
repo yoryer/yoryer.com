@@ -124,28 +124,30 @@ const experiences = [
         Professional experience
       </h3>
       <div class="flex flex-col md:flex-row">
-        <div class="md:w-1/4 pr-8">
-          <ul class="space-y-6">
+        <div class="md:w-1/4 pr-8 md:pr-4">
+          <ul class="space-y-3 md:space-y-6">
             {
-              experiences.map((exp) => (
+              experiences.map((exp, idx) => (
                 <li>
                   <button
-                    class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light"
+                    class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 bg-battery-blue/10 md:bg-transparent hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light md:text-base"
                     data-experience-id={exp.id}
+                    data-idx={idx}
                   >
-                    <span class="mr-4">&#9635;</span>
+                    <span class="mr-4 md:mr-2">&#9635;</span>
                     {exp.company}
                   </button>
+                  <div class="block md:hidden" id={`mobile-details-${exp.id}`}></div>
                 </li>
               ))
             }
           </ul>
         </div>
         <div
-          class="md:w-3/4 pl-8 border-l border-yankees-blue"
+          class="md:w-3/4 pl-8 md:pl-4 hidden md:block"
           id="experience-details"
         >
-          <!-- Experience details will be rendered here by JavaScript -->
+          <!-- Experience details will be rendered here by JavaScript (desktop/tablet) -->
         </div>
       </div>
     </div>
@@ -228,6 +230,8 @@ const experiences = [
     },
   ];
 
+  let activeExperienceIdx = 0;
+
   const experienceDetailsContainer =
     document.getElementById("experience-details");
 
@@ -242,15 +246,42 @@ const experiences = [
       <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
         ${experience.tasks.map((task: string) => `<li class="leading-loose font-light">${task}</li>`).join("")}
       </ul>
-      <div class="flex flex-wrap gap-x-8 gap-y-2 mt-6">
-        ${experience.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-2 py-1 rounded-md text-sm">${tag}</span>`).join("")}
+      <div class="flex flex-wrap gap-x-2 md:gap-x-8 gap-y-2 mt-6">
+        ${experience.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-1 py-0.5 rounded-md text-xs md:px-2 md:py-1 md:text-sm">${tag}</span>`).join("")}
       </div>
     `;
   }
 
+  function renderMobileAccordion() {
+    // Remove all mobile details first
+    experiencesData.forEach((exp) => {
+      const mobileDetails = document.getElementById(`mobile-details-${exp.id}`);
+      if (mobileDetails) mobileDetails.innerHTML = "";
+    });
+    // Render only for the active one
+    const activeExp = experiencesData[activeExperienceIdx];
+    const mobileDetails = document.getElementById(`mobile-details-${activeExp.id}`);
+    if (mobileDetails) {
+      mobileDetails.innerHTML = `
+        <div class='mt-4 mb-6'>
+          <h4 class="text-xl font-medium mb-2">
+            ${activeExp.role} <span class="text-white/50">@</span> <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-battery-blue hover:underline">${activeExp.company}</a>
+          </h4>
+          <p class="text-silver mb-4 font-light">${activeExp.period}</p>
+          <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
+            ${activeExp.tasks.map((task: string) => `<li class="leading-loose font-light">${task}</li>`).join("")}
+          </ul>
+          <div class="flex flex-wrap gap-x-2 md:gap-x-8 gap-y-2 mt-6">
+            ${activeExp.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-1 py-0.5 rounded-md text-xs md:px-2 md:py-1 md:text-sm">${tag}</span>`).join("")}
+          </div>
+        </div>
+      `;
+    }
+  }
+
   function setupExperienceListeners() {
     const experienceButtons = document.querySelectorAll("[data-experience-id]");
-    experienceButtons.forEach((buttonElement: Element) => {
+    experienceButtons.forEach((buttonElement: Element, idx: number) => {
       const button = buttonElement as HTMLElement;
       button.addEventListener("click", () => {
         // Remove active class from all buttons
@@ -259,11 +290,19 @@ const experiences = [
         });
         // Add active class to the clicked button
         button.dataset.active = "true";
-
+        activeExperienceIdx = idx;
         const id = button.dataset.experienceId;
         const selectedExperience = experiencesData.find((exp) => exp.id === id);
         if (selectedExperience) {
           renderExperienceDetails(selectedExperience);
+        }
+        renderMobileAccordion();
+        // Instantly scroll the clicked button into view on mobile
+        if (window.innerWidth < 768) {
+          const header = document.getElementById("header");
+          const headerOffset = header ? header.getBoundingClientRect().height : 0;
+          const elementPosition = button.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: elementPosition - headerOffset, behavior: "auto" });
         }
       });
     });
@@ -277,6 +316,7 @@ const experiences = [
       if (firstButton) {
         (firstButton as HTMLElement).dataset.active = "true";
       }
+      renderMobileAccordion();
     }
   }
 
