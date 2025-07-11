@@ -2,13 +2,29 @@
 interface Props {
   type: "primary" | "outline";
   label: string;
+  href?: string;
 }
 
-const { type, label } = Astro.props;
+const { type, label, href } = Astro.props;
 
-let buttonClasses = "border bg-blue border-rose text-rose";
+let buttonClasses = "w-full xl:h-14 lg:h-12 h-10 rounded font-poppins font-light xl:text-xl lg:text-lg hover:brightness-125 transition-all duration-500 z-40 ";
 if (type == "primary") {
-  buttonClasses = "bg-rose text-white";
+  buttonClasses += " bg-rose text-white";
+} else {
+  buttonClasses += " border bg-blue border-rose text-rose";
 }
 ---
-<button class={`w-full xl:h-14 lg:h-12 h-10 rounded font-poppins font-light xl:text-xl lg:text-lg hover:brightness-125 transition-all duration-500 z-40 ${buttonClasses}`}>{label}</button>
+{href ? (
+  <a
+    href={href}
+    class={`inline-flex items-center justify-center ${buttonClasses}`}
+    role="button"
+    tabindex="0"
+  >
+    {label}
+  </a>
+) : (
+  <button class={`inline-flex items-center justify-center ${buttonClasses}`}>
+    {label}
+  </button>
+)}

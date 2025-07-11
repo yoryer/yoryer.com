@@ -1,10 +1,10 @@
 ---
 const menuOptions = [
-  { name: "About", index: "01", link: "#" },
-  { name: "Skills", index: "02", link: "#" },
-  { name: "Work", index: "03", link: "#" },
-  { name: "Blog", index: "04", link: "#" },
-  { name: "Contact", index: "05", link: "#" },
+  { name: "About", index: "01", link: "#about" },
+  { name: "Skills", index: "02", link: "#skills" },
+  { name: "Work", index: "03", link: "#work" },
+  { name: "Blog", index: "04", link: "#blog" },
+  { name: "Contact", index: "05", link: "#contact" },
 ];
 ---
 
@@ -14,19 +14,19 @@ const menuOptions = [
 >
   <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
     <!-- Logo -->
-    <div class="flex-shrink-0">
+    <a href="#" class="flex-shrink-0">
       <img src="/img/logo.svg" alt="Logo" class="xl:h-12 lg:h-10 h-8 sm:h-6" />
-    </div>
+    </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:block">
+    <nav class="hidden md:block">
       <ul class="flex space-x-8">
         {
           menuOptions.map((option) => (
             <li>
               <a
-                href={option.link}
-                class="text-white hover:text-rose transition-colors xl:text-lg"
+                href={`#${option.name.toLowerCase()}`}
+                class="text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-3 py-2"
               >
                 {option.name}
                 <sup>{option.index}</sup>
@@ -40,7 +40,7 @@ const menuOptions = [
     <!-- Mobile Menu Button -->
     <button
       id="menuButton"
-      class="lg:hidden text-white hover:text-rose text-2xl"
+      class="md:hidden text-white hover:text-rose text-2xl"
     >
       ☰
     </button>
@@ -49,7 +49,7 @@ const menuOptions = [
   <!-- Mobile Navigation -->
   <div
     id="mobileMenu"
-    class="lg:hidden hidden absolute top-full left-0 w-full bg-blue-500 shadow-lg"
+    class="lg:hidden hidden absolute top-full right-4 w-64 bg-blue bg-opacity-95 shadow-lg rounded-lg"
   >
     <nav class="px-4 py-2">
       <ul class="space-y-2">
@@ -57,8 +57,8 @@ const menuOptions = [
           menuOptions.map((option) => (
             <li>
               <a
-                href={option.link}
-                class="text-white hover:text-rose transition-colors"
+                href={`#${option.name.toLowerCase()}`}
+                class="block w-full text-lg px-6 py-4 rounded-md text-center text-white hover:text-rose hover:bg-rose/20 active:bg-rose/40 transition-colors font-semibold"
               >
                 {option.name}
                 <sup>{option.index}</sup>
@@ -70,3 +70,49 @@ const menuOptions = [
     </nav>
   </div>
 </header>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const header = document.getElementById("header");
+
+  // Helper: Smooth scroll with offset
+  function scrollToSectionWithOffset(id: string) {
+    const el = document.getElementById(id);
+    if (el) {
+      // Use header height as offset, fallback to 0 if not found
+      const offset = header ? header.getBoundingClientRect().height : 0;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }
+
+  // Attach click listeners to all nav links (desktop & mobile)
+  function setupNavLinks() {
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", function (this: HTMLAnchorElement, e) {
+        const hash = this.getAttribute("href");
+        if (hash && hash.startsWith("#")) {
+          const id = hash.slice(1);
+          if (document.getElementById(id)) {
+            e.preventDefault();
+            scrollToSectionWithOffset(id);
+            // If mobile menu is open, close it
+            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+            }
+          }
+        }
+      });
+    });
+  }
+
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+
+  // Setup nav links on DOMContentLoaded (to ensure all links are present)
+  document.addEventListener("DOMContentLoaded", setupNavLinks);
+</script>

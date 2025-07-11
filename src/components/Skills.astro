@@ -90,9 +90,8 @@ const experiences = [
 ];
 ---
 
-<section class="mt-5 min-h-screen">
-  <div class="w-full h-32">
-</div>
+<section id="skills" class="mt-5 min-h-screen">
+  <div class="w-full h-32"></div>
   <SectionContainer class="-mt-32 pb-16">
     <div class="flex mb-24">
       <div class="w-full">
@@ -101,33 +100,51 @@ const experiences = [
     </div>
 
     <div class="grid md:grid-cols-3 gap-8 text-left mb-24">
-      {skills.map((skill) => (
-        <div>
-          <img src={skill.icon} alt={skill.title} class="w-16 h-16 text-battery-blue mb-4" />
-          <h3 class="text-[40px] font-medium mb-2 font-poppins">{skill.title}</h3>
-          <p class="text-[20px] text-silver font-normal font-poppins">{skill.description}</p>
-        </div>
-      ))}
+      {
+        skills.map((skill) => (
+          <div>
+            <img
+              src={skill.icon}
+              alt={skill.title}
+              class="w-16 h-16 text-battery-blue mb-4"
+            />
+            <h3 class="text-[40px] font-medium mb-2 font-poppins">
+              {skill.title}
+            </h3>
+            <p class="text-[20px] text-silver font-normal font-poppins">
+              {skill.description}
+            </p>
+          </div>
+        ))
+      }
     </div>
 
     <div class="mt-24">
-      <h3 class="text-[32px] font-semibold mb-8 text-left">Professional experience</h3>
+      <h3 class="text-[32px] font-semibold mb-8 text-left">
+        Professional experience
+      </h3>
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/4 pr-8">
           <ul class="space-y-6">
-            {experiences.map((exp) => (
-              <li>
-                <button
-                  class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light"
-                  data-experience-id={exp.id}
-                >
-                  <span class="mr-4">&#9635;</span>{exp.company}
-                </button>
-              </li>
-            ))}
+            {
+              experiences.map((exp) => (
+                <li>
+                  <button
+                    class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light"
+                    data-experience-id={exp.id}
+                  >
+                    <span class="mr-4">&#9635;</span>
+                    {exp.company}
+                  </button>
+                </li>
+              ))
+            }
           </ul>
         </div>
-        <div class="md:w-3/4 pl-8 border-l border-yankees-blue" id="experience-details">
+        <div
+          class="md:w-3/4 pl-8 border-l border-yankees-blue"
+          id="experience-details"
+        >
           <!-- Experience details will be rendered here by JavaScript -->
         </div>
       </div>
@@ -211,7 +228,8 @@ const experiences = [
     },
   ];
 
-  const experienceDetailsContainer = document.getElementById("experience-details");
+  const experienceDetailsContainer =
+    document.getElementById("experience-details");
 
   function renderExperienceDetails(experience: Experience) {
     if (!experienceDetailsContainer) return;
@@ -253,7 +271,9 @@ const experiences = [
     // Render the first experience by default and set it as active
     if (experiencesData.length > 0) {
       renderExperienceDetails(experiencesData[0]);
-      const firstButton = document.querySelector(`[data-experience-id="${experiencesData[0].id}"]`);
+      const firstButton = document.querySelector(
+        `[data-experience-id="${experiencesData[0].id}"]`
+      );
       if (firstButton) {
         (firstButton as HTMLElement).dataset.active = "true";
       }

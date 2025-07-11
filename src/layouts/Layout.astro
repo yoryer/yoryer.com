@@ -6,6 +6,7 @@ import Header from "@components/Header.astro";
 import Hero from "@components/Hero.astro";
 import Skills from "@components/Skills.astro";
 import Work from "@components/Work.astro";
+import Contact from "@components/Contact.astro";
 import "@styles/global.css";
 interface Props {
   title: string;
@@ -25,6 +26,7 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
     <div class="overflow-x-hidden">
@@ -35,7 +37,8 @@ const { title, description } = Astro.props;
         <About />
         <Skills />
         <Work />
-        <Blog />
+      <Blog />
+      <Contact />
       </main>
       <Footer />
     </div>
