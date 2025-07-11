@@ -26,9 +26,19 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
+    <img
+      class="absolute pointer-events-none transition-opacity duration-100"
+      src="/img/hero_hover.svg"
+      alt=""
+      id="hero-hover-img"
+      style="position: absolute; display: none; z-index: 1000;"
+    />
     <div class="overflow-x-hidden">
       <Header />
       <!-- Main Content -->
@@ -37,8 +47,8 @@ const { title, description } = Astro.props;
         <About />
         <Skills />
         <Work />
-      <Blog />
-      <Contact />
+        <Blog />
+        <Contact />
       </main>
       <Footer />
     </div>

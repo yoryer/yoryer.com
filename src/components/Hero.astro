@@ -5,9 +5,8 @@ import SectionContainer from "@ui/SectionContainer.astro";
 
 <!-- Hero Section -->
 <SectionContainer>
-  <section
-    class="h-screen flex flex-col justify-center font-poppins overflow-hidden -mt-16"
-  >
+  
+  <section class="h-screen flex flex-col justify-center font-poppins -mt-16">
     <div
       class="absolute top-0 right-0 overflow-hidden opacity-20 md:opacity-100 portrait:pt-4"
     >
@@ -20,7 +19,11 @@ import SectionContainer from "@ui/SectionContainer.astro";
           src="/img/circles.svg"
           data-target-image
         />
-        <img class="absolute z-20 lg:z-30" src="/img/ai_avatar.webp" data-trigger-image />
+        <img
+          class="absolute z-20 lg:z-30"
+          src="/img/ai_avatar.webp"
+          data-trigger-image
+        />
       </div>
     </div>
     <div class="relative z-10 container mx-auto max-w-6xl lg:mt-3">
@@ -33,9 +36,10 @@ import SectionContainer from "@ui/SectionContainer.astro";
         class="font-medium xl:text-[48px] lg:text-[32px] text-[28px] text-water tracking-normal leading-none mt-2"
       >
         My name is <span
-          class="font-semibold xl:text-[50px] lg:text-[36px] text-[30px] text-light-sky-blue"
-          >Jorge</span
+          class="font-semibold xl:text-[50px] lg:text-[36px] text-[30px] text-light-sky-blue cursor-pointer"
+          id="hero-name">Jorge</span
         >
+
         <p
           class="font-light xl:text-[32px] lg:text-[24px] text-[20px] text-silver mt-5"
         >
@@ -57,24 +61,26 @@ import SectionContainer from "@ui/SectionContainer.astro";
 
 <script>
   function setupHoverEffect() {
-    const container = document.querySelector("[data-hover-container]");
-    const triggerImage = container?.querySelector("[data-trigger-image]");
-    const targetImage = container?.querySelector("[data-target-image]");
+    const name = document.getElementById("hero-name");
+    const hoverImg = document.getElementById("hero-hover-img");
+    if (!name || !hoverImg) return;
 
-    if (!triggerImage || !targetImage) return;
-
-    triggerImage.addEventListener("mouseenter", () => {
-      targetImage.classList.add("scale-110");
-    });
-
-    triggerImage.addEventListener("mouseleave", () => {
-      targetImage.classList.remove("scale-110");
-    });
+    function showHoverImg(e: MouseEvent) {
+      if (!name || !hoverImg) return;
+      const rect = name.getBoundingClientRect();
+      hoverImg.style.left = `${rect.left - (rect.width * 0.1)}px`;
+      hoverImg.style.top = `${rect.top - (rect.height * 2.1)}px`;
+      hoverImg.style.width = `${rect.width * 1.5}px`;
+      hoverImg.style.height = "auto";
+      hoverImg.style.display = "block";
+    }
+    function hideHoverImg() {
+      if (!hoverImg) return;
+      hoverImg.style.display = "none";
+    }
+    name.addEventListener("mouseenter", showHoverImg);
+    name.addEventListener("mouseleave", hideHoverImg);
   }
-
-  // Run setup when the component mounts
   setupHoverEffect();
-
-  // If using view transitions or other Astro features that might re-render the component
   document.addEventListener("astro:page-load", setupHoverEffect);
 </script>
