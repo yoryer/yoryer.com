@@ -14,6 +14,7 @@ export default {
       white: "#FFFFFF",
       silver: "#D9D9D9",
       transparent: "transparent",
+      "silver-blue": "#D7ECFF",
       "yankees-blue": "#24283B",
       "light-sky-blue": "#7DCFFF",
       "battery-blue": "#2AC3DE",

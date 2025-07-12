@@ -93,38 +93,69 @@ const experiences = [
 <section id="skills" class="mt-5 min-h-screen">
   <div class="w-full h-32"></div>
   <SectionContainer class="-mt-32 pb-16">
-    <div class="flex mb-24">
+    <div class="flex mb-12">
       <div class="w-full">
         <SectionTitle label="Skills &<br/>Experience" color="battery-blue" />
       </div>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 text-left mb-24">
+    <div class="grid md:grid-cols-3 gap-8 text-left mb-8">
       {
-        skills.map((skill) => (
-          <div>
-            <img
-              src={skill.icon}
-              alt={skill.title}
-              class="w-16 h-16 text-battery-blue mb-4"
-            />
-            <h3 class="text-[40px] font-medium mb-2 font-poppins">
-              {skill.title}
-            </h3>
-            <p class="text-[20px] text-silver font-normal font-poppins">
-              {skill.description}
-            </p>
+        skills.map((skill, idx) => (
+          <div
+            class="relative rounded-xl pt-4 pb-6 overflow-hidden group border-b border-r border-transparent hover:border-b-battery-blue/10 hover:border-r-battery-blue/10 hover:pl-1 transition-all duration-300"
+          >
+            <style>
+              .skills-card-bg::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s;
+                background: linear-gradient(to top left, #2AC3DE0D 0%, transparent 40%, transparent 100%);
+              }
+              .group:hover .skills-card-bg::before {
+                opacity: 1;
+              }
+            </style>
+            <div class="skills-card-bg absolute inset-0 w-full h-full"></div>
+            <canvas
+              class="absolute inset-0 w-full h-full pointer-events-none matrix-bg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              width="320"
+              height="240"
+              style="
+                z-index: 0;
+                mask-image: linear-gradient(to top left, #2AC3DE0D 0%, transparent 40%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to top left, #2AC3DE0D 0%, transparent 40%, transparent 100%);
+              "
+              data-matrix-idx={idx}
+            ></canvas>
+            <div class="relative z-10 overflow-visible">
+              <img
+                src={skill.icon}
+                alt={skill.title}
+                class="lg:size-16 size-12 text-battery-blue"
+              />
+              <h3 class="text-[40px] font-medium mb-4 font-poppins">
+                {skill.title}
+              </h3>
+              <p class="text-[20px] text-silver-blue font-normal font-poppins pr-6">
+                {skill.description}
+              </p>
+            </div>
           </div>
         ))
       }
     </div>
 
-    <div class="mt-24">
-      <h3 class="text-[32px] font-semibold mb-8 text-left">
+    <div class="mt-16">
+      <h3 class="md:text-[32px] text-[28px] font-semibold md:mb-8 mb-4 text-left leading-10">
         Professional experience
       </h3>
       <div class="flex flex-col md:flex-row">
-        <div class="md:w-1/4 pr-8 md:pr-4">
+        <div class="md:w-1/4 lg:pr-8 md:pr-4 pr-0">
           <ul class="space-y-3 md:space-y-6">
             {
               experiences.map((exp, idx) => (
@@ -322,4 +353,43 @@ const experiences = [
 
   setupExperienceListeners();
   document.addEventListener("astro:page-load", setupExperienceListeners);
+</script>
+
+<script>
+  function startMatrixAnimation(canvas: HTMLCanvasElement) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    const fontSize = 16;
+    const columns = Math.floor(w / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+      if (!ctx) return;
+      ctx.fillStyle = 'rgba(8, 36, 63, 0.15)'; // Faint blue-black for fade
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = fontSize + "px monospace";
+      ctx.fillStyle = "#AEEAFF"; // lighter sky blue, closer to white
+      for (let i = 0; i < columns; i++) {
+        const text = Math.random() > 0.5 ? "0" : "1";
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > h && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+  }
+
+  document.querySelectorAll('.matrix-bg').forEach(canvas => {
+    startMatrixAnimation(canvas as HTMLCanvasElement);
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll('.matrix-bg').forEach(canvas => {
+      startMatrixAnimation(canvas as HTMLCanvasElement);
+    });
+  });
 </script>
