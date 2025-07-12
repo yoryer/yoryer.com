@@ -14,15 +14,15 @@ import SectionContainer from "@ui/SectionContainer.astro";
         data-hover-container
       >
         <img
-          class="absolute transition-all duration-500 -z-10"
-          src="/img/circles.svg"
-          data-target-image
-        />
-        <img
-          class="absolute z-20 lg:z-30"
+          class="absolute z-20 lg:z-30 peer"
           src="/img/ai_avatar.webp"
           data-trigger-image
           id="hero-hover-img"
+        />
+        <img
+          class="absolute transition-transform duration-500 -z-10 peer-hover:scale-110"
+          src="/img/circles.svg"
+          data-target-image
         />
       </div>
     </div>
@@ -58,36 +58,6 @@ import SectionContainer from "@ui/SectionContainer.astro";
     </div>
   </section>
 </SectionContainer>
-
-<style>
-  @keyframes bounce {
-    0% {
-      transform: scale(1);
-    }
-    20% {
-      transform: scale(1.15, 0.85);
-    }
-    40% {
-      transform: scale(0.95, 1.05);
-    }
-    60% {
-      transform: scale(1.05, 0.95);
-    }
-    80% {
-      transform: scale(0.98, 1.02);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  .bounce {
-    animation: bounce 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    transform-origin: center;
-  }
-  #hero-hover-img {
-    transform-origin: center;
-  }
-</style>
 
 <script>
   function setupHoverEffect() {
