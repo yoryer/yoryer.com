@@ -1,29 +1,7 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-const socialLinks = [
-  { name: t.footer.social.github, url: "#" },
-  { name: t.footer.social.linkedin, url: "#" },
-  { name: t.footer.social.dribbble, url: "#" },
-];
+import MountainFooter from "@components/MountainFooter.astro";
 ---
 
-<footer class="border-t border-yankees-blue font-poppins">
-  <div class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
-    <p class="text-silver">{t.footer.email}</p>
-    <div class="text-silver text-center">
-      <p>{t.footer.copyright}</p>
-      <p>{t.footer.year}</p>
-    </div>
-    <div class="flex space-x-4">
-      {socialLinks.map((link) => (
-        <a href={link.url} class="text-silver hover:text-rose transition-colors">
-          {link.name}
-        </a>
-      ))}
-    </div>
-  </div>
+<footer>
+  <MountainFooter />
 </footer>
