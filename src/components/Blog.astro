@@ -1,20 +1,24 @@
 ---
 import SectionContainer from "@ui/SectionContainer.astro";
 import SectionTitle from "@ui/SectionTitle.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const blogPosts = [
   {
-    title: "Building my personal website",
+    title: t.blog.posts.personalWebsite,
     image: "/img/about-me-avatar.webp", // Placeholder
     link: "#",
   },
   {
-    title: "Certificate pinning with Flutter",
+    title: t.blog.posts.certificatePinning,
     image: "/img/ai_avatar.webp", // Placeholder
     link: "#",
   },
   {
-    title: "Custom mechanical keyboard",
+    title: t.blog.posts.mechanicalKeyboard,
     image: "/img/logo.svg", // Placeholder
     link: "#",
   },
@@ -27,17 +31,17 @@ const blogPosts = [
   <SectionContainer class="-mt-32 pb-16">
     <div class="flex mb-12">
       <div class="w-full">
-        <SectionTitle label="Blog Posts" color="rose" />
+        <SectionTitle label={t.blog.title} color="blue" />
       </div>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
       {blogPosts.map((post) => (
-        <a href={post.link} class="block bg-yankees-blue rounded-lg overflow-hidden group">
-          <div class="relative h-80">
+        <a href={post.link} class="block bg-gradient-to-b from-transparent to-yankees-blue rounded-lg overflow-hidden group">
+          <div class="relative h-[450px]">
             <img src={post.image} alt={post.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-end p-6">
-              <h4 class="text-2xl font-bold text-white">{post.title}</h4>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6">
+              <h4 class="text-2xl font-medium text-white font-poppins">{post.title}</h4>
             </div>
           </div>
         </a>

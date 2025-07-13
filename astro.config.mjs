@@ -9,4 +9,11 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://example.com",
   integrations: [sitemap(), tailwind()],
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  }
 });

@@ -1,10 +1,16 @@
 ---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
+import LanguageSwitcher from "@components/LanguageSwitcher.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const menuOptions = [
-  { name: "About", index: "01", link: "#about" },
-  { name: "Skills", index: "02", link: "#skills" },
-  { name: "Work", index: "03", link: "#work" },
-  { name: "Blog", index: "04", link: "#blog" },
-  { name: "Contact", index: "05", link: "#contact" },
+  { name: t.navigation.about, index: "01", link: "#about", id: "about" },
+  { name: t.navigation.skills, index: "02", link: "#skills", id: "skills" },
+  { name: t.navigation.work, index: "03", link: "#work", id: "work" },
+  { name: t.navigation.blog, index: "04", link: "#blog", id: "blog" },
+  { name: t.navigation.contact, index: "05", link: "#contact", id: "contact" },
 ];
 ---
 
@@ -15,17 +21,17 @@ const menuOptions = [
   <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="#" class="flex-shrink-0">
-      <img src="/img/logo.svg" alt="Logo" class="xl:h-12 lg:h-10 h-8 sm:h-6" />
+      <img src="/img/logo.svg" alt={t.common.logo} class="xl:h-12 lg:h-10 h-8 sm:h-6" />
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:block">
+    <nav class="hidden md:flex items-center gap-8">
       <ul class="flex space-x-8">
         {
           menuOptions.map((option) => (
             <li>
               <a
-                href={`#${option.name.toLowerCase()}`}
+                href={`#${option.id}`}
                 class="menu-link text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-3 py-2"
               >
                 {option.name}
@@ -35,6 +41,7 @@ const menuOptions = [
           ))
         }
       </ul>
+      <LanguageSwitcher />
     </nav>
 
     <!-- Mobile Menu Button -->
@@ -57,7 +64,7 @@ const menuOptions = [
           menuOptions.map((option) => (
             <li>
               <a
-                href={`#${option.name.toLowerCase()}`}
+                href={`#${option.id}`}
                 class="menu-link block w-full text-lg px-6 py-4 rounded-md text-center text-white hover:text-rose hover:bg-rose/20 active:bg-rose/40 transition-colors font-semibold"
               >
                 {option.name}
@@ -67,6 +74,9 @@ const menuOptions = [
           ))
         }
       </ul>
+      <div class="mt-4 flex justify-center">
+        <LanguageSwitcher />
+      </div>
     </nav>
   </div>
 </header>
@@ -76,11 +86,11 @@ const menuOptions = [
   const mobileMenu = document.getElementById("mobileMenu");
   const header = document.getElementById("header");
   const menuOptions = [
-    { name: "About", index: "01", link: "#about" },
-    { name: "Skills", index: "02", link: "#skills" },
-    { name: "Work", index: "03", link: "#work" },
-    { name: "Blog", index: "04", link: "#blog" },
-    { name: "Contact", index: "05", link: "#contact" },
+    { id: "about" },
+    { id: "skills" },
+    { id: "work" },
+    { id: "blog" },
+    { id: "contact" },
   ];
 
   // Helper: Smooth scroll with offset
@@ -115,7 +125,7 @@ const menuOptions = [
   }
 
   // Helper: Get all section IDs from menuOptions
-  const sectionIds = menuOptions.map(opt => opt.name.toLowerCase());
+  const sectionIds = menuOptions.map(opt => opt.id);
 
   // Helper: Set active menu link
   function setActiveMenu(id: string) {

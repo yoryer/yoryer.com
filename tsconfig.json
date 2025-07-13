@@ -7,6 +7,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@styles/*": ["src/styles/*"],
       "@ui/*": ["src/components/ui/*"],
+      "@i18n/*": ["src/i18n/*"]
     }
   }
 }

@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "title": "Jorge Noguera | yoryer.com",
+    "description": "Sitio web personal y portafolio de Jorge Noguera"
+  },
+  "navigation": {
+    "about": "Acerca de",
+    "skills": "Habilidades",
+    "work": "Trabajo",
+    "blog": "Blog",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "Hola,",
+    "name": "Mi nombre es Jorge",
+    "description": "Soy un ingeniero de software con más de 12 años de experiencia construyendo soluciones para varios tipos de empresas y negocios.",
+    "readMore": "Leer más",
+    "downloadCV": "Descargar CV"
+  },
+  "about": {
+    "title": "Acerca de mí",
+    "paragraph1": "¡Hola! Mi nombre es Jorge Noguera y soy un ingeniero de software ubicado en Paraguay.",
+    "paragraph2": "Mi trayectoria profesional comenzó en 2008 cuando me uní a una empresa como desarrollador web.",
+    "paragraph3": "Más adelante en mi carrera tuve la oportunidad de trabajar como desarrollador móvil Android y más recientemente me enfoqué en el desarrollo móvil híbrido usando Flutter.",
+    "paragraph4": "También he trabajado en software más orientado al rendimiento como la construcción de APIs o scripts para servicios SMS Premium.",
+    "paragraph5": "Ocasionalmente hago algo de diseño gráfico."
+  },
+  "skills": {
+    "title": "Habilidades y Experiencia",
+    "professionalExperience": "Experiencia profesional",
+    "frontend": {
+      "title": "Frontend",
+      "description": "Me importa el UI/UX. Construyo aplicaciones web responsivas y dinámicas usando HTML, CSS, JavaScript y React."
+    },
+    "backend": {
+      "title": "Backend",
+      "description": "Desarrollo aplicaciones del lado del servidor y APIs RESTful. Trabajo con bases de datos e implemento lógica de negocio con varios frameworks y lenguajes."
+    },
+    "mobile": {
+      "title": "Móvil",
+      "description": "Creo aplicaciones móviles multiplataforma usando frameworks como Flutter, entregando experiencias nativas en iOS y Android."
+    },
+    "experience": {
+      "roles": {
+        "frontendEngineer": "Ingeniero Front-end",
+        "softwareEngineer": "Ingeniero de Software",
+        "fullstackDeveloper": "Desarrollador Full-stack",
+        "webDeveloper": "Desarrollador Web",
+        "juniorDeveloper": "Desarrollador Junior"
+      },
+      "periods": {
+        "current": "Febrero 2021 - Presente",
+        "period1": "Febrero 2019 - Febrero 2021",
+        "period2": "Marzo 2017 - Febrero 2019",
+        "period3": "Marzo 2015 - Febrero 2017",
+        "period4": "Marzo 2013 - Febrero 2015"
+      },
+      "tasks": {
+        "task1": "Desarrollo de 6 aplicaciones móviles para entidades financieras utilizando Flutter, 3 de ellas ya publicadas.",
+        "task2": "Análisis y programación de una RESTful API en Spring Boot para gestionar usuarios y transacciones del área de empresas de un banco.",
+        "task3": "Implementación de pasarelas de pago aplicaciones móviles y web.",
+        "task4": "Programación y optimización de un sistema SMS Premium para atender a más de 100.000 suscriptores.",
+        "task5": "Creación de una aplicación de rastreo de dispositivos Android para prevenir que sean robados.",
+        "task6": "Coordinación de un equipo de 5 programadores para el desarrollo de una aplicación para una operadora de telefonía.",
+        "task7": "Desarrollo de aplicaciones móviles para Android y iOS.",
+        "task8": "Implementación de APIs RESTful para la integración con sistemas de terceros.",
+        "task9": "Optimización de bases de datos y consultas SQL.",
+        "task10": "Desarrollo de sitios web y aplicaciones a medida para clientes.",
+        "task11": "Gestión de proyectos y comunicación directa con los clientes.",
+        "task12": "Implementación de soluciones de e-commerce.",
+        "task13": "Desarrollo y mantenimiento de plataformas web.",
+        "task14": "Integración de APIs de terceros.",
+        "task15": "Optimización de rendimiento web.",
+        "task16": "Asistencia en el desarrollo de software.",
+        "task17": "Pruebas y depuración de código.",
+        "task18": "Documentación técnica."
+      }
+    }
+  },
+  "work": {
+    "title": "Mi Trabajo",
+    "projectDescription": "Diseño de logo para una barbería local en Paraguay."
+  },
+  "blog": {
+    "title": "Publicaciones del Blog",
+    "posts": {
+      "personalWebsite": "Construyendo mi sitio web personal",
+      "certificatePinning": "Certificate pinning con Flutter",
+      "mechanicalKeyboard": "Teclado mecánico personalizado"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "No dudes en contactarme por correo electrónico a jorge.noguera@example.com o conectar conmigo en LinkedIn."
+  },
+  "footer": {
+    "email": "hi@yoryer.com",
+    "copyright": "Diseñado y construido por Jorge Noguera",
+    "year": "© 2025",
+    "social": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "dribbble": "Dribbble"
+    }
+  },
+  "common": {
+    "logo": "Logo"
+  }
+}

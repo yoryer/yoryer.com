@@ -8,16 +8,20 @@ import Skills from "@components/Skills.astro";
 import Work from "@components/Work.astro";
 import Contact from "@components/Contact.astro";
 import "@styles/global.css";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
 interface Props {
   title: string;
   description: string;
 }
 
 const { title, description } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

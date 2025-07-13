@@ -1,0 +1,68 @@
+---
+import { getLangFromUrl, getLocalizedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const languages = [
+  { code: "en", name: "EN", flag: "🇺🇸" },
+  { code: "es", name: "ES", flag: "🇪🇸" },
+];
+
+const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, '') || '/';
+---
+
+<div class="relative inline-block text-left">
+  <button
+    id="language-switcher"
+    class="flex items-center gap-2 px-3 py-2 text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md"
+  >
+    <span>{languages.find(l => l.code === lang)?.flag}</span>
+    <span class="uppercase">{lang}</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  
+  <div
+    id="language-dropdown"
+    class="hidden absolute right-0 mt-2 w-32 bg-blue bg-opacity-95 rounded-md shadow-lg z-50"
+  >
+    {languages.map((language) => (
+      <a
+        href={getLocalizedPath(currentPath, language.code)}
+        class={`flex items-center gap-2 px-4 py-3 text-white hover:bg-rose/20 transition-colors ${
+          language.code === lang ? 'bg-rose/10' : ''
+        }`}
+      >
+        <span>{language.flag}</span>
+        <span class="uppercase">{language.name}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  function setupLanguageSwitcher() {
+    const switcher = document.getElementById('language-switcher');
+    const dropdown = document.getElementById('language-dropdown');
+    
+    if (!switcher || !dropdown) return;
+    
+    switcher.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('hidden');
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      dropdown.classList.add('hidden');
+    });
+    
+    // Prevent dropdown from closing when clicking inside
+    dropdown.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+  
+  setupLanguageSwitcher();
+  document.addEventListener('astro:page-load', setupLanguageSwitcher);
+</script>

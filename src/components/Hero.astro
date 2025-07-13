@@ -1,6 +1,10 @@
 ---
 import Button from "@ui/Button.astro";
 import SectionContainer from "@ui/SectionContainer.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!-- Hero Section -->
@@ -30,31 +34,28 @@ import SectionContainer from "@ui/SectionContainer.astro";
       <p
         class="font-bold xl:text-[64px] lg:text-[48px] text-[42px] text-water tracking-normal leading-none"
       >
-        Hello,
+        {t.hero.greeting}
       </p>
       <p
         class="font-medium xl:text-[48px] lg:text-[32px] text-[28px] text-water tracking-normal leading-none mt-2"
       >
-        My name is <span
+        {t.hero.name.split(' ').slice(0, -1).join(' ')} <span
           class="font-semibold xl:text-[50px] lg:text-[36px] text-[30px] text-light-sky-blue cursor-pointer"
-          id="hero-name">Jorge</span
+          id="hero-name">{t.hero.name.split(' ').slice(-1)[0]}</span
         >
 
         <p
           class="font-light xl:text-[32px] lg:text-[24px] text-[20px] text-silver mt-5"
         >
-          I’m a software engineer with<br />
-          12+ years of experience building<br />
-          solutions for various types of<br />
-          companies and businesses.
+          {t.hero.description}
         </p>
       </p>
     </div>
     <div
       class="grid md:grid-cols-4 grid-cols-2 pt-10 xl:gap-x-4 lg:gap-x-2 gap-x-2"
     >
-      <Button type="outline" label="Read more" href="#about" />
-      <Button type="primary" label="Download CV" />
+      <Button type="outline" label={t.hero.readMore} href="#about" />
+      <Button type="primary" label={t.hero.downloadCV} />
     </div>
   </section>
 </SectionContainer>
