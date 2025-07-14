@@ -34,20 +34,27 @@ const t = useTranslations(lang);
       <p
         class="font-bold xl:text-[64px] lg:text-[48px] text-[42px] text-water tracking-normal leading-none"
       >
-        {t.hero.greeting}
+        {t.hero.greeting1}
       </p>
       <p
         class="font-medium xl:text-[48px] lg:text-[32px] text-[28px] text-water tracking-normal leading-none mt-2"
       >
-        {t.hero.name.split(' ').slice(0, -1).join(' ')} <span
+        {t.hero.greeting2}
+        <span
           class="font-semibold xl:text-[50px] lg:text-[36px] text-[30px] text-light-sky-blue cursor-pointer"
-          id="hero-name">{t.hero.name.split(' ').slice(-1)[0]}</span
+          id="hero-name">{t.hero.name}</span
         >
 
         <p
           class="font-light xl:text-[32px] lg:text-[24px] text-[20px] text-silver mt-5"
         >
-          {t.hero.description}
+          {t.hero.description1}
+          <br />
+          {t.hero.description2}
+          <br />
+          {t.hero.description3}
+          <br />
+          {t.hero.description4}
         </p>
       </p>
     </div>

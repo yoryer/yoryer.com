@@ -11,9 +11,13 @@
     "contact": "Contacto"
   },
   "hero": {
-    "greeting": "Hola,",
-    "name": "Mi nombre es Jorge",
-    "description": "Soy un ingeniero de software con más de 12 años de experiencia construyendo soluciones para varios tipos de empresas y negocios.",
+    "greeting1": "Hola,",
+    "greeting2": "Mi nombre es",
+    "name": "Jorge",
+    "description1": "Soy un ingeniero de software con",
+    "description2": "12+ años de experiencia creando",
+    "description3": "soluciones para varios tipos de",
+    "description4": "empresas y negocios.",
     "readMore": "Leer más",
     "downloadCV": "Descargar CV"
   },
@@ -23,7 +27,8 @@
     "paragraph2": "Mi trayectoria profesional comenzó en 2008 cuando me uní a una empresa como desarrollador web.",
     "paragraph3": "Más adelante en mi carrera tuve la oportunidad de trabajar como desarrollador móvil Android y más recientemente me enfoqué en el desarrollo móvil híbrido usando Flutter.",
     "paragraph4": "También he trabajado en software más orientado al rendimiento como la construcción de APIs o scripts para servicios SMS Premium.",
-    "paragraph5": "Ocasionalmente hago algo de diseño gráfico."
+    "paragraph5": "Ocasionalmente hago algo de diseño gráfico.",
+    "paragraph6": "I also speak English."
   },
   "skills": {
     "title": "Habilidades y Experiencia",

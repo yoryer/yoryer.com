@@ -1,15 +1,21 @@
 ---
 import SectionContainer from "@ui/SectionContainer.astro";
 import SectionTitle from "@ui/SectionTitle.astro";
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
+
+const langSwitch = lang === "en" ? "es" : "en";
 ---
 
 <!-- Content Sections -->
 <section id="about" class="mt-5 min-h-screen">
-  <div class="w-full h-32 bg-gradient-to-b from-dark-blue-gradient to-transparent">
+  <div
+    class="w-full h-32 bg-gradient-to-b from-dark-blue-gradient to-transparent"
+  >
   </div>
   <SectionContainer class="-mt-32 pb-16">
     <div class="flex flex-col md:flex-row mb-12">
@@ -20,19 +26,39 @@ const t = useTranslations(lang);
     </div>
 
     <div class="flex flex-col md:flex-row items-start">
-      <div class="w-full md:w-1/3 mt-10 mb-8 md:mb-0 md:pl-8 text-center md:text-left">
-        <div class="relative inline-block w-full aspect-square group mx-auto max-w-xs">
-          <div class="h-full border border-rose rounded-3xl -rotate-12 group-hover:rotate-0 transition-all duration-500"></div>
-          <div class="absolute inset-0 h-full border border-light-sky-blue rounded-3xl group-hover:-rotate-12 transition-all duration-500"></div>
-          <img class="absolute inset-0 h-full w-full object-cover rounded-3xl p-4" src="/img/about-me-avatar.webp" />
+      <div
+        class="w-full md:w-1/3 mt-10 mb-8 md:mb-0 md:pl-8 text-center md:text-left"
+      >
+        <div
+          class="relative inline-block w-full aspect-square group mx-auto max-w-xs"
+        >
+          <div
+            class="h-full border border-rose rounded-3xl -rotate-12 group-hover:rotate-0 transition-all duration-500"
+          >
+          </div>
+          <div
+            class="absolute inset-0 h-full border border-light-sky-blue rounded-3xl group-hover:-rotate-12 transition-all duration-500"
+          >
+          </div>
+          <img
+            class="absolute inset-0 h-full w-full object-cover rounded-3xl p-4"
+            src="/img/about-me-avatar.webp"
+          />
         </div>
       </div>
-      <div class="w-full md:w-2/3 md:ml-16 font-poppins text-xl leading-relaxed space-y-6">
+      <div
+        class="w-full md:w-2/3 md:ml-16 font-poppins text-xl leading-relaxed space-y-6"
+      >
         <p>{t.about.paragraph1}</p>
         <p>{t.about.paragraph2}</p>
         <p>{t.about.paragraph3}</p>
         <p>{t.about.paragraph4}</p>
         <p>{t.about.paragraph5}</p>
+        <p>
+          <a
+            href={getLocalizedPath(currentPath, langSwitch)}
+            class="hover:text-rose hover:underline">{t.about.paragraph6}</a>
+        </p>
       </div>
     </div>
   </SectionContainer>

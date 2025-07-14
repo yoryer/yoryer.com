@@ -11,9 +11,13 @@
     "contact": "Contact"
   },
   "hero": {
-    "greeting": "Hello,",
-    "name": "My name is Jorge",
-    "description": "I'm a software engineer with 12+ years of experience building solutions for various types of companies and businesses.",
+    "greeting1": "Hello,",
+    "greeting2": "My name is",
+    "name": "Jorge",
+    "description1": "I'm a software engineer with",
+    "description2": "12+ years of experience building",
+    "description3": "solutions for various types of",
+    "description4": "companies and businesses.",
     "readMore": "Read more",
     "downloadCV": "Download CV"
   },
@@ -23,7 +27,8 @@
     "paragraph2": "My professional journey started in 2008 when I joined a company as a web developer.",
     "paragraph3": "Later in my career I have the opportunity to work as an Android mobile developer and more recently I was focused on hybrid mobile development using Flutter.",
     "paragraph4": "I've also worked on more performance oriented software like building API's or scripts for SMS Premium services.",
-    "paragraph5": "Occasionally I do some graphic design."
+    "paragraph5": "Occasionally I do some graphic design.",
+    "paragraph6": "También hablo español."
   },
   "skills": {
     "title": "Skills & Experience",

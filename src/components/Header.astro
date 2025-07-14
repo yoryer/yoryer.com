@@ -1,6 +1,5 @@
 ---
 import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
-import LanguageSwitcher from "@components/LanguageSwitcher.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -41,7 +40,6 @@ const menuOptions = [
           ))
         }
       </ul>
-      <LanguageSwitcher />
     </nav>
 
     <!-- Mobile Menu Button -->
@@ -74,9 +72,6 @@ const menuOptions = [
           ))
         }
       </ul>
-      <div class="mt-4 flex justify-center">
-        <LanguageSwitcher />
-      </div>
     </nav>
   </div>
 </header>

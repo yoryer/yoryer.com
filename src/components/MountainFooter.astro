@@ -10,13 +10,13 @@
   <div class="mountains-container relative w-full h-full">
     <!-- Layer 2: Mid-background mountains -->
     <img
-      src="/img/mountain-4.svg"
+      src="/img/mountain-bg-left.svg"
       alt=""
       class="mountain absolute bottom-0 left-[25%] w-[30%] h-auto opacity-50"
       style="z-index: 2; max-height: 55%;"
     />
     <img
-      src="/img/mountain-8.svg"
+      src="/img/mountain-bg-right.svg"
       alt=""
       class="mountain absolute bottom-0 right-[20%] w-[35%] h-auto opacity-50"
       style="z-index: 2; max-height: 60%;"
@@ -24,13 +24,13 @@
 
     <!-- Layer 3: Mid-foreground mountains -->
     <img
-      src="/img/mountain-3.svg"
+      src="/img/mountain-fg-left.svg"
       alt=""
       class="mountain absolute bottom-0 left-[-5%] w-[40%] h-auto opacity-70"
       style="z-index: 3; max-height: 70%;"
     />
     <img
-      src="/img/mountain-5.svg"
+      src="/img/mountain-fg-right.svg"
       alt=""
       class="mountain absolute bottom-0 right-[-8%] w-[45%] h-auto opacity-70"
       style="z-index: 3; max-height: 75%;"
@@ -46,13 +46,13 @@
 
     <!-- Layer 5: Foreground accents -->
     <img
-      src="/img/mountain-2.svg"
+      src="/img/mountain-accent-left.svg"
       alt=""
       class="mountain absolute bottom-0 left-[15%] w-[25%] h-auto"
       style="z-index: 5; max-height: 50%;"
     />
     <img
-      src="/img/mountain-1.svg"
+      src="/img/mountain-accent-right.svg"
       alt=""
       class="mountain absolute bottom-0 right-[10%] w-[20%] h-auto"
       style="z-index: 5; max-height: 45%;"
@@ -76,11 +76,6 @@
   }
 
   /* Create depth with color adjustments */
-  .mountain[style*="z-index: 1"] {
-    filter: brightness(1.2) contrast(0.8)
-      drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
-  }
-
   .mountain[style*="z-index: 2"] {
     filter: brightness(1.1) contrast(0.9)
       drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
