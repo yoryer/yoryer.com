@@ -31,14 +31,14 @@ const socialLinks = [
 ---
 
 <section id="contact" class="mt-5 relative">
-  <SectionContainer class="mt-8 -mb-16">
+  <SectionContainer class="-mt-8 mb-16">
     <div class="flex flex-col items-center text-center space-y-6">
       <div class="group cursor-pointer">
         <p class="text-lg text-black-medium font-poppins">
-          Crafted with ♥️ from Paraguay 🇵🇾
+          {t.contact.craftedWith}
         </p>
         <p class="text-sm text-silver font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1 mt-1">
-          and a lot of 
+          {t.contact.andALotOf} 
           <a 
             href="https://en.wikipedia.org/wiki/Terer%C3%A9" 
             target="_blank" 
@@ -52,8 +52,8 @@ const socialLinks = [
       </div>
       
       <p class="text-sm text-black-medium font-poppins flex flex-col items-center">
-        <span class="text-silver-blue">Designed and built by Jorge Noguera</span>
-        <span class="text-sm text-silver-blue font-poppins">2023 - 2025</span>
+        <span class="text-silver-blue">{t.contact.designedAndBuilt}</span>
+        <span class="text-sm text-silver-blue font-poppins">{t.contact.years}</span>
       </p>
       
       <div class="flex gap-4 mt-8">

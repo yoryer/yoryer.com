@@ -96,7 +96,11 @@
   },
   "contact": {
     "title": "Contacto",
-    "description": "No dudes en contactarme por correo electrónico a jorge.noguera@example.com o conectar conmigo en LinkedIn."
+    "description": "No dudes en contactarme por correo electrónico a jorge.noguera@example.com o conectar conmigo en LinkedIn.",
+    "craftedWith": "Hecho con ♥️ desde Paraguay 🇵🇾",
+    "andALotOf": "y mucho",
+    "designedAndBuilt": "Diseñado y construido por Jorge Noguera",
+    "years": "2023 - 2025"
   },
   "footer": {
     "email": "hi@yoryer.com",

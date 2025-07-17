@@ -96,7 +96,11 @@
   },
   "contact": {
     "title": "Contact",
-    "description": "Feel free to reach out to me via email at jorge.noguera@example.com or connect with me on LinkedIn."
+    "description": "Feel free to reach out to me via email at jorge.noguera@example.com or connect with me on LinkedIn.",
+    "craftedWith": "Crafted with ♥️ from Paraguay 🇵🇾",
+    "andALotOf": "and a lot of",
+    "designedAndBuilt": "Designed and built by Jorge Noguera",
+    "years": "2023 - 2025"
   },
   "footer": {
     "email": "hi@yoryer.com",
