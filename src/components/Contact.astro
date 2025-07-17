@@ -1,6 +1,5 @@
 ---
 import SectionContainer from "@ui/SectionContainer.astro";
-import SectionTitle from "@ui/SectionTitle.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -34,11 +33,11 @@ const socialLinks = [
   <SectionContainer class="-mt-8 mb-16">
     <div class="flex flex-col items-center text-center space-y-6">
       <div class="group cursor-pointer">
-        <p class="text-lg text-black-medium font-poppins">
+        <p class="text-lg text-silver font-poppins">
           {t.contact.craftedWith}
         </p>
         <p
-          class="text-sm text-silver font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1 mt-1"
+          class="text-sm text-silver-blue font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1 mt-1"
         >
           {t.contact.andALotOf}
           <a

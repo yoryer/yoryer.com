@@ -73,7 +73,7 @@ const t = useTranslations(lang);
     const hoverImg = document.getElementById("hero-hover-img");
     if (!name || !hoverImg) return;
 
-    function showHoverImg(e: MouseEvent) {
+    function showHoverImg() {
       if (!name || !hoverImg) return;
       const rect = name.getBoundingClientRect();
       hoverImg.style.left = `${rect.left - rect.width * 0.1}px`;

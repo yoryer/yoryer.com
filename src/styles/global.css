@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', Verdana, sans-serif;
+  font-family: "Poppins", Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
@@ -16,4 +16,243 @@ body {
 .active-menu {
   color: #f43f5e !important; /* rose-500 */
   background: rgba(244, 63, 94, 0.2);
+}
+
+.prose {
+  @apply text-silver text-lg leading-relaxed font-poppins;
+  color: #d9d9d9 !important;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply text-water font-semibold !important;
+  line-height: 1.25;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #d7ecff !important;
+}
+
+.prose h1 {
+  @apply text-4xl mt-12 mb-6;
+}
+
+.prose h2 {
+  @apply text-3xl mt-10 mb-5;
+}
+
+.prose h3 {
+  @apply text-2xl mt-8 mb-4;
+}
+
+.prose h4 {
+  @apply text-xl mt-6 mb-3;
+}
+
+.prose p {
+  @apply mb-6 leading-8;
+  text-indent: 0;
+  color: #d9d9d9 !important;
+}
+
+.prose a {
+  @apply text-light-sky-blue hover:text-water transition-colors duration-200 underline decoration-2 underline-offset-4 !important;
+  color: #7dcfff !important;
+}
+
+.prose a:hover {
+  color: #d7ecff !important;
+}
+
+.prose strong,
+.prose b {
+  @apply text-water font-semibold !important;
+  color: #d7ecff !important;
+}
+
+.prose em,
+.prose i {
+  @apply text-silver italic !important;
+  color: #d9d9d9 !important;
+}
+
+.prose ul,
+.prose ol {
+  @apply my-6 pl-6;
+  color: #d9d9d9 !important;
+}
+
+.prose li {
+  @apply mb-3 leading-7;
+  color: #d9d9d9 !important;
+}
+
+.prose ul li {
+  @apply list-disc;
+}
+
+.prose ol li {
+  @apply list-decimal;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-light-sky-blue pl-6 py-2 my-6 italic bg-opacity-10 bg-blue rounded-r-lg;
+  color: #d9d9d9 !important;
+  border-color: #7dcfff !important;
+}
+
+.prose code {
+  @apply bg-yankees-blue text-light-sky-blue px-2 py-1 rounded font-mono;
+}
+
+.prose pre {
+  @apply relative bg-yankees-blue text-silver p-6 rounded-lg overflow-x-auto my-6 border border-blue;
+  position: relative;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-silver text-sm;
+}
+
+.prose pre .copy-button {
+  position: absolute !important;
+  bottom: 0.75rem !important;
+  right: 0.75rem !important;
+  opacity: 0 !important;
+  transition: all 0.2s ease !important;
+  background-color: #08243f !important;
+  color: white !important;
+  padding: 0.25rem 0.5rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border: 1px solid #08243f !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  z-index: 10 !important;
+}
+
+.prose pre:hover .copy-button {
+  opacity: 1 !important;
+}
+
+.prose pre .copy-button:hover {
+  background-color: #7dcfff !important;
+  border-color: #7dcfff !important;
+}
+
+.prose pre .copy-button.copied {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+.prose img {
+  @apply my-8 rounded-lg shadow-lg;
+}
+
+.prose hr {
+  @apply border-blue my-8;
+}
+
+/* Table styling */
+.prose table {
+  @apply w-full my-6 border-collapse;
+}
+
+.prose th,
+.prose td {
+  @apply border border-blue px-4 py-2 text-left;
+}
+
+.prose th {
+  @apply bg-yankees-blue text-water font-semibold;
+}
+
+.prose td {
+  @apply text-silver-blue;
+}
+
+/* Override Prism theme colors to match our design while keeping syntax highlighting */
+pre[class*="language-"] {
+  @apply bg-yankees-blue border border-blue !important;
+  padding: 1.5rem !important;
+  border-radius: 0.5rem !important;
+  overflow-x: auto !important;
+  font-size: 0.875rem !important;
+}
+
+code[class*="language-"] {
+  background: transparent !important;
+  color: inherit !important;
+  font-size: 0.875rem !important;
+}
+
+/* Ensure token colors are visible on our dark background */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6a737d !important;
+}
+
+.token.punctuation {
+  color: #d7ecff !important;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #ff5677 !important;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #7dcfff !important;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #d7ecff !important;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #7aa2f7 !important;
+}
+
+.token.function,
+.token.class-name {
+  color: #2ac3de !important;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #f7dc6f !important;
+}
+
+
+.gist {
+  filter: invert(1) hue-rotate(180deg) brightness(1);
+}
+
+.js-line-number {
+  border: 1px solid #ffffff !important;
 }

@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import "prismjs/themes/prism-tomorrow.css";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -67,16 +68,16 @@ const formatDate = (date: Date, locale: string) => {
         </div>
 
         <h1
-          class="text-4xl md:text-5xl font-bold text-black-hard mb-4 leading-tight"
+          class="text-4xl md:text-5xl font-medium text-white mb-4 leading-tight"
         >
           {post.data.title}
         </h1>
 
-        <p class="text-xl text-black-medium mb-6 leading-relaxed">
+        <p class="text-xl text-silver-blue mb-6 leading-relaxed">
           {post.data.description}
         </p>
 
-        <div class="flex items-center text-black-soft">
+        <div class="flex items-center text-silver-blue">
           <time datetime={post.data.date.toISOString()}>
             {formatDate(post.data.date, post.data.lang)}
           </time>
@@ -84,10 +85,8 @@ const formatDate = (date: Date, locale: string) => {
       </header>
 
       <!-- Article content -->
-      <div class="prose prose-lg prose-blue max-w-none">
-        <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
-          <Content />
-        </div>
+      <div class="prose prose-xl prose-invert max-w-none">
+        <Content />
       </div>
 
       <!-- Article footer -->
@@ -120,62 +119,62 @@ const formatDate = (date: Date, locale: string) => {
   </main>
 </BlogLayout>
 
-<style>
-  .prose {
-    @apply text-black-medium;
+<script>
+  function addCopyButtons() {
+    const codeBlocks = document.querySelectorAll("pre");
+
+    codeBlocks.forEach((pre) => {
+      // Skip if button already exists
+      if (pre.querySelector(".copy-button")) return;
+
+      const code = pre.querySelector("code");
+      if (!code) return;
+
+      const button = document.createElement("button");
+      button.className = "copy-button not-prose";
+      button.innerHTML = "<span>📋</span><span>Copy</span>";
+      button.setAttribute("aria-label", "Copy code to clipboard");
+
+      button.addEventListener("click", async () => {
+        const text = code.textContent || "";
+
+        try {
+          await navigator.clipboard.writeText(text);
+          button.innerHTML = "<span>✅</span><span>Copied!</span>";
+          button.classList.add("copied");
+
+          setTimeout(() => {
+            button.innerHTML = "<span>📋</span><span>Copy</span>";
+            button.classList.remove("copied");
+          }, 2000);
+        } catch {
+          // Fallback for older browsers
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          try {
+            document.execCommand("copy");
+            button.innerHTML = "<span>✅</span><span>Copied!</span>";
+            button.classList.add("copied");
+            setTimeout(() => {
+              button.innerHTML = "<span>📋</span><span>Copy</span>";
+              button.classList.remove("copied");
+            }, 2000);
+          } catch (fallbackErr) {
+            console.error("Failed to copy code:", fallbackErr);
+          }
+          document.body.removeChild(textArea);
+        }
+      });
+
+      pre.appendChild(button);
+    });
   }
 
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6 {
-    @apply text-black-hard font-bold;
-  }
+  // Run on initial load
+  addCopyButtons();
 
-  .prose h1 {
-    @apply text-3xl mt-8 mb-4;
-  }
-
-  .prose h2 {
-    @apply text-2xl mt-6 mb-3;
-  }
-
-  .prose h3 {
-    @apply text-xl mt-5 mb-2;
-  }
-
-  .prose p {
-    @apply mb-4 leading-relaxed;
-  }
-
-  .prose a {
-    @apply text-blue hover:text-yankees-blue transition-colors duration-200;
-  }
-
-  .prose ul,
-  .prose ol {
-    @apply my-4;
-  }
-
-  .prose li {
-    @apply mb-2;
-  }
-
-  .prose blockquote {
-    @apply border-l-4 border-water pl-4 italic text-black-soft;
-  }
-
-  .prose code {
-    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
-  }
-
-  .prose pre {
-    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto;
-  }
-
-  .prose pre code {
-    @apply bg-transparent p-0;
-  }
-</style>
+  // Run when navigating between pages (for Astro's client-side routing)
+  document.addEventListener("astro:page-load", addCopyButtons);
+</script>
