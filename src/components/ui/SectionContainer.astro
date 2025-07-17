@@ -5,6 +5,7 @@ interface Props {
 
 const { class: className } = Astro.props;
 ---
-<section class={`pt-20 max-w-6xl mx-auto px-4 ${className || ''}`}>
+
+<section class={`pt-20 max-w-6xl mx-auto px-4 ${className || ""}`}>
   <slot />
 </section>

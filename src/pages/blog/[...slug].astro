@@ -1,0 +1,181 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogLayout from "@layouts/BlogLayout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+type Props = CollectionEntry<"blog">;
+
+const post = Astro.props;
+const { Content } = await post.render();
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Format date based on language
+const formatDate = (date: Date, locale: string) => {
+  return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+---
+
+<BlogLayout title={post.data.title} description={post.data.description}>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 to-water-50 pt-20">
+    <article class="max-w-4xl mx-auto px-6 py-12">
+      <!-- Back to blog link -->
+      <nav class="mb-8">
+        <a
+          href="/#blog"
+          class="inline-flex items-center text-blue hover:text-yankees-blue transition-colors duration-200"
+        >
+          <svg
+            class="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          {t.blog ? "← Back to Blog" : "← Volver al Blog"}
+        </a>
+      </nav>
+
+      <!-- Article header -->
+      <header class="mb-12">
+        <div class="flex flex-wrap items-center gap-2 mb-4">
+          {
+            post.data.tags?.map((tag: string) => (
+              <span class="px-3 py-1 bg-water text-blue text-sm rounded-full">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+
+        <h1
+          class="text-4xl md:text-5xl font-bold text-black-hard mb-4 leading-tight"
+        >
+          {post.data.title}
+        </h1>
+
+        <p class="text-xl text-black-medium mb-6 leading-relaxed">
+          {post.data.description}
+        </p>
+
+        <div class="flex items-center text-black-soft">
+          <time datetime={post.data.date.toISOString()}>
+            {formatDate(post.data.date, post.data.lang)}
+          </time>
+        </div>
+      </header>
+
+      <!-- Article content -->
+      <div class="prose prose-lg prose-blue max-w-none">
+        <div class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
+          <Content />
+        </div>
+      </div>
+
+      <!-- Article footer -->
+      <footer class="mt-12 pt-8 border-t border-gray-200">
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div class="text-black-soft">
+            {
+              post.data.lang === "es"
+                ? "¿Te gustó este artículo? ¡Compártelo!"
+                : "Enjoyed this article? Share it!"
+            }
+          </div>
+
+          <!-- Social sharing buttons could go here -->
+          <div class="flex gap-4">
+            <a
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.toString())}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2 bg-blue text-white rounded-lg hover:bg-yankees-blue transition-colors duration-200"
+            >
+              {post.data.lang === "es" ? "Compartir" : "Share"}
+            </a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</BlogLayout>
+
+<style>
+  .prose {
+    @apply text-black-medium;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-black-hard font-bold;
+  }
+
+  .prose h1 {
+    @apply text-3xl mt-8 mb-4;
+  }
+
+  .prose h2 {
+    @apply text-2xl mt-6 mb-3;
+  }
+
+  .prose h3 {
+    @apply text-xl mt-5 mb-2;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose a {
+    @apply text-blue hover:text-yankees-blue transition-colors duration-200;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply my-4;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-water pl-4 italic text-black-soft;
+  }
+
+  .prose code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+</style>

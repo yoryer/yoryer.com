@@ -20,7 +20,11 @@ const menuOptions = [
   <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="#" class="flex-shrink-0">
-      <img src="/img/logo.svg" alt={t.common.logo} class="xl:h-12 lg:h-10 h-8 sm:h-6" />
+      <img
+        src="/img/logo.svg"
+        alt={t.common.logo}
+        class="xl:h-12 lg:h-10 h-8 sm:h-6"
+      />
     </a>
 
     <!-- Desktop Navigation -->
@@ -102,34 +106,37 @@ const menuOptions = [
   // Attach click listeners to all nav links (desktop & mobile)
   function setupNavLinks() {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      (link as HTMLAnchorElement).addEventListener("click", function (e: MouseEvent) {
-        const hash = (this as HTMLAnchorElement).getAttribute("href");
-        if (hash && hash.startsWith("#")) {
-          const id = hash.slice(1);
-          if (document.getElementById(id)) {
-            e.preventDefault();
-            scrollToSectionWithOffset(id);
-            // If mobile menu is open, close it
-            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
-              mobileMenu.classList.add("hidden");
+      (link as HTMLAnchorElement).addEventListener(
+        "click",
+        function (e: MouseEvent) {
+          const hash = (this as HTMLAnchorElement).getAttribute("href");
+          if (hash && hash.startsWith("#")) {
+            const id = hash.slice(1);
+            if (document.getElementById(id)) {
+              e.preventDefault();
+              scrollToSectionWithOffset(id);
+              // If mobile menu is open, close it
+              if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+                mobileMenu.classList.add("hidden");
+              }
             }
           }
         }
-      });
+      );
     });
   }
 
   // Helper: Get all section IDs from menuOptions
-  const sectionIds = menuOptions.map(opt => opt.id);
+  const sectionIds = menuOptions.map((opt) => opt.id);
 
   // Helper: Set active menu link
   function setActiveMenu(id: string) {
-    document.querySelectorAll('.menu-link').forEach(link => {
-      const hash = link.getAttribute('href');
+    document.querySelectorAll(".menu-link").forEach((link) => {
+      const hash = link.getAttribute("href");
       if (id && hash === `#${id}`) {
-        link.classList.add('active-menu');
+        link.classList.add("active-menu");
       } else {
-        link.classList.remove('active-menu');
+        link.classList.remove("active-menu");
       }
     });
   }
@@ -139,7 +146,8 @@ const menuOptions = [
     const firstSection = document.getElementById(sectionIds[0]);
     const headerHeight = header ? header.getBoundingClientRect().height : 0;
     if (firstSection) {
-      const firstSectionTop = firstSection.getBoundingClientRect().top - headerHeight;
+      const firstSectionTop =
+        firstSection.getBoundingClientRect().top - headerHeight;
       // If above the first section, clear all active menu links
       if (firstSectionTop > 0) {
         setActiveMenu("");
@@ -170,5 +178,5 @@ const menuOptions = [
     setupNavLinks();
     onScroll();
   });
-  window.addEventListener('scroll', onScroll);
+  window.addEventListener("scroll", onScroll);
 </script>

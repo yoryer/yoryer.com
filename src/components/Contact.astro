@@ -10,23 +10,23 @@ const socialLinks = [
   {
     name: "GitHub",
     href: "https://github.com/yoryer",
-    icon: "/img/social-github.svg"
+    icon: "/img/social-github.svg",
   },
   {
-    name: "LinkedIn", 
+    name: "LinkedIn",
     href: "https://linkedin.com/in/yoryer",
-    icon: "/img/social-linkedin.svg"
+    icon: "/img/social-linkedin.svg",
   },
   {
     name: "Dribbble",
-    href: "https://dribbble.com/yoryer", 
-    icon: "/img/social-dribbble.svg"
+    href: "https://dribbble.com/yoryer",
+    icon: "/img/social-dribbble.svg",
   },
   {
     name: "Email",
     href: "mailto:hi@yoryer.com",
-    icon: "/img/social-email.svg"
-  }
+    icon: "/img/social-email.svg",
+  },
 ];
 ---
 
@@ -37,11 +37,13 @@ const socialLinks = [
         <p class="text-lg text-black-medium font-poppins">
           {t.contact.craftedWith}
         </p>
-        <p class="text-sm text-silver font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1 mt-1">
-          {t.contact.andALotOf} 
-          <a 
-            href="https://en.wikipedia.org/wiki/Terer%C3%A9" 
-            target="_blank" 
+        <p
+          class="text-sm text-silver font-poppins opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-1 mt-1"
+        >
+          {t.contact.andALotOf}
+          <a
+            href="https://en.wikipedia.org/wiki/Terer%C3%A9"
+            target="_blank"
             rel="noopener noreferrer"
             class="hover:underline transition-all duration-200"
           >
@@ -50,30 +52,36 @@ const socialLinks = [
           <span>🧉</span>
         </p>
       </div>
-      
-      <p class="text-sm text-black-medium font-poppins flex flex-col items-center">
+
+      <p
+        class="text-sm text-black-medium font-poppins flex flex-col items-center"
+      >
         <span class="text-silver-blue">{t.contact.designedAndBuilt}</span>
-        <span class="text-sm text-silver-blue font-poppins">{t.contact.years}</span>
+        <span class="text-sm text-silver-blue font-poppins"
+          >{t.contact.years}</span
+        >
       </p>
-      
+
       <div class="flex gap-4 mt-8">
-        {socialLinks.map((social) => (
-          <a 
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-button group relative flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
-          >
-            <img 
-              src={social.icon} 
-              alt={social.name}
-              class="w-7 h-7 filter brightness-0 invert transition-transform duration-300 group-hover:-translate-y-1"
-            />
-            <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black-hard text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
-              {social.name}
-            </span>
-          </a>
-        ))}
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-button group relative flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <img
+                src={social.icon}
+                alt={social.name}
+                class="w-7 h-7 filter brightness-0 invert transition-transform duration-300 group-hover:-translate-y-1"
+              />
+              <span class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black-hard text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-10">
+                {social.name}
+              </span>
+            </a>
+          ))
+        }
       </div>
     </div>
   </SectionContainer>

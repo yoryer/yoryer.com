@@ -2,32 +2,33 @@
 import SectionContainer from "@ui/SectionContainer.astro";
 import SectionTitle from "@ui/SectionTitle.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const blogPosts = [
-  {
-    title: t.blog.posts.personalWebsite,
-    image: "/img/about-me-avatar.webp", // Placeholder
-    link: "#",
-  },
-  {
-    title: t.blog.posts.certificatePinning,
-    image: "/img/ai_avatar.webp", // Placeholder
-    link: "#",
-  },
-  {
-    title: t.blog.posts.mechanicalKeyboard,
-    image: "/img/logo.svg", // Placeholder
-    link: "#",
-  },
-];
+// Get blog posts from content collections
+const allPosts = await getCollection("blog");
+const blogPosts = allPosts
+  .filter((post: CollectionEntry<"blog">) => post.data.lang === lang)
+  .sort(
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+      b.data.date.getTime() - a.data.date.getTime()
+  )
+  .slice(0, 3); // Show only 3 most recent posts
+
+// Format date based on language
+const formatDate = (date: Date, locale: string) => {
+  return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
 ---
 
 <section id="blog" class="mt-5 min-h-screen">
-  <div class="w-full h-32">
-</div>
+  <div class="w-full h-32"></div>
   <SectionContainer class="-mt-32 pb-16">
     <div class="flex mb-12">
       <div class="w-full">
@@ -36,16 +37,47 @@ const blogPosts = [
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
-      {blogPosts.map((post) => (
-        <a href={post.link} class="block bg-gradient-to-b from-transparent to-yankees-blue rounded-lg overflow-hidden group">
-          <div class="relative h-[450px]">
-            <img src={post.image} alt={post.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 flex items-end p-6">
-              <h4 class="text-2xl font-medium text-white font-poppins">{post.title}</h4>
-            </div>
-          </div>
-        </a>
-      ))}
+      {
+        blogPosts.map((post) => (
+          <article class="group">
+            <a
+              href={`/blog/${post.slug}`}
+              class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+            >
+              <div class="p-6">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {post.data.tags?.slice(0, 2).map((tag) => (
+                    <span class="px-2 py-1 bg-water text-blue text-xs rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <h3 class="text-xl font-semibold text-black-hard mb-3 group-hover:text-blue transition-colors duration-200 line-clamp-2">
+                  {post.data.title}
+                </h3>
+
+                <p class="text-black-medium mb-4 line-clamp-3 leading-relaxed">
+                  {post.data.description}
+                </p>
+
+                <div class="flex items-center justify-between">
+                  <time
+                    class="text-sm text-black-soft"
+                    datetime={post.data.date.toISOString()}
+                  >
+                    {formatDate(post.data.date, post.data.lang)}
+                  </time>
+
+                  <span class="text-blue text-sm font-medium group-hover:translate-x-1 transition-transform duration-200">
+                    {post.data.lang === "es" ? "Leer más →" : "Read more →"}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))
+      }
     </div>
   </SectionContainer>
 </section>

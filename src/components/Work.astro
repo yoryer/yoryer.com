@@ -26,8 +26,7 @@ const otherWork = [
 ---
 
 <section id="work" class="mt-5 min-h-screen">
-  <div class="w-full h-32">
-</div>
+  <div class="w-full h-32"></div>
   <SectionContainer class="-mt-32 pb-16">
     <div class="flex mb-12">
       <div class="w-full">
@@ -37,13 +36,19 @@ const otherWork = [
 
     <!-- Other Work -->
     <div class="grid md:grid-cols-3 gap-8">
-      {otherWork.map((item) => (
-        <div class="bg-yankees-blue rounded-lg p-6">
-          <img src={item.image} alt={item.title} class="rounded-lg mb-4 w-full h-48 object-cover" />
-          <h4 class="text-2xl font-bold mb-2">{item.title}</h4>
-          <p class="text-silver">{item.description}</p>
-        </div>
-      ))}
+      {
+        otherWork.map((item) => (
+          <div class="bg-yankees-blue rounded-lg p-6">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="rounded-lg mb-4 w-full h-48 object-cover"
+            />
+            <h4 class="text-2xl font-bold mb-2">{item.title}</h4>
+            <p class="text-silver">{item.description}</p>
+          </div>
+        ))
+      }
     </div>
   </SectionContainer>
 </section>
