@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import ShareButtons from "@ui/ShareButtons.astro";
 import "prismjs/themes/prism-tomorrow.css";
 
 export async function getStaticPaths() {
@@ -57,15 +58,6 @@ const formatDate = (date: Date, locale: string) => {
 
       <!-- Article header -->
       <header class="mb-12">
-        <div class="flex flex-wrap items-center gap-2 mb-4">
-          {
-            post.data.tags?.map((tag: string) => (
-              <span class="px-3 py-1 bg-water text-blue text-sm rounded-full">
-                {tag}
-              </span>
-            ))
-          }
-        </div>
 
         <h1
           class="text-4xl md:text-5xl font-medium text-white mb-4 leading-tight"
@@ -73,14 +65,24 @@ const formatDate = (date: Date, locale: string) => {
           {post.data.title}
         </h1>
 
-        <p class="text-xl text-silver-blue mb-6 leading-relaxed">
+        <p class="text-xl text-silver-blue mb-4 leading-relaxed">
           {post.data.description}
         </p>
 
-        <div class="flex items-center text-silver-blue">
+        <div class="flex items-center text-light-sky-blue mb-6 text-sm">
           <time datetime={post.data.date.toISOString()}>
             {formatDate(post.data.date, post.data.lang)}
           </time>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          {
+            post.data.tags?.map((tag: string) => (
+              <span class="px-3 py-1 bg-yankees-blue text-silver-blue text-sm rounded-full">
+                {tag}
+              </span>
+            ))
+          }
         </div>
       </header>
 
@@ -90,11 +92,9 @@ const formatDate = (date: Date, locale: string) => {
       </div>
 
       <!-- Article footer -->
-      <footer class="mt-12 pt-8 border-t border-gray-200">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-        >
-          <div class="text-black-soft">
+      <footer class="mt-12 py-6 border-yankees-blue border bg-yankees-blue/20 rounded-md">
+        <div class="flex flex-col gap-4 justify-center items-center">
+          <div class="text-silver text-center text-sm">
             {
               post.data.lang === "es"
                 ? "¿Te gustó este artículo? ¡Compártelo!"
@@ -102,17 +102,11 @@ const formatDate = (date: Date, locale: string) => {
             }
           </div>
 
-          <!-- Social sharing buttons could go here -->
-          <div class="flex gap-4">
-            <a
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.url.toString())}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-4 py-2 bg-blue text-white rounded-lg hover:bg-yankees-blue transition-colors duration-200"
-            >
-              {post.data.lang === "es" ? "Compartir" : "Share"}
-            </a>
-          </div>
+          <ShareButtons 
+            url={Astro.url.toString()} 
+            title={post.data.title} 
+            lang={post.data.lang} 
+          />
         </div>
       </footer>
     </article>

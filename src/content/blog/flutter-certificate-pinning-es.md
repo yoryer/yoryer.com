@@ -28,18 +28,14 @@ Lo primero que debemos hacer es obtener el _Certificado SSL_ en el formato _.pem
 
 Ingresamos al sitio web de _PokeAPI_ y para poder ver el certificado vamos a la opción _Tools → Page Info_ o también utilizando el atajo de teclado _Cmd + i_.
 
-<div class="not-prose flex justify-center">
-
-![Firefox Tools Menu](/media/art001-cp-firefox-01.png)
-
+<div class="flex justify-center">
+<img class="w-[250px]" src="/media/art001-cp-firefox-01.png" alt="Firefox Tools Menu" />
 </div>
 
 Una vez hayamos seleccionado la opción para visualizar la información de la página, vamos a la pestaña _Security_ y pulsamos sobre el botón _View Certificate_.
 
-<div class="not-prose flex justify-center">
-
-![Firefox Security Tab](/media/art001-cp-firefox-02.png)
-
+<div class="flex justify-center">
+<img src="/media/art001-cp-firefox-02.png" alt="Firefox Security Tab" width="550px" />
 </div>
 
 Al pulsar sobre la opción que nos va a permitir ver el certificado se nos va a abrir una nueva pestaña en el navegador, mostrandonos una serie de cabeceras, normalmente van a ser tres elementos y el primero que está seleccionado es el que nos importa.
@@ -48,10 +44,8 @@ La cuestión en este punto es poder descargar el archivo _.pem_ del certificado 
 
 Moviéndonos un poco hacia abajo en la pestaña que contiene la información del certificado vamos a encontrar la opción para descargar el certificado dentro del apartado _Miscellaneous_, la opción que nos interesa es la primera **PEM (cert)**, que descargará solamente el certificado del servidor.
 
-<div class="not-prose flex justify-center">
-
-![Firefox Certificate Download](/media/art001-cp-firefox-03.png)
-
+<div class="flex justify-center">
+<img class="w-[450px]" src="/media/art001-cp-firefox-03.png" alt="Firefox Certificate Download" />
 </div>
 
 Luego de haber descargado el archivo en nuestra computadora, deberíamos tener un archivo con la extensión _.pem_ que es el certificado en el que estamos interesados, su aspecto debería ser similar al siguiente.
@@ -95,17 +89,13 @@ Para poder utilizar el certificado debemos convertir el contenido del archivo _.
 Con este objetivo en mente creé un pequeño **gist** que puede ser usado para convertir este archivo en una variable de tipo Uint8List.
 
 <div class="not-prose">
-
 <script src="https://gist.github.com/yoryer/52ced7b661003e9ad3d85569e114b0d2.js"></script>
-
 </div>
 
 Preparamos los directorios y el script para ejecutar la conversión de los archivos.
 
 <div class="not-prose flex justify-center">
-
-![File Structure](/media/art001-cp-finder.png)
-
+<img class="w-[250px]" src="/media/art001-cp-finder.png">
 </div>
 
 Para ejecutar el script sencillamente nos dirigimos al directorio donde está nuestro script y ejecutamos lo siguiente:
@@ -190,6 +180,6 @@ Con el código de arriba estamos pidiendo a PokeAPI los datos del pókemon **Pik
 
 Si quieres ver un ejemplo más claro de la implementación de un certificate pinning puedes revisar el [repositorio en Github](https://github.com/yoryer/flutter_certificate_pinning) donde muestro un caso exitoso y otro fallido.
 
-<div class="not-prose flex justify-center">
-<img src="/media/art001-cp-pikachu.png" alt="Pikachu Result" width="200" />
+<div class="flex justify-center">
+<img class="w-[250px] p-2" src="/media/art001-cp-pikachu.png" alt="Pikachu Result" />
 </div>
