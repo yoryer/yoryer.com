@@ -1,8 +1,16 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+interface Props {
+  lang?: string;
+}
+
+const { lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Get the correct homepage URL based on language
+const homepageBlogUrl = getLocalizedPath("/#blog", lang);
 ---
 
 <header
@@ -22,12 +30,12 @@ const t = useTranslations(lang);
     <!-- Back to Blog Posts Navigation -->
     <nav class="flex items-center">
       <a
-        href="/#blog"
+        href={homepageBlogUrl}
         class="flex items-center gap-2 text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-4 py-2 font-medium"
         id="back-to-blog-link"
       >
         <span class="text-lg">←</span>
-        <span>Go back to blog posts</span>
+        <span>{t.common.backToBlogPosts}</span>
       </a>
     </nav>
   </div>
@@ -51,7 +59,7 @@ const t = useTranslations(lang);
       backToBlogLink.addEventListener("click", (e) => {
         e.preventDefault();
         // Navigate to homepage and scroll to blog section
-        window.location.href = "/#blog";
+        window.location.href = backToBlogLink.href;
       });
     }
   });

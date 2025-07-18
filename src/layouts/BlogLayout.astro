@@ -8,10 +8,11 @@ import Contact from "@components/Contact.astro";
 interface Props {
   title: string;
   description: string;
+  lang?: string;
 }
 
-const { title, description } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
+const { title, description, lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
 ---
 
 <!doctype html>
@@ -31,10 +32,10 @@ const lang = getLangFromUrl(Astro.url);
   </head>
   <body class="bg-blue text-silver">
     <div class="overflow-x-hidden">
-      <TopMenuBar />
+      <TopMenuBar lang={lang} />
       <!-- Main Content -->
       <slot />
-      <Contact />
+      <Contact lang={lang} />
       <Footer />
     </div>
     
