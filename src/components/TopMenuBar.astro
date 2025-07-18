@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<header
+  id="top-menu-bar"
+  class="fixed top-0 w-full bg-blue-500 xl:py-4 lg:py-3 py-2 transition-all duration-500 border-b border-yankees-blue font-poppins backdrop-blur-md z-50"
+>
+  <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/#" class="flex-shrink-0" id="logo-link">
+      <img
+        src="/img/logo.svg"
+        alt={t.common.logo}
+        class="xl:h-10 lg:h-8 h-6"
+      />
+    </a>
+
+    <!-- Back to Blog Posts Navigation -->
+    <nav class="flex items-center">
+      <a
+        href="/#blog"
+        class="flex items-center gap-2 text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-4 py-2 font-medium"
+        id="back-to-blog-link"
+      >
+        <span class="text-lg">←</span>
+        <span>Go back to blog posts</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Smooth scroll to top when logo is clicked
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoLink = document.getElementById("logo-link");
+    const backToBlogLink = document.getElementById("back-to-blog-link");
+    
+    if (logoLink) {
+      logoLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // Handle back to blog posts link
+    if (backToBlogLink) {
+      backToBlogLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Navigate to homepage and scroll to blog section
+        window.location.href = "/#blog";
+      });
+    }
+  });
+</script>

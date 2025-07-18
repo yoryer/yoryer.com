@@ -14,15 +14,16 @@ const blogPosts = allPosts
   .sort(
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       b.data.date.getTime() - a.data.date.getTime()
-  )
-  .slice(0, 3); // Show only 3 most recent posts
+  ); // Show all posts
 
-// Format date based on language
-const formatDate = (date: Date, locale: string) => {
-  return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+// Format date based on language, keeping UTC
+const getLocaleCode = (lang: string) => (lang === "es" ? "es-ES" : "en-US");
+const formatDate = (date: Date, lang: string) => {
+  return date.toLocaleDateString(getLocaleCode(lang), {
     year: "numeric",
     month: "short",
     day: "numeric",
+    timeZone: "UTC",
   });
 };
 ---
@@ -39,39 +40,53 @@ const formatDate = (date: Date, locale: string) => {
     <div class="grid md:grid-cols-3 gap-8">
       {
         blogPosts.map((post) => (
-          <article class="group">
+          <article class="group justify-self-end">
             <a
               href={`/blog/${post.slug}`}
-              class="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+              class="block relative rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden min-h-[420px]"
             >
-              <div class="p-6">
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {post.data.tags?.slice(0, 2).map((tag) => (
-                    <span class="px-2 py-1 bg-water text-blue text-xs rounded-full">
-                      {tag}
-                    </span>
-                  ))}
+              {post.data.previewImg && (
+                <div class="absolute inset-0 z-0">
+                  <img
+                    src={post.data.previewImg}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-15"
+                    data-credit={post.data.imageCredit}
+                  />
+                </div>
+              )}
+              <div class="relative z-10 p-6 min-h-[420px] flex flex-col justify-between">
+                <div>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {post.data.tags?.slice(0, 2).map((tag) => (
+                      <span class="px-2 py-1 bg-water text-blue text-xs rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <h3 class="text-xl font-medium text-silver-blue mb-3 group-hover:text-white transition-colors duration-200 line-clamp-2">
+                    {post.data.title}
+                  </h3>
                 </div>
 
-                <h3 class="text-xl font-semibold text-black-hard mb-3 group-hover:text-blue transition-colors duration-200 line-clamp-2">
-                  {post.data.title}
-                </h3>
+                <div>
+                  <p class="text-silver-blue hover:text-white transition-colors duration-200 mb-4 line-clamp-3 leading-relaxed">
+                    {post.data.description}
+                  </p>
 
-                <p class="text-black-medium mb-4 line-clamp-3 leading-relaxed">
-                  {post.data.description}
-                </p>
+                  <div class="flex items-center justify-between">
+                    <time
+                      class="text-sm text-silver-blue/80 hover:text-silver-blue transition-colors duration-200"
+                      datetime={post.data.date.toISOString()}
+                    >
+                      {formatDate(post.data.date, post.data.lang)}
+                    </time>
 
-                <div class="flex items-center justify-between">
-                  <time
-                    class="text-sm text-black-soft"
-                    datetime={post.data.date.toISOString()}
-                  >
-                    {formatDate(post.data.date, post.data.lang)}
-                  </time>
-
-                  <span class="text-blue text-sm font-medium group-hover:translate-x-1 transition-transform duration-200">
-                    {post.data.lang === "es" ? "Leer más →" : "Read more →"}
-                  </span>
+                    <span class="text-sm font-medium group-hover:translate-x-1 transition-transform duration-200">
+                      {t.common.readMore}
+                    </span>
+                  </div>
                 </div>
               </div>
             </a>

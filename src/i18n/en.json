@@ -113,6 +113,11 @@
     }
   },
   "common": {
-    "logo": "Logo"
+    "logo": "Logo",
+    "readMore": "Read more →",
+    "shareOn": "Share on",
+    "copyLink": "Copy link",
+    "enjoyedArticle": "Enjoyed this article? Share it!",
+    "copyCode": "Copy code to clipboard"
   }
 }

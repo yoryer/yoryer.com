@@ -1,5 +1,5 @@
 ---
-import Header from "@components/Header.astro";
+import TopMenuBar from "@components/TopMenuBar.astro";
 import Footer from "@components/Footer.astro";
 import "@styles/global.css";
 import { getLangFromUrl } from "@i18n/utils";
@@ -31,11 +31,25 @@ const lang = getLangFromUrl(Astro.url);
   </head>
   <body class="bg-blue text-silver">
     <div class="overflow-x-hidden">
-      <Header />
+      <TopMenuBar />
       <!-- Main Content -->
       <slot />
       <Contact />
       <Footer />
     </div>
+    
+    <script>
+      // Open external links in new tab
+      document.addEventListener('DOMContentLoaded', () => {
+        const links = document.querySelectorAll('a[href^="http"]');
+        links.forEach(link => {
+          const anchor = link as HTMLAnchorElement;
+          if (!anchor.href.includes(window.location.hostname)) {
+            anchor.setAttribute('target', '_blank');
+            anchor.setAttribute('rel', 'noopener noreferrer');
+          }
+        });
+      });
+    </script>
   </body>
 </html>

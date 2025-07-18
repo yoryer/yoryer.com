@@ -113,6 +113,11 @@
     }
   },
   "common": {
-    "logo": "Logo"
+    "logo": "Logo",
+    "readMore": "Leer más →",
+    "shareOn": "Compartir en",
+    "copyLink": "Copiar enlace",
+    "enjoyedArticle": "¿Te gustó este artículo? ¡Compártelo!",
+    "copyCode": "Copiar código al portapapeles"
   }
 }

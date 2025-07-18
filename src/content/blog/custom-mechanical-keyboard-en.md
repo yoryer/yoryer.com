@@ -1,219 +1,106 @@
 ---
 title: "Building My Custom Mechanical Keyboard"
 description: "The journey of designing and building a custom mechanical keyboard from scratch, including component selection and assembly process."
-date: 2024-10-05
-tags: ["mechanical-keyboard", "diy", "hardware", "productivity", "tools"]
+date: 2020-11-20
+tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
 featured: false
 lang: "en"
-slug: "custom-mechanical-keyboard"
+slug: "custom-mechanical-keyboard-en"
+previewImg: "/media/art002-keeb-preview.jpg"
+imageCredit: "https://www.pexels.com/@hideaki-nagari-563011/"
 ---
 
-# Building My Custom Mechanical Keyboard
+A few years ago, I discovered a completely new and very exciting world: *mechanical keyboards*. I've always liked creating things with my hands, which is why I became very fond of this **expensive and uncommon** hobby.
 
-As a software developer who spends countless hours typing, I've always been fascinated by mechanical keyboards. After using various off-the-shelf options, I decided it was time to build something truly customized to my needs and preferences.
+Today, it's more common to hear about mechanical keyboards. In the gaming world, they became completely viral when various streamers and professional gamers started mentioning that they use this type of keyboard for the reliability they offer when pressing keys.
 
-## Why Build a Custom Keyboard?
+Previously, it was a little-known hobby, comprised of elite groups of people who understood both electronics and programming to turn the most incredible ideas into computer keyboards.
 
-The decision to build a custom mechanical keyboard came from several pain points with commercial options:
+While there's a lot of information on the Internet about this topic, this post is more of an appreciation of something I did some time ago: **building a keyboard completely from scratch**.
 
-- **Limited Layout Options**: Most keyboards don't offer the exact layout I wanted
-- **Switch Preferences**: I wanted to experiment with different switch types
-- **Build Quality**: Many keyboards compromise on materials to hit price points
-- **Personalization**: I wanted something uniquely mine
+When I say from scratch, I mean from scratch, with nothing in my hands and an idea in my head.
 
-## Planning the Build
+## 1. The idea
 
-### Layout Decision
+My idea was to make something that would fulfill some desires I had after spending a couple of years mainly using two keyboards: the [CODE Keyboard](https://codekeyboards.com) and an [Ergodox](https://www.ergodox.io).
 
-After much research, I settled on a 75% layout because it offers:
+In my mind, the keyboard had to meet the following points:
 
-- Function keys (essential for development)
-- Compact footprint
-- Arrow keys and navigation cluster
-- Good balance between functionality and desk space
+1. Ergonomic and ortholinear, like the Ergodox.
+2. Separated into two specific sections for each hand but built as one piece.
+3. Just the right distance between both sectors for each hand.
+4. Directional arrow keys in inverted T format.
+5. Specific keys for page jumps and going to the beginning and end of each line.
+6. Use the keycap format of a standard keyboard.
 
-### Component Selection
+Those were the foundations of the concept I had been planning. In the end, the final design result was as follows:
 
-**PCB**: I chose a hot-swappable PCB to allow switch experimentation without soldering.
+![Keyboard design](/media/art002-keeb-00.png)
 
-**Switches**: After testing various options, I went with:
+With this in my head, the next step was to get the pieces to start assembling the keyboard.
 
-- **Gateron Oil Kings** for alphas (smooth linear switches)
-- **Boba U4T** for modifiers (tactile switches for intentional key presses)
+*If you want to make your own version, here's the link to the [Keyboard Layout Editor](http://www.keyboard-layout-editor.com/##@_name=yoryerkeeb%20v2&author=Jorge%20Noguera&switchMount=cherry&switchBrand=kailh&switchType=PG151101D49%2F%2FD09&plate:true%3B&@_y:0.125%3B&=Esc&_x:3.25%3B&=%23%0A3&_x:5.25%3B&=*%0A8%3B&@_y:-0.875&x:3.25%3B&=%2F@%0A2&_x:1%3B&=$%0A4&_x:3.25%3B&=%2F&%0A7&_x:1%3B&=(%0A9%3B&@_y:-0.875&x:6.25%3B&=%25%0A5&_x:1.25%3B&=%5E%0A6%3B&@_y:-0.875&x:1.25%3B&=~%0A%60&=!%0A1&_x:9.25%3B&=)%0A0&=%2F_%0A-&=+%0A%2F=&_w:2%3B&=Backspace&_x:0.25%3B&=Home&=PgUp%3B&@_y:-0.375&x:4.25%3B&=E&_x:5.25%3B&=I%3B&@_y:-0.875&x:3.25%3B&=W&_x:1%3B&=R&_x:3.25%3B&=U&_x:1%3B&=O%3B&@_y:-0.875&x:6.25%3B&=T&_x:1.25%3B&=Y%3B&@_y:-0.875&x:0.75&w:1.5%3B&=Tab&=Q&_x:9.25%3B&=P&=%7B%0A%5B&=%7D%0A%5D&_w:1.5%3B&=%7C%0A%5C&_x:0.75%3B&=End&=PgDn%3B&@_y:-0.375&x:4.25%3B&=D&_x:5.25%3B&=K%3B&@_y:-0.875&x:3.25%3B&=S&_x:1%3B&=F&_x:3.25%3B&=J&_x:1%3B&=L%3B&@_y:-0.875&x:6.25%3B&=G&_x:1.25%3B&=H%3B&@_y:-0.875&x:0.5&w:1.75%3B&=Caps%20Lock&=A&_x:9.25%3B&=%2F:%0A%2F%3B&=%22%0A'&_w:2.25%3B&=Enter%3B&@_y:-0.375&x:4.25%3B&=C&_x:5.25%3B&=%3C%0A,%3B&@_y:-0.875&x:3.25%3B&=X&_x:1%3B&=V&_x:3.25%3B&=M&_x:1%3B&=%3E%0A.%3B&@_y:-0.875&x:6.25%3B&=B&_x:1.25%3B&=N%3B&@_y:-0.875&w:2.25%3B&=Shift&=Z&_x:9.25%3B&=%3F%0A%2F%2F&_w:2.75%3B&=Shift&_x:1.5%3B&=Up%3B&@_x:1&w:1.25%3B&=Ctrl&_w:1.25%3B&=Alt&_w:1.25%3B&=Cmd&_x:0.25&w:2.25%3B&=Space&_x:1.25&w:2.25%3B&=Space&_x:0.25&w:1.25%3B&=Cmd&_w:1.25%3B&=Alt&_w:1.25%3B&=Ctrl&_x:0.5%3B&=Fn&_x:0.5%3B&=Left&=Down&=Right) site where I configured this design.*
 
-**Keycaps**: PBT double-shot keycaps in a clean, minimalist profile that doesn't distract from code.
+## 2. The parts
 
-**Case**: Aluminum case for durability and premium feel.
+Ultimately, there was no keyboard plate with anything similar to what I wanted, so there was no possibility of using a PCB since I didn't know how to design one. The solution was **hand wiring**.
 
-## The Build Process
+What I needed to assemble the keyboard, besides the common things like cables and a soldering iron, was the following:
 
-### Step 1: PCB Preparation
+1. **Microcontroller:** Arduino Pro Micro.
+2. **Switches:** Gateron Yellow.
+3. **Diodes:** 1N4148.
+4. **Lubricant:** Chrysto Lube MC 129.
+5. **Stabilizers:** Cherry type for plates.
+6. **Cables:** 22 AWG thickness.
+7. **MDF cuts:** Plates made with laser cutting for sandwich-type assembly.
+8. **Keyset:** Chocolate Keycaps with SA profile.
+9. **Silicone:** to seal the switches through the plate.
+10. **Soldering iron, solder, and a multimeter.**
 
-First, I tested the PCB to ensure all switches registered correctly:
+![Keyboard components](/media/art002-keeb-01.jpg)
 
-```bash
-# Used VIA software to test each key position
-# Flashed QMK firmware with my custom layout
-```
+## 3. Assembly
 
-### Step 2: Stabilizer Installation
+As a first step, I started by lubricating the switches. I disassembled each one, lubricated them, and reassembled the more than 70 switches needed for this keyboard.
 
-Proper stabilizer installation is crucial for larger keys:
+The next task was to mount the switches on the MDF plate and then secure them using silicone. This way, the switches are secured to the plate, which reduces flex when typing and makes it easier to swap keycaps.
 
-- Clipped and lubed stabilizers for smooth operation
-- Band-aid mod on mounting points to reduce rattle
-- Balanced wire tension for consistent feel
+Once the silicone dried and the switches were sufficiently secured, I proceeded to solder the diodes to each switch.
 
-### Step 3: Switch Installation
+![Diode soldering](/media/art002-keeb-03.jpg)
 
-The hot-swap PCB made this straightforward:
+Once the diodes were in place, the hand wiring step began, which basically consists of the following:
 
-- Carefully aligned each switch to prevent bent pins
-- Ensured consistent seating across all positions
-- Double-checked actuation before proceeding
+1. A cable must be soldered for each diode to form the rows (red cable).
+2. A cable must be soldered for each switch forming the columns (blue cable).
+3. Each complete row must be soldered to the microcontroller (yellow cable).
+4. Each column must be soldered to the microcontroller (green cable).
 
-### Step 4: Assembly
+With patience, you can successfully perform each solder joint without any cables touching each other.
 
-Final assembly was satisfying but required patience:
+![Hand wiring](/media/art002-keeb-04.jpg)
 
-- Foam dampening material between PCB and case
-- Careful cable routing for clean internal layout
-- Multiple test fittings to ensure perfect alignment
+The next step was to go to the [Keyboard Firmware Builder](https://kbfirmware.com) site, copy and paste the design (RAW Data) from the Keyboard Layout Editor website, and start modifying the pin layout so it would work with the number of pins that the Arduino Pro Micro has.
 
-## Custom Programming
+Once the pin layout was established and the keyboard layers were configured, I exported the configuration to a *.hex* file and then flashed the Arduino. **DONE!**
 
-One of the biggest advantages of a custom keyboard is programmability. Using QMK firmware, I implemented:
+## 4. Final result
 
-### Layer System
+![Finished keyboard](/media/art002-keeb-05.jpg)
 
-```c
-// Layer 0: Base QWERTY layout
-// Layer 1: Function keys and media controls
-// Layer 2: Development-specific shortcuts
-```
+It's a keyboard that undoubtedly brings together several of the characteristics I was looking for. I will definitely make a next version, perhaps with better detail in the construction process.
 
-### Development-Focused Features
+As I remember specific details about the keyboard construction, I will update this post.
 
-- **Bracket Macros**: Quick access to different bracket types
-- **Git Shortcuts**: Common git commands on a dedicated layer
-- **IDE Navigation**: Custom shortcuts for VS Code and other editors
+## 5. Typing test
 
-### Productivity Enhancements
+The best part of building something for yourself is when you can start using what you built.
 
-- **Auto-shift**: Hold any key longer for its shifted version
-- **Tap Dance**: Multi-function keys that do different things based on tap count
-- **Leader Key**: Vim-style leader sequences for complex actions
+I'm always open to giving recommendations about mechanical keyboards if anyone is interested. Contact links are below.
 
-## The Programming Experience
+Here's a video of how the keyboard looks and sounds when typing :)
 
-### QMK Configuration
-
-Setting up QMK was surprisingly approachable:
-
-```c
-// keymap.c snippet
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_DEL,
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_HOME,
-        // ... rest of layout
-    ),
-};
-```
-
-### Custom Macros
-
-I implemented several macros for common development tasks:
-
-```c
-// Auto-bracket macro
-case BRACKETS:
-    if (record->event.pressed) {
-        SEND_STRING("()");
-        tap_code(KC_LEFT);
-    }
-    break;
-```
-
-## Lessons Learned
-
-### What Worked Well
-
-- **Hot-swap PCB**: Game-changer for experimentation
-- **Multiple Switch Types**: Using different switches for different key groups
-- **QMK Firmware**: Incredibly powerful and flexible
-- **Quality Components**: Worth investing in good switches and keycaps
-
-### Challenges Faced
-
-- **Learning Curve**: QMK documentation can be overwhelming initially
-- **Component Compatibility**: Not all parts work together seamlessly
-- **Time Investment**: The build process took much longer than expected
-- **Cost**: Quality components add up quickly
-
-### Unexpected Benefits
-
-- **Typing Improvement**: More intentional typing due to the tactile feedback
-- **Desk Aesthetics**: The custom board became a conversation piece
-- **Technical Skills**: Learned about electronics, firmware, and hardware design
-- **Community**: Connected with the mechanical keyboard enthusiast community
-
-## Impact on Development Work
-
-After using the custom keyboard for several months:
-
-### Productivity Gains
-
-- **Faster Navigation**: Custom shortcuts reduced time spent in menus
-- **Reduced RSI**: Better ergonomics and switch choice reduced hand strain
-- **Improved Accuracy**: Quality switches reduced typos
-- **Mental Focus**: The satisfying typing experience improved concentration
-
-### Workflow Integration
-
-The keyboard integrates seamlessly with my development environment:
-
-- **IDE Shortcuts**: Custom layer for VS Code, IntelliJ, and Vim
-- **Terminal Navigation**: Optimized for command-line work
-- **Git Integration**: Quick access to common git operations
-- **Documentation**: Shortcuts for quickly accessing docs and references
-
-## Future Improvements
-
-I'm already planning the next iteration:
-
-### Hardware Upgrades
-
-- **Gasket Mount**: For improved typing feel
-- **Rotary Encoder**: For volume and scroll control
-- **OLED Display**: To show current layer and system info
-- **Wireless Option**: Exploring ZMK firmware for wireless builds
-
-### Software Enhancements
-
-- **Advanced Macros**: More sophisticated text manipulation
-- **Context-Aware Layers**: Different layouts for different applications
-- **RGB Integration**: Functional lighting that indicates layer state
-- **Productivity Metrics**: Tracking typing patterns and efficiency
-
-## Conclusion
-
-Building a custom mechanical keyboard has been one of the most rewarding technical projects I've undertaken. It combines hardware, software, and design in a way that directly impacts my daily work.
-
-The process taught me:
-
-- The importance of quality tools for professional work
-- How deep customization can improve efficiency
-- The value of community knowledge and open-source projects
-- That the best solutions often require time and iteration
-
-For fellow developers considering a custom keyboard: the investment in time and money pays dividends in daily comfort and productivity. Start with a simple build and iterate—you'll be surprised how much it improves your development experience.
-
-## Resources
-
-- **QMK Firmware**: [qmk.fm](https://qmk.fm)
-- **Keyboard University**: Comprehensive learning resource
-- **r/MechanicalKeyboards**: Active community for advice and inspiration
-- **Vendor Recommendations**: Based on personal experience with quality and service
-
-The custom keyboard has become an essential part of my development setup, and I can't imagine going back to off-the-shelf options. If you spend significant time typing, investing in a quality, customized input device is one of the best upgrades you can make.
+<div class="flex justify-center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SxFczmAr2y8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

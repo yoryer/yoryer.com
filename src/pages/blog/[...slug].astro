@@ -1,8 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogLayout from "@layouts/BlogLayout.astro";
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import ShareButtons from "@ui/ShareButtons.astro";
+import { useTranslations } from "@i18n/utils";
 import "prismjs/themes/prism-tomorrow.css";
 
 export async function getStaticPaths() {
@@ -17,16 +17,16 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useTranslations(post.data.lang);
 
 // Format date based on language
-const formatDate = (date: Date, locale: string) => {
-  return date.toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
+const getLocaleCode = (lang: string) => lang === "es" ? "es-ES" : "en-US";
+const formatDate = (date: Date, lang: string) => {
+  return date.toLocaleDateString(getLocaleCode(lang), {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC"
   });
 };
 ---
@@ -34,30 +34,8 @@ const formatDate = (date: Date, locale: string) => {
 <BlogLayout title={post.data.title} description={post.data.description}>
   <main class="min-h-screen bg-gradient-to-br from-blue-50 to-water-50 pt-20">
     <article class="max-w-4xl mx-auto px-6 py-12">
-      <!-- Back to blog link -->
-      <nav class="mb-8">
-        <a
-          href="/#blog"
-          class="inline-flex items-center text-blue hover:text-yankees-blue transition-colors duration-200"
-        >
-          <svg
-            class="w-4 h-4 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"></path>
-          </svg>
-          {t.blog ? "← Back to Blog" : "← Volver al Blog"}
-        </a>
-      </nav>
-
       <!-- Article header -->
-      <header class="mb-12">
+      <header class="mb-12 mt-8">
 
         <h1
           class="text-4xl md:text-5xl font-medium text-white mb-4 leading-tight"
@@ -96,9 +74,7 @@ const formatDate = (date: Date, locale: string) => {
         <div class="flex flex-col gap-4 justify-center items-center">
           <div class="text-silver text-center text-sm">
             {
-              post.data.lang === "es"
-                ? "¿Te gustó este artículo? ¡Compártelo!"
-                : "Enjoyed this article? Share it!"
+              t.common.enjoyedArticle
             }
           </div>
 

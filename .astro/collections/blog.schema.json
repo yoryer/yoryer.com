@@ -46,6 +46,12 @@
         "slug": {
           "type": "string"
         },
+        "previewImg": {
+          "type": "string"
+        },
+        "imageCredit": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }

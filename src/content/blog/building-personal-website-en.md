@@ -5,7 +5,9 @@ date: 2024-12-15
 tags: ["astro", "react", "tailwind", "portfolio", "web-development"]
 featured: true
 lang: "en"
-slug: "building-personal-website"
+slug: "building-personal-website-en"
+previewImg: "/media/art003-website-preview.jpg"
+imageCredit: "https://www.pexels.com/@anthonyshkraba-production/"
 ---
 
 # Building My Personal Website with Astro

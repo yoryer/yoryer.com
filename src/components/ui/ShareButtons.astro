@@ -1,11 +1,15 @@
 ---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
 interface Props {
   url: string;
   title: string;
-  lang: "en" | "es";
+  lang?: "en" | "es";
 }
 
-const { url, title, lang } = Astro.props;
+const { url, title, lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const shareData = [
   {
@@ -35,8 +39,8 @@ const shareData = [
   },
 ];
 
-const shareText = lang === "es" ? "Compartir en" : "Share on";
-const copyText = lang === "es" ? "Copiar enlace" : "Copy link";
+const shareText = t.common.shareOn;
+const copyText = t.common.copyLink;
 ---
 
 <div class="flex flex-wrap gap-3 items-center">

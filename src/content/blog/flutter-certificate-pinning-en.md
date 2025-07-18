@@ -5,52 +5,51 @@ date: 2020-11-11
 tags: ["flutter", "dart", "certificate", "certificate-pinning"]
 featured: false
 lang: "en"
-slug: "flutter-certificate-pinning"
+slug: "flutter-certificate-pinning-en"
+previewImg: "/media/art001-cp-preview.jpg"
+imageCredit: "https://www.pexels.com/@savvas-stavrinos-270619/"
 ---
 
-One of the most common recommendations when developing mobile applications is _Certificate Pinning_, and in this article we'll see a simple method to include it in our applications built with **Flutter**.
+One of the most common recommendations when developing mobile applications is _Certificate Pinning_, and in this article we'll see a simple method to implement it in our applications built with **Flutter**.
 
 ## What is it?
 
-_Certificate Pinning_ is, in short, a way to verify the identity of the server we are communicating with and thus secure the network traffic of an application. This way our application only trusts _exclusively_ requests from and to the server whose certificate we are specifying within our application.
+_Certificate Pinning_ is, in short, a way to verify the identity of the server we are communicating with and thus secure the network traffic of an application. This way, our application only trusts _exclusively_ requests from and to the server whose certificate we are specifying within our application.
 
-All other network flow to servers whose certificates our application doesn't recognize will be rejected.
+All other network traffic to servers whose certificates our application doesn't recognize will be rejected.
 
 ## Implementing Certificate Pinning
 
-Let's see in a few steps a simple and easy way to implement _Certificate Pinning_ in **Flutter**. In this example we'll use one of the most well-known and recognized open APIs [**PokeAPI**](https://pokeapi.co/).
+Let's see in a few steps a simple and easy way to implement _Certificate Pinning_ in **Flutter**. In this example, we'll use one of the most well-known and recognized open APIs: [**PokeAPI**](https://pokeapi.co/).
 
-_PokeAPI is a RESTful API open to the public that doesn't require registration or access key, and provides for free the list of all Pokemon._
+_PokeAPI is a RESTful API open to the public that doesn't require registration or an access key, and provides the list of all Pokemon for free._
 
 ### Step 1: Obtain the SSL Certificate from the server
 
-The first thing we need to do is obtain the _SSL Certificate_ in _.pem_ format, a friendly format to work with. In this case, to obtain the certificate we'll use the _Firefox_ web browser, which has as part of the browser itself a very useful tool to review the certificates of the web pages we visit.
+The first thing we need to do is obtain the _SSL Certificate_ in _.pem_ format, a user-friendly format to work with. In this case, to obtain the certificate we'll use the _Firefox_ web browser, which has a very useful built-in tool to review the certificates of the web pages we visit.
 
-We go to the _PokeAPI_ website and to see the certificate we go to the _Tools → Page Info_ option or also using the keyboard shortcut _Cmd + i_.
+We go to the _PokeAPI_ website, and to see the certificate, we go to the _Tools → Page Info_ option or use the keyboard shortcut _Cmd + i_.
 
-<div class="not-prose flex justify-center">
-
-![Firefox Tools Menu](/media/art001-cp-firefox-01.png)
-
+<div class="flex justify-center">
+<img class="w-[250px]" src="/media/art001-cp-firefox-01.png" alt="Firefox Tools Menu" />
 </div>
 
-Once we have selected the option to view the page information, we go to the _Security_ tab and click on the _View Certificate_ button.
+Once we have selected the option to view the page information, we go to the _Security_ tab and click the _View Certificate_ button.
 
-<div class="not-prose flex justify-center">
-
-![Firefox Security Tab](/media/art001-cp-firefox-02.png)
-
+<div class="flex justify-center">
+<img src="/media/art001-cp-firefox-02.png" alt="Firefox Security Tab" width="550px" />
 </div>
 
-When clicking on the option that will allow us to see the certificate, a new tab will open in the browser, showing us a series of headers, normally there will be three elements and the first one that is selected is the one we care about.
+When clicking on the option that allows us to see the certificate, a new tab will open in the browser, showing us a series of headers. Normally there will be three elements, and the first one that is selected is the one we care about.
 
-The point here is to be able to download the _.pem_ file of the server certificate, the other options that can be seen are the _intermediate certificates_ and the _certificates in the issuing entities_ that are part of the [chain of trust](https://en.wikipedia.org/wiki/Chain_of_trust) between certificates.
+The point here is to be able to download the _.pem_ file of the server certificate. The other options that can be seen are the _intermediate certificates_ and the _certificates from the issuing entities_ that are part of the [chain of trust](https://en.wikipedia.org/wiki/Chain_of_trust) between certificates.
 
-Moving down a bit on the tab that contains the certificate information we'll find the option to download the certificate within the _Miscellaneous_ section, the option we're interested in is the first one **PEM (cert)**, which will download only the server certificate.
+Moving down a bit on the tab that contains the certificate information, we'll find the option to download the certificate within the _Miscellaneous_ section. The option we're interested in is the first one, **PEM (cert)**, which will download only the server certificate.
 
-![Firefox Certificate Download](/media/art001-cp-firefox-03.png)
-<br/>
-After downloading the file to our computer, we should have a file with the _.pem_ extension which is the certificate we're interested in, its appearance should be similar to the following.
+<div class="flex justify-center">
+<img class="w-[450px]" src="/media/art001-cp-firefox-03.png" alt="Firefox Certificate Download" />
+</div>
+After downloading the file to our computer, we should have a file with the _.pem_ extension, which is the certificate we're interested in. Its appearance should be similar to the following.
 
 ```text
 -----BEGIN CERTIFICATE-----
@@ -82,13 +81,12 @@ SveArpf/TS8nWvx58hjlZZFSgus5CI/Tqg7ws9Nm0wIhALJSYFQM6oHVOJHvYHrb
 UvrcjElb+g5XwjIEeFVJudnI
 -----END CERTIFICATE-----
 ```
-<br />
 
 ### Step 2: Convert the PEM file into a Dart variable
 
-To be able to use the certificate we need to convert the content of the _.pem_ file into a Dart variable, which can be used when building the object that will allow us to make HTTP queries.
+To be able to use the certificate, we need to convert the content of the _.pem_ file into a Dart variable, which can be used when building the object that will allow us to make HTTP queries.
 
-With this goal in mind I created a small **gist** that can be used to convert this file into a Uint8List type variable.
+With this goal in mind, I created a small **gist** that can be used to convert this file into a Uint8List type variable.
 
 <div class="not-prose">
 
@@ -98,17 +96,17 @@ With this goal in mind I created a small **gist** that can be used to convert th
 
 We prepare the directories and the script to execute the conversion of the files.
 
-![File Structure](/media/art001-cp-finder.png)
-<br/>
+<div class="not-prose flex justify-center">
+<img class="w-[250px]" src="/media/art001-cp-finder.png">
+</div>
 
-To execute the script we simply go to the directory where our script is and execute the following:
+To execute the script, we simply go to the directory where our script is located and execute the following:
 
 ```bash
 dart main.dart
 ```
-<br/>
 
-Upon completion of the execution, a new file should appear in the _generated_ directory, the content of that file should be similar to this:
+Upon completion of the execution, a new file should appear in the _generated_ directory. The content of that file should be similar to this:
 
 ```dart
 import 'dart:typed_data';
@@ -128,9 +126,9 @@ With this we'll have our certificate ready to be used in our requests!
 
 ### Step 3: Include the certificate in the HTTP client
 
-In this step we're going to create our HTTP client to be able to start sending our requests to the PokeAPI server, for this we'll see some points to take into account.
+In this step, we're going to create our HTTP client to be able to start sending our requests to the PokeAPI server. For this, we'll see some points to take into account.
 
-Include the dependency of the _http_ package
+Include the dependency for the _http_ package
 
 ```yaml
 # ...
@@ -140,9 +138,8 @@ dependencies:
   http: ^0.12.0+2
 # ...
 ```
-<br/>
 
-With the following lines we can generate the HTTP client with the certificate included.
+With the following lines, we can generate the HTTP client with the certificate included.
 
 ```dart
 import 'package:http/http.dart' as http;
@@ -165,7 +162,7 @@ http.Client client = IOClient(httpClient);
 
 ### Step 4: Test a request to the API
 
-We put together everything we saw and below our new HTTP client that already includes certificate pinning we make the API call to query the data we're looking for.
+We put together everything we saw, and using our new HTTP client that already includes certificate pinning, we make the API call to query the data we're looking for.
 
 ```dart
 String result;
@@ -180,10 +177,10 @@ try {
 }
 ```
 
-With the code above we're asking PokeAPI for the data of the Pokemon **Pikachu**. In case our request is successful it will return a text in JSON format with all the Pokemon information, otherwise it will return an error.
+With the code above, we're asking PokeAPI for the data of the Pokemon **Pikachu**. If our request is successful, it will return text in JSON format with all the Pokemon information; otherwise, it will return an error.
 
-If you want to see a clearer example of certificate pinning implementation you can check the [Github repository](https://github.com/yoryer/flutter_certificate_pinning) where I show a successful case and a failed one.
+If you want to see a clearer example of certificate pinning implementation, you can check the [Github repository](https://github.com/yoryer/flutter_certificate_pinning) where I show both a successful case and a failed one.
 
-<div class="not-prose flex justify-center">
-<img src="/media/art001-cp-pikachu.png" alt="Pikachu Result" width="200" />
+<div class="flex justify-center">
+<img class="w-[250px] p-2" src="/media/art001-cp-pikachu.png" alt="Pikachu Result" />
 </div>

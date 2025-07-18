@@ -1,219 +1,106 @@
 ---
 title: "Construyendo Mi Teclado Mecánico Personalizado"
 description: "El viaje de diseñar y construir un teclado mecánico personalizado desde cero, incluyendo selección de componentes y proceso de ensamblaje."
-date: 2024-10-05
-tags: ["teclado-mecánico", "diy", "hardware", "productividad", "herramientas"]
+date: 2020-11-20
+tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
 featured: false
 lang: "es"
-slug: "teclado-mecánico-personalizado"
+slug: "custom-mechanical-keyboard-es"
+previewImg: "/media/art002-keeb-preview.jpg"
+imageCredit: "https://www.pexels.com/@hideaki-nagari-563011/"
 ---
 
-# Construyendo Mi Teclado Mecánico Personalizado
+Hace unos pocos años descubrí un mundo totalmente nuevo y muy emocionante para mí, los *teclados mecánicos*. Siempre me gustó crear cosas con mis manos y por eso le tomé mucho cariño a este **caro y poco común** hobbie.
 
-Como desarrollador de software que pasa incontables horas escribiendo, siempre me han fascinado los teclados mecánicos. Después de usar varias opciones comerciales, decidí que era hora de construir algo verdaderamente personalizado para mis necesidades y preferencias.
+Hoy día es más común escuchar sobre teclados mecánicos, en el mundo de los videojuegos se volvieron completamente virales desde que varios streamers y jugadores profesionales de videojuegos comenzaran a mencionar que utilizan este tipo de teclados por la fiabilidad que estos tienen a la hora de presionar las teclas.
 
-## ¿Por qué Construir un Teclado Personalizado?
+Anteriormente era un hobbie poco difundido, eran como grupos de élite compuesto por personas que entendían tanto de electrónica como de programación para convertir las ideas más increíbles en un teclado de computadora.
 
-La decisión de construir un teclado mecánico personalizado surgió de varios problemas con las opciones comerciales:
+Si bien hay mucha información en Internet sobre este tema, este post es más de apreciación a algo que hice hace ya un tiempo atrás: **construir completamente un teclado desde cero**.
 
-- **Opciones de Layout Limitadas**: La mayoría de teclados no ofrecen exactamente el layout que quería
-- **Preferencias de Switches**: Quería experimentar con diferentes tipos de switches
-- **Calidad de Construcción**: Muchos teclados comprometen materiales para alcanzar ciertos precios
-- **Personalización**: Quería algo únicamente mío
+Cuando digo desde cero me refiero a desde cero, sin nada en las manos y con una idea en la cabeza.
 
-## Planificando la Construcción
+## 1. La idea
 
-### Decisión de Layout
+En mi cabeza estaba hacer algo que cumpliera con algunos deseos que tenía luego de haber estado un par de años utilizando principalmente dos teclados; el [CODE Keyboard](https://codekeyboards.com) y un [Ergodox](https://www.ergodox.io).
 
-Después de mucha investigación, me decidí por un layout 75% porque ofrece:
+En mi cabeza el teclado tenía que cumplir con los siguientes puntos:
 
-- Teclas de función (esenciales para desarrollo)
-- Huella compacta
-- Teclas de dirección y cluster de navegación
-- Buen balance entre funcionalidad y espacio en el escritorio
+1. Ergonómico y ortolineal, igual al Ergodox.
+2. Separado en dos secciones específicas para cada mano pero construido en una sola pieza.
+3. Distancia justa entre ambos sectores para cada mano.
+4. Teclas de flechas direccionales en formato T invertida.
+5. Teclas específicas para saltos de página y ir al inicio y final de cada línea.
+6. Utilizar el formato de keycaps de un teclado estándar.
 
-### Selección de Componentes
+Esas fueron las bases del concepto que venía planeando, al final el resultado final del diseño fue el siguiente:
 
-**PCB**: Elegí un PCB hot-swappable para permitir experimentación de switches sin soldadura.
+![Diseño del teclado](/media/art002-keeb-00.png)
 
-**Switches**: Después de probar varias opciones, opté por:
+Con esto en mi cabeza, el siguiente paso fue conseguir las piezas para comenzar a armar el teclado.
 
-- **Gateron Oil Kings** para alfas (switches lineales suaves)
-- **Boba U4T** para modificadores (switches táctiles para pulsaciones intencionales)
+*Si querés hacer tu propia versión, acá está el enlace al sitio [Keyboard Layout Editor](http://www.keyboard-layout-editor.com/##@_name=yoryerkeeb%20v2&author=Jorge%20Noguera&switchMount=cherry&switchBrand=kailh&switchType=PG151101D49%2F%2FD09&plate:true%3B&@_y:0.125%3B&=Esc&_x:3.25%3B&=%23%0A3&_x:5.25%3B&=*%0A8%3B&@_y:-0.875&x:3.25%3B&=%2F@%0A2&_x:1%3B&=$%0A4&_x:3.25%3B&=%2F&%0A7&_x:1%3B&=(%0A9%3B&@_y:-0.875&x:6.25%3B&=%25%0A5&_x:1.25%3B&=%5E%0A6%3B&@_y:-0.875&x:1.25%3B&=~%0A%60&=!%0A1&_x:9.25%3B&=)%0A0&=%2F_%0A-&=+%0A%2F=&_w:2%3B&=Backspace&_x:0.25%3B&=Home&=PgUp%3B&@_y:-0.375&x:4.25%3B&=E&_x:5.25%3B&=I%3B&@_y:-0.875&x:3.25%3B&=W&_x:1%3B&=R&_x:3.25%3B&=U&_x:1%3B&=O%3B&@_y:-0.875&x:6.25%3B&=T&_x:1.25%3B&=Y%3B&@_y:-0.875&x:0.75&w:1.5%3B&=Tab&=Q&_x:9.25%3B&=P&=%7B%0A%5B&=%7D%0A%5D&_w:1.5%3B&=%7C%0A%5C&_x:0.75%3B&=End&=PgDn%3B&@_y:-0.375&x:4.25%3B&=D&_x:5.25%3B&=K%3B&@_y:-0.875&x:3.25%3B&=S&_x:1%3B&=F&_x:3.25%3B&=J&_x:1%3B&=L%3B&@_y:-0.875&x:6.25%3B&=G&_x:1.25%3B&=H%3B&@_y:-0.875&x:0.5&w:1.75%3B&=Caps%20Lock&=A&_x:9.25%3B&=%2F:%0A%2F%3B&=%22%0A'&_w:2.25%3B&=Enter%3B&@_y:-0.375&x:4.25%3B&=C&_x:5.25%3B&=%3C%0A,%3B&@_y:-0.875&x:3.25%3B&=X&_x:1%3B&=V&_x:3.25%3B&=M&_x:1%3B&=%3E%0A.%3B&@_y:-0.875&x:6.25%3B&=B&_x:1.25%3B&=N%3B&@_y:-0.875&w:2.25%3B&=Shift&=Z&_x:9.25%3B&=%3F%0A%2F%2F&_w:2.75%3B&=Shift&_x:1.5%3B&=Up%3B&@_x:1&w:1.25%3B&=Ctrl&_w:1.25%3B&=Alt&_w:1.25%3B&=Cmd&_x:0.25&w:2.25%3B&=Space&_x:1.25&w:2.25%3B&=Space&_x:0.25&w:1.25%3B&=Cmd&_w:1.25%3B&=Alt&_w:1.25%3B&=Ctrl&_x:0.5%3B&=Fn&_x:0.5%3B&=Left&=Down&=Right) donde configuré este diseño.*
 
-**Keycaps**: Keycaps PBT double-shot en un perfil limpio y minimalista que no distrae del código.
+## 2. Las partes
 
-**Case**: Case de aluminio para durabilidad y sensación premium.
+En definitiva no existía ninguna placa de teclado con nada similar a lo que yo quería, por lo que no existía la posibilidad de utilizar un PCB ya que tampoco sabía cómo diseñar uno. La solución a esto fue **cableado a mano**.
 
-## El Proceso de Construcción
+Lo que iba a necesitar para ensamblar el teclado además de lo común como cables y un cautín era lo siguiente:
 
-### Paso 1: Preparación del PCB
+1. **Microcontrolador:** Arduino Pro Micro.
+2. **Switches:** Gateron Yellow.
+3. **Diodos:** 1N4148.
+4. **Lubricante:** Chrysto Lube MC 129.
+5. **Estabilizadores:** Tipo Cherry para plates.
+6. **Cables:** Grosor 22 AWG.
+7. **Cortes de MDF:** Placas realizadas en corte láser para ensamblado tipo sandwich.
+8. **Keyset:** Chocolate Keycaps de perfil SA.
+9. **Silicona:** para sellar los switches por el plate.
+10. **Cautín, estaño y un multímetro.**
 
-Primero, probé el PCB para asegurar que todos los switches registraran correctamente:
+![Componentes del teclado](/media/art002-keeb-01.jpg)
 
-```bash
-# Usé software VIA para probar cada posición de tecla
-# Flasheé firmware QMK con mi layout personalizado
-```
+## 3. Ensamblado
 
-### Paso 2: Instalación de Estabilizadores
+Como primer paso comencé por lubricar los switches, desarmé cada uno de ellos, los lubriqué y los volví a ensamblar más de 70 switches necesarios para este teclado.
 
-La instalación adecuada de estabilizadores es crucial para teclas más grandes:
+Luego la siguiente tarea fue presentar los switches en el plate MDF y luego asegurarlos por el plate utilizando silicona, de esta forma se aseguran los switches por el plate y eso permite reducir el nivel de flexibilidad a la hora de escribir y también que sea más fácil intercambiar los keycaps.
 
-- Recorté y lubrifiqué estabilizadores para operación suave
-- Mod de band-aid en puntos de montaje para reducir ruido
-- Tensión balanceada del alambre para sensación consistente
+Una vez que la silicona secó y los switches estaban lo suficientemente sujetos procedí a soldar los diodos por cada switch.
 
-### Paso 3: Instalación de Switches
+![Soldadura de diodos](/media/art002-keeb-03.jpg)
 
-El PCB hot-swap hizo esto sencillo:
+Una vez puestos los diodos comenzó el paso del cableado a mano que consiste básicamente en lo siguiente:
 
-- Alineé cuidadosamente cada switch para prevenir pines doblados
-- Aseguré asentamiento consistente en todas las posiciones
-- Verifiqué doble activación antes de proceder
+1. Se debe soldar un cable por cada diodo para formar las filas (cable rojo).
+2. Se debe soldar un cable por cada switch formando las columnas (cable azul).
+3. Se debe soldar cada fila completa al microcontrolador (cable amarillo).
+4. Se debe soldar cada columna al microcontrolador (cable verde).
 
-### Paso 4: Ensamblaje
+Con paciencia se puede lograr realizar correctamente cada soldadura sin que haya ningún toque entre los cables.
 
-El ensamblaje final fue satisfactorio pero requirió paciencia:
+![Cableado a mano](/media/art002-keeb-04.jpg)
 
-- Material amortiguador de espuma entre PCB y case
-- Enrutado cuidadoso de cables para layout interno limpio
-- Múltiples pruebas de ajuste para asegurar alineación perfecta
+Lo siguiente fue ir al sitio [Keyboard Firmware Builder](https://kbfirmware.com), copiar y pegar el diseño (RAW Data) desde la web de Keyboard Layout Editor y empezar a modificar la disposición de pines para que pudiese funcionar con la cantidad de pines que tiene el Arduino Pro Micro.
 
-## Programación Personalizada
+Una vez establecida la disposición de pines y configuradas las capas del teclado, exportamos la configuración a un archivo *.hex* y luego flasheamos nuestro Arduino y **¡LISTO!**
 
-Una de las mayores ventajas de un teclado personalizado es la programabilidad. Usando firmware QMK, implementé:
+## 4. Resultado final
 
-### Sistema de Capas
+![Teclado terminado](/media/art002-keeb-05.jpg)
 
-```c
-// Capa 0: Layout base QWERTY
-// Capa 1: Teclas de función y controles multimedia
-// Capa 2: Atajos específicos para desarrollo
-```
+Es un teclado que sin dudas reúne varias de las características que busco, sin dudas voy a realizar una siguiente versión y quizá con mejor detalle en el proceso de construcción.
 
-### Características Enfocadas en Desarrollo
+A medida que vaya recordando cosas particulares de la construcción del teclado voy a ir actualizando el post.
 
-- **Macros de Brackets**: Acceso rápido a diferentes tipos de brackets
-- **Atajos de Git**: Comandos git comunes en una capa dedicada
-- **Navegación IDE**: Atajos personalizados para VS Code y otros editores
+## 5. Typing test
 
-### Mejoras de Productividad
+La parte más linda de construir algo para vos es cuando podés empezar a usar lo que construiste.
 
-- **Auto-shift**: Mantener cualquier tecla más tiempo para su versión shifteada
-- **Tap Dance**: Teclas multifunción que hacen cosas diferentes basadas en número de toques
-- **Leader Key**: Secuencias estilo Vim para acciones complejas
+Siempre estoy abierto a dar recomendaciones sobre teclados mecánicos si alguien está interesado, más abajo están los links de contacto.
 
-## La Experiencia de Programación
+Dejo un video de cómo se ve y cómo suena el teclado al escribir :)
 
-### Configuración QMK
-
-Configurar QMK fue sorprendentemente accesible:
-
-```c
-// fragmento de keymap.c
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_DEL,
-        KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_HOME,
-        // ... resto del layout
-    ),
-};
-```
-
-### Macros Personalizados
-
-Implementé varios macros para tareas comunes de desarrollo:
-
-```c
-// Macro auto-bracket
-case BRACKETS:
-    if (record->event.pressed) {
-        SEND_STRING("()");
-        tap_code(KC_LEFT);
-    }
-    break;
-```
-
-## Lecciones Aprendidas
-
-### Lo que Funcionó Bien
-
-- **PCB Hot-swap**: Cambió el juego para experimentación
-- **Múltiples Tipos de Switches**: Usar diferentes switches para diferentes grupos de teclas
-- **Firmware QMK**: Increíblemente poderoso y flexible
-- **Componentes de Calidad**: Vale la pena invertir en buenos switches y keycaps
-
-### Desafíos Enfrentados
-
-- **Curva de Aprendizaje**: La documentación de QMK puede ser abrumadora inicialmente
-- **Compatibilidad de Componentes**: No todas las partes funcionan juntas perfectamente
-- **Inversión de Tiempo**: El proceso de construcción tomó mucho más tiempo del esperado
-- **Costo**: Los componentes de calidad se suman rápidamente
-
-### Beneficios Inesperados
-
-- **Mejora en Escritura**: Escritura más intencional debido al feedback táctil
-- **Estética del Escritorio**: El teclado personalizado se convirtió en pieza de conversación
-- **Habilidades Técnicas**: Aprendí sobre electrónica, firmware y diseño de hardware
-- **Comunidad**: Me conecté con la comunidad de entusiastas de teclados mecánicos
-
-## Impacto en el Trabajo de Desarrollo
-
-Después de usar el teclado personalizado por varios meses:
-
-### Ganancias de Productividad
-
-- **Navegación Más Rápida**: Atajos personalizados redujeron tiempo en menús
-- **RSI Reducido**: Mejor ergonomía y elección de switches redujo tensión en manos
-- **Precisión Mejorada**: Switches de calidad redujeron errores de tipeo
-- **Enfoque Mental**: La experiencia satisfactoria de escritura mejoró concentración
-
-### Integración de Flujo de Trabajo
-
-El teclado se integra perfectamente con mi entorno de desarrollo:
-
-- **Atajos IDE**: Capa personalizada para VS Code, IntelliJ y Vim
-- **Navegación Terminal**: Optimizado para trabajo en línea de comandos
-- **Integración Git**: Acceso rápido a operaciones git comunes
-- **Documentación**: Atajos para acceder rápidamente a docs y referencias
-
-## Mejoras Futuras
-
-Ya estoy planeando la siguiente iteración:
-
-### Mejoras de Hardware
-
-- **Gasket Mount**: Para mejor sensación de escritura
-- **Rotary Encoder**: Para control de volumen y scroll
-- **Pantalla OLED**: Para mostrar capa actual e info del sistema
-- **Opción Inalámbrica**: Explorando firmware ZMK para builds inalámbricos
-
-### Mejoras de Software
-
-- **Macros Avanzados**: Manipulación de texto más sofisticada
-- **Capas Context-Aware**: Diferentes layouts para diferentes aplicaciones
-- **Integración RGB**: Iluminación funcional que indica estado de capa
-- **Métricas de Productividad**: Seguimiento de patrones de escritura y eficiencia
-
-## Conclusión
-
-Construir un teclado mecánico personalizado ha sido uno de los proyectos técnicos más gratificantes que he emprendido. Combina hardware, software y diseño de una manera que impacta directamente mi trabajo diario.
-
-El proceso me enseñó:
-
-- La importancia de herramientas de calidad para trabajo profesional
-- Cómo la personalización profunda puede mejorar eficiencia
-- El valor del conocimiento comunitario y proyectos open-source
-- Que las mejores soluciones a menudo requieren tiempo e iteración
-
-Para compañeros desarrolladores considerando un teclado personalizado: la inversión en tiempo y dinero paga dividendos en comodidad y productividad diaria. Comienza con una construcción simple e itera—te sorprenderá cuánto mejora tu experiencia de desarrollo.
-
-## Recursos
-
-- **QMK Firmware**: [qmk.fm](https://qmk.fm)
-- **Keyboard University**: Recurso de aprendizaje integral
-- **r/MechanicalKeyboards**: Comunidad activa para consejos e inspiración
-- **Recomendaciones de Vendedores**: Basadas en experiencia personal con calidad y servicio
-
-El teclado personalizado se ha convertido en una parte esencial de mi setup de desarrollo, y no puedo imaginar volver a opciones comerciales. Si pasas tiempo significativo escribiendo, invertir en un dispositivo de entrada de calidad y personalizado es una de las mejores mejoras que puedes hacer.
+<div class="flex justify-center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SxFczmAr2y8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

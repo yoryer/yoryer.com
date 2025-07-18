@@ -5,7 +5,9 @@ date: 2020-11-11
 tags: ["flutter", "dart", "certificate", "certificate-pinning"]
 featured: false
 lang: "es"
-slug: "flutter-certificate-pinning"
+slug: "flutter-certificate-pinning-es"
+previewImg: "/media/art001-cp-preview.jpg"
+imageCredit: "https://www.pexels.com/@savvas-stavrinos-270619/"
 ---
 
 Una de las recomendaciones más comunes a la hora de desarrollar aplicaciones móviles es el _Certificate Pinning_, y en este artículo vamos a ver un método sencillo para incluir en nuestras aplicaciones hechas con **Flutter**.
@@ -80,7 +82,6 @@ SveArpf/TS8nWvx58hjlZZFSgus5CI/Tqg7ws9Nm0wIhALJSYFQM6oHVOJHvYHrb
 UvrcjElb+g5XwjIEeFVJudnI
 -----END CERTIFICATE-----
 ```
-<br />
 
 ### Paso 2: Convertir el archivo PEM en una variable de Dart
 
@@ -136,7 +137,6 @@ dependencies:
   http: ^0.12.0+2
 # ...
 ```
-<br/>
 
 Con las siguientes líneas podemos generar el cliente HTTP con el certificado incluído.
 
