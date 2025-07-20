@@ -7,6 +7,7 @@ import Hero from "@components/Hero.astro";
 import Skills from "@components/Skills.astro";
 import Work from "@components/Work.astro";
 import Contact from "@components/Contact.astro";
+import SEO from "@components/SEO.astro";
 import "@styles/global.css";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
@@ -18,6 +19,41 @@ interface Props {
 const { title, description } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Schema.org structured data for homepage
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jorge Noguera",
+  "url": Astro.site,
+  "image": new URL("/img/about-me-avatar.webp", Astro.site).href,
+  "sameAs": [
+    "https://github.com/yoryer",
+    "https://linkedin.com/in/yoryer",
+    "https://dribbble.com/yoryer"
+  ],
+  "jobTitle": "Software Engineer",
+  "description": description,
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "Universidad Nacional de Asunción"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "PY"
+  },
+  "email": "hi@yoryer.com",
+  "knowsAbout": [
+    "Web Development",
+    "Mobile Development",
+    "React",
+    "Flutter",
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "API Development"
+  ]
+};
 ---
 
 <!doctype html>
@@ -25,11 +61,15 @@ const t = useTranslations(lang);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <SEO 
+      title={title}
+      description={description}
+      lang={lang}
+      schema={schema}
+    />
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"

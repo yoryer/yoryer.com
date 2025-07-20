@@ -1,9 +1,8 @@
 ---
-title: "Building My Custom Mechanical Keyboard"
+title: "My first custom mechanical keyboard"
 description: "The journey of designing and building a custom mechanical keyboard from scratch, including component selection and assembly process."
 date: 2020-11-20
 tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
-featured: false
 lang: "en"
 slug: "custom-mechanical-keyboard-en"
 previewImg: "/media/art002-keeb-preview.jpg"

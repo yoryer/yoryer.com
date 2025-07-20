@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block sensitive directories
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://yoryer.com/sitemap.xml

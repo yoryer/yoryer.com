@@ -1,72 +1,110 @@
 ---
 title: "Construyendo Mi Sitio Web Personal con Astro"
 description: "Cómo construí mi sitio web de portafolio personal usando Astro, React y Tailwind CSS con soporte multiidioma."
-date: 2024-12-15
-tags: ["astro", "react", "tailwind", "portafolio", "desarrollo-web"]
-featured: true
+date: 2025-07-18
+tags: ["portfolio", "web-development", "design", "astro", "tailwindcss"]
 lang: "es"
 slug: "building-personal-website-es"
 previewImg: "/media/art003-website-preview.jpg"
 imageCredit: "https://www.pexels.com/@anthonyshkraba-production/"
 ---
 
-# Construyendo Mi Sitio Web Personal con Astro
+Como desarrollador de software, siempre he creído que tener un sitio web personal sólido es fundamental para mostrar mis habilidades y proyectos. Después de varios años con mi sitio anterior, decidí que era hora de crear algo completamente nuevo desde cero. Este es el relato completo de cómo nació mi nuevo sitio web.
 
-Crear un sitio web personal siempre ha estado en mi lista de tareas pendientes, y después de años de posponerlo, finalmente decidí construir algo que realmente me represente como desarrollador.
+## La idea
 
-## ¿Por qué Astro?
+Todo comenzó con una pregunta simple: ¿cómo puedo crear un sitio web que realmente me represente como desarrollador y como persona? Mi objetivo era claro: necesitaba un sitio que fuera:
 
-Elegí Astro por varias razones convincentes:
+- **Profesional pero personal**: Que mostrara mis habilidades técnicas sin perder mi personalidad
+- **Rápido y eficiente**: Como desarrollador, la performance era no negociable
+- **Fácil de mantener**: Quería poder actualizar contenido sin complicaciones
+- **Multiidioma**: Para conectar con una audiencia más amplia
 
-- **Rendimiento Primero**: La arquitectura de islas de Astro asegura cero JavaScript por defecto, enviando solo lo necesario
-- **Agnóstico de Framework**: Puedo usar componentes de React donde sea necesario mientras mantengo el resto estático
-- **Experiencia de Desarrollador**: Gran soporte para TypeScript y herramientas modernas listas para usar
+La idea central era crear un espacio digital que funcionara como mi carta de presentación profesional, pero también como un lugar donde pudiera compartir mis pensamientos y experiencias a través de un blog.
 
-## Stack Tecnológico
+## Inspiration board
 
-El sitio web está construido con:
+Antes de comenzar con el diseño, dediqué tiempo a crear un tablero de inspiración. Recolecté referencias de:
 
-- **Astro v5** - El framework principal
-- **React** - Para componentes interactivos
-- **Tailwind CSS** - Para estilos con un tema personalizado
-- **TypeScript** - Seguridad de tipos en todo el proyecto
+- **Sitios web de desarrolladores**: Especialmente aquellos con diseños limpios y modernos
+- **Portafolios de diseñadores**: Para entender cómo presentar el trabajo de manera visual
+- **Blogs técnicos**: Para ver cómo estructurar el contenido de manera efectiva
+- **Tendencias de diseño**: Gradientes suaves, tipografías modernas, espacios en blanco generosos
 
-## Características Principales
+Me inspiré particularmente en el concepto de "diseño centrado en el contenido", donde cada elemento visual sirve para destacar la información más importante sin distraer al usuario.
 
-### Soporte Multiidioma
+## Picking the colors
 
-Una característica de la que estoy particularmente orgulloso es la implementación de i18n. El sitio soporta tanto inglés como español, permitiéndome alcanzar una audiencia más amplia. El selector de idioma es intuitivo y mantiene el contexto a través de las secciones de la página.
+La selección de colores fue uno de los aspectos más desafiantes del proceso. Quería una paleta que fuera:
 
-### Arquitectura de Componentes
+- **Profesional**: Que transmitiera seriedad y confianza
+- **Moderna**: Que se sintiera actual y fresca
+- **Accesible**: Con suficiente contraste para todos los usuarios
+- **Versátil**: Que funcionara tanto en modo claro como oscuro
 
-Estructuré el sitio usando componentes reutilizables:
+Finalmente me decidí por una paleta basada en azules profundos como color principal, complementada con tonos de agua para elementos secundarios, y toques de rosa para acentos y call-to-actions. Esta combinación me permitió crear un diseño que se siente técnico pero no frío, profesional pero no aburrido.
 
-- `SectionContainer` - Espaciado y diseño consistente
-- `SectionTitle` - Tipografía unificada para encabezados de sección
-- Patrones de diseño responsivo en todo el sitio
+## Creating the logo (mi nueva identidad online)
 
-### Optimizaciones de Rendimiento
+El logo fue quizás la parte más personal del proyecto. Necesitaba algo que fuera:
 
-- Imágenes y assets optimizados
-- Bundle de JavaScript mínimo
-- Tiempos de carga rápidos en todos los dispositivos
+- **Memorable**: Que la gente pudiera recordar fácilmente
+- **Escalable**: Que funcionara desde un favicon hasta una pantalla grande
+- **Representativo**: Que dijera algo sobre mí como desarrollador
 
-## Desafíos y Soluciones
+Después de varios bocetos y iteraciones, llegué a un diseño minimalista que combina mis iniciales con elementos geométricos que sugieren código y estructura. El resultado es un logo que funciona tanto como marca personal como elemento de navegación en el sitio.
 
-El mayor desafío fue implementar navegación de scroll suave para la aplicación de página única mientras mantenía la accesibilidad. Lo resolví usando CSS scroll-behavior y asegurándome de que la navegación por teclado funcione perfectamente.
+## Laying the design foundation
 
-## ¿Qué Sigue?
+Con la identidad visual definida, era hora de establecer las bases del diseño. Esto incluyó:
 
-Estoy planeando agregar:
+- **Sistema de tipografía**: Elegí Poppins como fuente principal por su legibilidad y personalidad moderna
+- **Grilla y espaciado**: Definí un sistema de espacios consistente basado en múltiplos de 4px
+- **Componentes base**: Creé un sistema de componentes reutilizables (botones, cards, secciones)
+- **Responsive design**: Aseguré que todo funcionara perfectamente en todos los dispositivos
 
-- Funcionalidad de blog con colecciones de contenido
-- Vitrina de proyectos con estudios de caso detallados
-- Elementos interactivos para demostrar mis habilidades
+La idea era crear un foundation sólido que me permitiera mantener consistencia visual en todo el sitio sin tener que reinventar la rueda en cada página.
 
-Construir este sitio web ha sido una gran experiencia de aprendizaje, y estoy emocionado de continuar iterando en él mientras mis habilidades y carrera evolucionan.
+## The final design
 
-## Conclusión
+El diseño final se estructuró como una single-page application con navegación suave entre secciones:
 
-Este proyecto representa no solo mis habilidades técnicas, sino también mi atención al detalle y experiencia de usuario. Está construido con rendimiento, accesibilidad y mantenibilidad en mente.
+- **Hero section**: Una introducción impactante con mi propuesta de valor
+- **About**: Mi historia personal y profesional
+- **Skills**: Mis habilidades técnicas organizadas por categorías
+- **Work**: Una selección de mis mejores proyectos
+- **Blog**: Un espacio para compartir conocimientos y experiencias
+- **Contact**: Formas de conectar conmigo
 
-¡Siéntete libre de explorar el código fuente en mi GitHub o contactarme si tienes alguna pregunta sobre la implementación!
+Cada sección fue diseñada para contar una parte de mi historia profesional, creando un flujo narrativo que guía al usuario desde el primer contacto hasta la acción final.
+
+## Tech stack
+
+Para la implementación técnica, elegí un stack moderno que me permitiera crear una experiencia rápida y mantenible:
+
+- **Astro**: Como framework principal por su excelente performance y flexibilidad
+- **React**: Para componentes interactivos específicos
+- **Tailwind CSS**: Para un desarrollo de estilos eficiente y consistente
+- **TypeScript**: Para mayor seguridad y productividad en el desarrollo
+- **Markdown**: Para el contenido del blog, permitiendo fácil edición
+
+Esta combinación me dio lo mejor de ambos mundos: la velocidad de un sitio estático con la flexibilidad de componentes dinámicos donde los necesitaba.
+
+## Deployment
+
+Para el deployment, opté por una solución moderna y eficiente:
+
+- **Vercel**: Por su excelente integración con Astro y deployment automático
+- **Git-based workflow**: Cada push a main activa un nuevo deployment
+- **Preview deployments**: Para revisar cambios antes de publicar
+- **Custom domain**: Con SSL automático y CDN global
+
+El resultado es un sitio que se despliega en segundos y ofrece una experiencia de usuario excepcional en cualquier parte del mundo.
+
+## Reflexiones finales
+
+Este proyecto me recordó por qué amo el desarrollo web: la capacidad de transformar una idea en una experiencia digital tangible. Cada decisión, desde la elección de colores hasta la arquitectura del código, contribuye al resultado final.
+
+El sitio web que tienes ante ti es más que una simple página personal; es una representación digital de mi evolución como desarrollador y mi visión para el futuro. Espero que te inspire a crear algo increíble también.
+
+¿Tienes alguna pregunta sobre el proceso? ¡No dudes en contactarme!

@@ -1,9 +1,8 @@
 ---
-title: "Construyendo Mi Teclado Mecánico Personalizado"
+title: "Mi primer teclado mecánico personalizado"
 description: "El viaje de diseñar y construir un teclado mecánico personalizado desde cero, incluyendo selección de componentes y proceso de ensamblaje."
 date: 2020-11-20
 tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
-featured: false
 lang: "es"
 slug: "custom-mechanical-keyboard-es"
 previewImg: "/media/art002-keeb-preview.jpg"

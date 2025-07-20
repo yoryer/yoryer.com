@@ -32,10 +32,6 @@
             "type": "string"
           }
         },
-        "featured": {
-          "type": "boolean",
-          "default": false
-        },
         "lang": {
           "type": "string",
           "enum": [

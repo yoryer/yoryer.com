@@ -3,7 +3,6 @@ title: "Certificate Pinning with Flutter"
 description: "Guide to implement certificate pinning in Flutter applications using Dart."
 date: 2020-11-11
 tags: ["flutter", "dart", "certificate", "certificate-pinning"]
-featured: false
 lang: "en"
 slug: "flutter-certificate-pinning-en"
 previewImg: "/media/art001-cp-preview.jpg"

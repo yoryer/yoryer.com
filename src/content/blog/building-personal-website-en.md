@@ -1,9 +1,8 @@
 ---
 title: "Building My Personal Website with Astro"
 description: "How I built my personal portfolio website using Astro, React, and Tailwind CSS with multilingual support."
-date: 2024-12-15
-tags: ["astro", "react", "tailwind", "portfolio", "web-development"]
-featured: true
+date: 2025-07-18
+tags: ["portfolio", "web-development", "design", "astro", "tailwindcss"]
 lang: "en"
 slug: "building-personal-website-en"
 previewImg: "/media/art003-website-preview.jpg"

@@ -31,7 +31,14 @@ const formatDate = (date: Date, lang: string) => {
 };
 ---
 
-<BlogLayout title={post.data.title} description={post.data.description} lang={post.data.lang}>
+<BlogLayout 
+  title={post.data.title} 
+  description={post.data.description} 
+  lang={post.data.lang}
+  ogImage={post.data.previewImg}
+  publishDate={post.data.date}
+  tags={post.data.tags}
+>
   <main class="min-h-screen bg-gradient-to-br from-blue-50 to-water-50 pt-20">
     <article class="max-w-4xl mx-auto px-6 py-12">
       <!-- Article header -->
