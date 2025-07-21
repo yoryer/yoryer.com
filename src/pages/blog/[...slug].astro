@@ -29,13 +29,16 @@ const formatDate = (date: Date, lang: string) => {
     timeZone: "UTC"
   });
 };
+
+// Use generated OG image if slug exists, fallback to previewImg
+const ogImage = post.data.slug ? `/og/${post.data.slug}.png` : post.data.previewImg;
 ---
 
 <BlogLayout 
   title={post.data.title} 
   description={post.data.description} 
   lang={post.data.lang}
-  ogImage={post.data.previewImg}
+  ogImage={ogImage}
   publishDate={post.data.date}
   tags={post.data.tags}
 >
