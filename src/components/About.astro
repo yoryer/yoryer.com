@@ -53,12 +53,21 @@ const langSwitch = lang === "en" ? "es" : "en";
         <p>{t.about.paragraph2}</p>
         <p>{t.about.paragraph3}</p>
         <p>{t.about.paragraph4}</p>
-        <p>{t.about.paragraph5}</p>
+        <p>
+          {t.about.paragraph5}
+          
+        </p>
         <p>
           <a
             href={getLocalizedPath(currentPath, langSwitch)}
             class="hover:text-rose hover:underline">{t.about.paragraph6}</a
           >
+          <img
+            src="/img/translate-icon.svg"
+            alt="Translate Icon"
+            class="inline-block size-5 filter brightness-0 invert hover:filter-none hover:brightness-100 hover:invert-0"
+            style="filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);"
+          />
         </p>
       </div>
     </div>

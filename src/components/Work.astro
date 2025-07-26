@@ -6,21 +6,48 @@ import { getLangFromUrl, useTranslations } from "@i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const otherWork = [
+const projects = [
   {
-    title: "EdiBarber",
-    description: t.work.projectDescription,
-    image: "/img/logo.svg", // Placeholder
+    id: 1,
+    title: "Certificate Pinning",
+    description: "Flutter security implementation with advanced encryption",
+    image: "/media/art001-cp-preview.jpg",
+    gridClass: "col-span-2 row-span-2", // Large left card
   },
   {
-    title: "EdiBarber",
-    description: t.work.projectDescription,
-    image: "/img/logo.svg", // Placeholder
+    id: 2,
+    title: "Custom Keyboard",
+    description: "Mechanical keyboard build",
+    image: "/media/art002-keeb-preview.jpg",
+    gridClass: "col-span-2 row-span-1", // Wide top right
   },
   {
-    title: "EdiBarber",
-    description: t.work.projectDescription,
-    image: "/img/logo.svg", // Placeholder
+    id: 3,
+    title: "Wallet Integration",
+    description: "Payment processing system",
+    image: "/media/art001-cp-firefox-02.png",
+    gridClass: "col-span-1 row-span-1", // Small square
+  },
+  {
+    id: 4,
+    title: "Portfolio Website",
+    description: "Personal website design and development",
+    image: "/media/art003-website-preview.jpg",
+    gridClass: "col-span-1 row-span-1", // Small square
+  },
+  {
+    id: 5,
+    title: "Mobile Apps",
+    description: "Cross-platform development",
+    image: "/media/art001-cp-firefox-01.png",
+    gridClass: "col-span-3 row-span-1", // Extra wide bottom left
+  },
+  {
+    id: 6,
+    title: "UI Components",
+    description: "Reusable design system",
+    image: "/media/art002-keeb-00.png",
+    gridClass: "col-span-1 row-span-1", // Square bottom right
   },
 ];
 ---
@@ -34,20 +61,99 @@ const otherWork = [
       </div>
     </div>
 
-    <!-- Other Work -->
-    <div class="grid md:grid-cols-3 gap-8">
+    <!-- Bento Grid -->
+    <div
+      class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 md:auto-rows-[180px] lg:grid-cols-4 lg:gap-5 lg:auto-rows-[220px]"
+    >
       {
-        otherWork.map((item) => (
-          <div class="bg-yankees-blue rounded-lg p-6">
-            <img
-              src={item.image}
-              alt={item.title}
-              class="rounded-lg mb-4 w-full h-48 object-cover"
-            />
-            <h4 class="text-2xl font-bold mb-2">{item.title}</h4>
-            <p class="text-silver">{item.description}</p>
-          </div>
-        ))
+        projects.map((project, index) => {
+          // Define tablet-specific classes
+          const tabletClass =
+            index === 0
+              ? "md:col-span-1 md:row-span-2 lg:col-span-2" // First item tall on tablet, wide on desktop
+              : index === 1
+                ? "md:col-span-2 md:row-span-1" // Second item wide
+                : index === 2
+                  ? "md:col-span-1 md:row-span-1" // Third item small
+                  : index === 3
+                    ? "md:col-span-1 md:row-span-1" // Fourth item small
+                    : index === 4
+                      ? "md:col-span-2 md:row-span-1 lg:col-span-3" // Fifth item wide, extra wide on desktop
+                      : "md:col-span-1 md:row-span-1"; // Rest small
+
+          return (
+            <div
+              class={`
+                relative overflow-hidden rounded-2xl lg:rounded-3xl
+                group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-2xl
+                aspect-square md:aspect-auto
+                ${tabletClass}
+                ${project.gridClass.replace(/col-span-\d/g, (match) => `lg:${match}`).replace(/row-span-\d/g, (match) => `lg:${match}`)}
+                ${index % 3 === 0 ? "bg-gradient-to-br from-french-blue/20 to-yankees-blue" : ""}
+                ${index % 3 === 1 ? "bg-gradient-to-br from-rose/20 to-yankees-blue" : ""}
+                ${index % 3 === 2 ? "bg-gradient-to-br from-battery-blue/20 to-yankees-blue" : ""}
+              `}
+            >
+              <div class="absolute inset-0">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black-hard via-black-hard/60 to-transparent opacity-80" />
+              </div>
+
+              <div
+                class={`
+              relative h-full flex flex-col justify-end
+              p-4
+              ${tabletClass.includes("md:col-span-2") || tabletClass.includes("md:row-span-2") ? "md:p-6" : "md:p-4"}
+              ${tabletClass.includes("lg:col-span-3") ? "lg:p-8" : ""}
+              ${project.gridClass.includes("row-span-2") && project.gridClass.includes("col-span-2") ? "lg:p-8" : "lg:p-5"}
+            `}
+              >
+                <h3
+                  class={`
+                font-bold text-white mb-1 transition-all duration-200
+                text-base
+                ${tabletClass.includes("md:row-span-2") || tabletClass.includes("md:col-span-2") ? "md:text-lg" : "md:text-sm"}
+                ${tabletClass.includes("lg:col-span-3") ? "lg:text-2xl" : ""}
+                ${
+                  project.gridClass.includes("row-span-2") &&
+                  project.gridClass.includes("col-span-2")
+                    ? "lg:text-2xl xl:text-3xl"
+                    : project.gridClass.includes("col-span-2") ||
+                        project.gridClass.includes("col-span-3")
+                      ? "lg:text-xl"
+                      : "lg:text-base"
+                }
+              `}
+                >
+                  {project.title}
+                </h3>
+                <p
+                  class={`
+                text-silver/80 transition-all duration-200
+                text-xs
+                ${tabletClass.includes("md:col-span-2") || tabletClass.includes("md:row-span-2") ? "md:text-xs" : ""}
+                ${tabletClass.includes("lg:col-span-3") ? "lg:text-sm" : ""}
+                ${
+                  project.gridClass.includes("row-span-2") &&
+                  project.gridClass.includes("col-span-2")
+                    ? "lg:text-sm xl:text-base"
+                    : project.gridClass.includes("col-span-2") ||
+                        project.gridClass.includes("col-span-3")
+                      ? "lg:text-sm"
+                      : "lg:text-xs"
+                }
+              `}
+                >
+                  {project.description}
+                </p>
+              </div>
+            </div>
+          );
+        })
       }
     </div>
   </SectionContainer>
