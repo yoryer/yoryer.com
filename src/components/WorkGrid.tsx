@@ -1,31 +1,44 @@
 import React, { useState } from "react";
 import WorkDialog from "./WorkDialog";
 
+interface LocalizedText {
+  en: string;
+  es: string;
+  [key: string]: string; // Allow other languages
+}
+
 interface ProjectDetails {
   id: number;
-  title: string;
-  description: string;
+  title: LocalizedText | string;
+  description: LocalizedText | string;
   image: string;
   gridClass: string;
-  story: string;
+  story: LocalizedText | string;
   images: string[];
   details: {
     client?: string;
     company?: string;
     year?: string;
     tools?: string[];
-    role?: string;
+    role?: LocalizedText | string;
     link?: string;
   };
 }
 
 interface WorkGridProps {
   projects: ProjectDetails[];
+  lang?: string;
+  translations?: any;
 }
 
-export default function WorkGrid({ projects }: WorkGridProps) {
+export default function WorkGrid({ projects, lang = "en", translations }: WorkGridProps) {
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const getLocalizedText = (text: LocalizedText | string): string => {
+    if (typeof text === "string") return text;
+    return text[lang] || text.en || "";
+  };
 
   const handleProjectClick = (project: ProjectDetails) => {
     setSelectedProject(project);
@@ -74,7 +87,7 @@ export default function WorkGrid({ projects }: WorkGridProps) {
               <div className="absolute inset-0">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={getLocalizedText(project.title)}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black-hard via-black-hard/40 to-transparent opacity-90" />
@@ -106,7 +119,7 @@ export default function WorkGrid({ projects }: WorkGridProps) {
                     }
                   `}
                 >
-                  {project.title}
+                  {getLocalizedText(project.title)}
                 </h3>
                 <p
                   className={`
@@ -125,7 +138,7 @@ export default function WorkGrid({ projects }: WorkGridProps) {
                     }
                   `}
                 >
-                  {project.description}
+                  {getLocalizedText(project.description)}
                 </p>
               </div>
             </div>
@@ -137,6 +150,8 @@ export default function WorkGrid({ projects }: WorkGridProps) {
         isOpen={isDialogOpen}
         onClose={handleCloseDialog}
         project={selectedProject}
+        lang={lang}
+        translations={translations}
       />
     </>
   );

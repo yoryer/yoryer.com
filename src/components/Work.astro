@@ -10,27 +10,45 @@ const t = useTranslations(lang);
 const projects = [
   {
     id: 1,
-    title: "Portfolio Website",
-    description: "Personal website design and development",
+    title: {
+      en: "Portfolio Website",
+      es: "Sitio Web Personal"
+    },
+    description: {
+      en: "Personal website design and development",
+      es: "Diseño y desarrollo de sitio web personal"
+    },
     image: "/media/work/yoryer-portfolio-preview.png",
     gridClass: "col-span-2 row-span-2", // Large left card
-    story: "This is my personal website, built with Astro and Tailwind CSS. It's a simple, clean, and responsive design that showcases my work and skills.",
+    story: {
+      en: "This is my personal website, built with Astro and Tailwind CSS. It's a simple, clean, and responsive design that showcases my work and skills.",
+      es: "Este es mi sitio web personal, construido con Astro y Tailwind CSS. Es un diseño simple, limpio y responsivo que muestra mi trabajo y habilidades."
+    },
     images: [
       "/media/work/yoryer-portfolio.png",
     ],
     details: {
       year: "2025",
-      role: "Designer & Developer",
+      role: {
+        en: "Designer & Developer",
+        es: "Diseñador y Desarrollador"
+      },
       tools: ["Astro", "React", "Tailwind CSS", "TypeScript"],
     },
   },
   {
     id: 2,
     title: "Cefisa",
-    description: "Mobile Banking App Design & Development",
+    description: {
+      en: "Mobile Banking App Design & Development",
+      es: "Diseño y Desarrollo de App de Banca Móvil"
+    },
     image: "/media/work/cefisa-preview.png",
     gridClass: "col-span-2 row-span-1", // Wide top right
-    story: "I designed the mobile app for Cefisa, a financial company based in Paraguay.\r\nThe app's development was made using Flutter, a framework for hybrid development that supports both iOS and Android.",
+    story: {
+      en: "I designed the mobile app for Cefisa, a financial company based in Paraguay.\r\nThe app's development was made using Flutter, a framework for hybrid development that supports both iOS and Android.",
+      es: "Diseñé la aplicación móvil para Cefisa, una empresa financiera con sede en Paraguay.\r\nEl desarrollo de la aplicación se realizó usando Flutter, un framework para desarrollo híbrido que soporta tanto iOS como Android."
+    },
     images: [
       "/media/work/cefisa-login.png",
       "/media/work/cefisa-pin-pad.png",
@@ -42,34 +60,52 @@ const projects = [
       client: "Cefisa",
       company: "Open Technologies SA",
       year: "2019",
-      role: "Designer & Mobile Developer",
+      role: {
+        en: "Designer & Mobile Developer",
+        es: "Diseñador y Desarrollador Móvil"
+      },
       tools: ["Sketch", "Flutter"],
     },
   },
   {
     id: 3,
     title: "EdiBarber",
-    description: "Logo Design",
+    description: {
+      en: "Logo Design",
+      es: "Diseño de Logo"
+    },
     image: "/media/work/edibarber-original.png",
     gridClass: "col-span-1 row-span-1", // Small square
-    story: "My nephew started his own barber shop in 2021 and asked me to help him design the logo for his new shop.\r\nHe shared some ideas with me, which he drew on a piece of paper, and I translated them into this.",
+    story: {
+      en: "My nephew started his own barber shop in 2021 and asked me to help him design the logo for his new shop.\r\nHe shared some ideas with me, which he drew on a piece of paper, and I translated them into this.",
+      es: "Mi sobrino abrió su propia barbería en 2021 y me pidió que lo ayudara a diseñar el logo para su nuevo negocio.\r\nCompartió algunas ideas conmigo, que dibujó en un papel, y yo las transformé en esto."
+    },
     images: [
       "/media/work/edibarber-original.png",
       "/media/work/edibarber-bw.png",
     ],
     details: {
       year: "2021",
-      role: "Designer",
+      role: {
+        en: "Designer",
+        es: "Diseñador"
+      },
       tools: ["Figma"],
     },
   },
   {
     id: 4,
     title: "El Santo",
-    description: "Logo Design",
+    description: {
+      en: "Logo Design",
+      es: "Diseño de Logo"
+    },
     image: "/media/work/el-santo-logo.png",
     gridClass: "col-span-1 row-span-1", // Small square
-    story: "This is the first logo I created that was used.\r\nI designed this logo for my cousin, who owned a bar in Madrid, Spain, in 2009.",
+    story: {
+      en: "This is the first logo I created that was used.\r\nI designed this logo for my cousin, who owned a bar in Madrid, Spain, in 2009.",
+      es: "Este es el primer logo que creé que fue utilizado.\r\nDiseñé este logo para mi primo, quien tenía un bar en Madrid, España, en 2009."
+    },
     images: [
       "/media/work/el-santo-logo.png",
       "/media/work/el-santo-logo-slogan.png",
@@ -77,34 +113,55 @@ const projects = [
     ],
     details: {
       year: "2009",
-      role: "Designer",
+      role: {
+        en: "Designer",
+        es: "Diseñador"
+      },
       tools: ["Adobe Fireworks"],
     },
   },
   {
     id: 5,
-    title: "Digital Identity",
-    description: "Logo Design",
+    title: {
+      en: "Digital Identity",
+      es: "Identidad Digital"
+    },
+    description: {
+      en: "Logo Design",
+      es: "Diseño de Logo"
+    },
     image: "/media/work/yoryer-logo.png",
     gridClass: "col-span-3 row-span-1", // Extra wide bottom left
-    story: "In 2023, when I began considering a redesign of my own website, one of the first things I wanted to establish was a digital identity.\r\nSo, once I had chosen the primary colors I liked for my new website, I started exploring options for a new logo.\r\nAfter some iterations, this was the final result.",
+    story: {
+      en: "In 2023, when I began considering a redesign of my personal website, one of the first things I wanted to establish was a digital identity.\r\nSo, once I had chosen the primary colors I liked for my new website, I started exploring options for a new logo.\r\nAfter some iterations, this was the final result.",
+      es: "En 2023, cuando comencé a considerar un rediseño de mi sitio web personal, una de las primeras cosas que quería establecer era una identidad digital.\r\nAsí que, una vez que elegí los colores primarios que me gustaban para mi nuevo sitio web, comencé a explorar opciones para un nuevo logo.\r\nDespués de algunas iteraciones, este fue el resultado final."
+    },
     images: [
       "/media/work/yoryer-logo.png",
       "/media/work/yoryer-logo-variations.png",
     ],
     details: {
       year: "2023",
-      role: "Designer",
+      role: {
+        en: "Designer",
+        es: "Diseñador"
+      },
       tools: ["Figma"],
     },
   },
   {
     id: 6,
     title: "Basa Empresas",
-    description: "Mobile Banking App Design & Development",
+    description: {
+      en: "Mobile Banking App Design & Development",
+      es: "Diseño y Desarrollo de App de Banca Móvil"
+    },
     image: "/media/work/basa-empresas-preview.png",
     gridClass: "col-span-1 row-span-1", // Square bottom right
-    story: "I created this design for Basa, a Paraguayan bank, to cater to their enterprise customers.\r\nThe goal of the app was to allow enterprise customers to authorize different types of transactions.\r\nThe app was built using Flutter for both iOS and Android.",
+    story: {
+      en: "I created this design for Basa, a Paraguayan bank, to cater to their enterprise customers.\r\nThe goal of the app was to allow enterprise customers to authorize different types of transactions.\r\nThe app was built using Flutter for both iOS and Android.",
+      es: "Creé este diseño para Basa, un banco paraguayo, para atender a sus clientes empresariales.\r\nEl objetivo de la aplicación era permitir a los clientes empresariales autorizar diferentes tipos de transacciones.\r\nLa aplicación fue construida usando Flutter para iOS y Android."
+    },
     images: [
       "/media/work/basa-empresas-login.png",
       "/media/work/basa-empresas-config.png",
@@ -116,7 +173,10 @@ const projects = [
       client: "Banco Basa",
       company: "Open Technologies SA",
       year: "2020",
-      role: "Designer & Mobile Developer",
+      role: {
+        en: "Designer & Mobile Developer",
+        es: "Diseñador y Desarrollador Móvil"
+      },
       tools: ["Sketch", "Flutter"],
     },
   },
@@ -133,6 +193,6 @@ const projects = [
     </div>
 
     <!-- Bento Grid -->
-    <WorkGrid projects={projects} client:load />
+    <WorkGrid projects={projects} lang={lang} translations={t} client:load />
   </SectionContainer>
 </section>

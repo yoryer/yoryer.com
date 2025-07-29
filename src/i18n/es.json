@@ -84,7 +84,18 @@
   },
   "work": {
     "title": "Mi Trabajo",
-    "projectDescription": "Diseño de logo para una barbería local en Paraguay."
+    "projectDescription": "Diseño de logo para una barbería local en Paraguay.",
+    "dialog": {
+      "aboutProject": "Sobre este proyecto",
+      "projectDetails": "Detalles del Proyecto",
+      "client": "Cliente",
+      "company": "Empresa",
+      "year": "Año",
+      "role": "Rol",
+      "tools": "Herramientas",
+      "link": "Enlace",
+      "viewProject": "Ver Proyecto"
+    }
   },
   "blog": {
     "title": "Publicaciones del Blog",

@@ -1,18 +1,24 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
+interface LocalizedText {
+  en: string;
+  es: string;
+  [key: string]: string; // Allow other languages
+}
+
 interface ProjectDetails {
   id: number;
-  title: string;
-  description: string;
-  story: string;
+  title: LocalizedText | string;
+  description: LocalizedText | string;
+  story: LocalizedText | string;
   images: string[];
   details: {
     client?: string;
     company?: string;
     year?: string;
     tools?: string[];
-    role?: string;
+    role?: LocalizedText | string;
     link?: string;
   };
 }
@@ -21,15 +27,24 @@ interface WorkDialogProps {
   isOpen: boolean;
   onClose: () => void;
   project: ProjectDetails | null;
+  lang?: string;
+  translations?: any;
 }
 
 export default function WorkDialog({
   isOpen,
   onClose,
   project,
+  lang = "en",
+  translations,
 }: WorkDialogProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const getLocalizedText = (text: LocalizedText | string): string => {
+    if (typeof text === "string") return text;
+    return text[lang] || text.en || "";
+  };
 
   const scrollTo = useCallback(
     (index: number) => {
@@ -132,30 +147,30 @@ export default function WorkDialog({
           {/* Right side - Details */}
           <div className="w-full lg:w-1/2 p-6 lg:p-8 overflow-y-auto">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              {project.title}
+              {getLocalizedText(project.title)}
             </h2>
 
-            <p className="text-lg text-silver mb-6">{project.description}</p>
+            <p className="text-lg text-silver mb-6">{getLocalizedText(project.description)}</p>
 
             <div className="mb-8">
               <h3 className="text-xl font-medium text-white mb-3">
-                About this project
+                {translations?.work?.dialog?.aboutProject || "About this project"}
               </h3>
               <p className="text-silver-blue leading-relaxed">
-                {project.story}
+                {getLocalizedText(project.story)}
               </p>
             </div>
 
             {/* Project details */}
             <div className="border-t border-silver/20 pt-6">
               <h3 className="text-xl font-medium text-white mb-4">
-                Project Details
+                {translations?.work?.dialog?.projectDetails || "Project Details"}
               </h3>
               <ul className="space-y-3">
                 {project.details.client && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Client:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.client || "Client"}:
                     </span>
                     <span className="text-silver">
                       {project.details.client}
@@ -163,35 +178,35 @@ export default function WorkDialog({
                   </li>
                 )}
                 {project.details.company && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Company:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.company || "Company"}:
                     </span>
                     <span className="text-silver">{project.details.company}</span>
                   </li>
                 )}
                 {project.details.year && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Year:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.year || "Year"}:
                     </span>
                     <span className="text-silver">{project.details.year}</span>
                   </li>
                 )}
                 {project.details.role && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Role:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.role || "Role"}:
                     </span>
-                    <span className="text-silver">{project.details.role}</span>
+                    <span className="text-silver">{getLocalizedText(project.details.role)}</span>
                   </li>
                 )}
                 {project.details.tools && project.details.tools.length > 0 && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Tools:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.tools || "Tools"}:
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-1">
                       {project.details.tools.map((tool, index) => (
                         <span
                           key={index}
@@ -204,9 +219,9 @@ export default function WorkDialog({
                   </li>
                 )}
                 {project.details.link && (
-                  <li className="flex items-start">
-                    <span className="text-silver-blue font-medium min-w-[100px]">
-                      Link:
+                  <li className="flex items-start gap-2">
+                    <span className="text-silver-blue font-medium">
+                      {translations?.work?.dialog?.link || "Link"}:
                     </span>
                     <a
                       href={project.details.link}
@@ -214,7 +229,7 @@ export default function WorkDialog({
                       rel="noopener noreferrer"
                       className="text-rose hover:text-rose/80 transition-colors"
                     >
-                      View Project
+                      {translations?.work?.dialog?.viewProject || "View Project"}
                     </a>
                   </li>
                 )}

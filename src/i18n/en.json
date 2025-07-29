@@ -84,7 +84,18 @@
   },
   "work": {
     "title": "My Work",
-    "projectDescription": "Logo design for a local barbershop in Paraguay."
+    "projectDescription": "Logo design for a local barbershop in Paraguay.",
+    "dialog": {
+      "aboutProject": "About this project",
+      "projectDetails": "Project Details",
+      "client": "Client",
+      "company": "Company",
+      "year": "Year",
+      "role": "Role",
+      "tools": "Tools",
+      "link": "Link",
+      "viewProject": "View Project"
+    }
   },
   "blog": {
     "title": "Blog Posts",
