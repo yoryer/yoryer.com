@@ -5,7 +5,7 @@ date: 2020-11-20
 tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
 lang: "es"
 slug: "custom-mechanical-keyboard-es"
-previewImg: "/media/art002-keeb-preview.jpg"
+previewImg: "/media/blog/art002-keeb-preview.jpg"
 imageCredit: "https://www.pexels.com/@hideaki-nagari-563011/"
 ---
 
@@ -34,7 +34,7 @@ En mi cabeza el teclado tenía que cumplir con los siguientes puntos:
 
 Esas fueron las bases del concepto que venía planeando, al final el resultado final del diseño fue el siguiente:
 
-![Diseño del teclado](/media/art002-keeb-00.png)
+![Diseño del teclado](/media/blog/art002-keeb-00.png)
 
 Con esto en mi cabeza, el siguiente paso fue conseguir las piezas para comenzar a armar el teclado.
 
@@ -57,7 +57,7 @@ Lo que iba a necesitar para ensamblar el teclado además de lo común como cable
 9. **Silicona:** para sellar los switches por el plate.
 10. **Cautín, estaño y un multímetro.**
 
-![Componentes del teclado](/media/art002-keeb-01.jpg)
+![Componentes del teclado](/media/blog/art002-keeb-01.jpg)
 
 ## 3. Ensamblado
 
@@ -67,7 +67,7 @@ Luego la siguiente tarea fue presentar los switches en el plate MDF y luego aseg
 
 Una vez que la silicona secó y los switches estaban lo suficientemente sujetos procedí a soldar los diodos por cada switch.
 
-![Soldadura de diodos](/media/art002-keeb-03.jpg)
+![Soldadura de diodos](/media/blog/art002-keeb-03.jpg)
 
 Una vez puestos los diodos comenzó el paso del cableado a mano que consiste básicamente en lo siguiente:
 
@@ -78,7 +78,7 @@ Una vez puestos los diodos comenzó el paso del cableado a mano que consiste bá
 
 Con paciencia se puede lograr realizar correctamente cada soldadura sin que haya ningún toque entre los cables.
 
-![Cableado a mano](/media/art002-keeb-04.jpg)
+![Cableado a mano](/media/blog/art002-keeb-04.jpg)
 
 Lo siguiente fue ir al sitio [Keyboard Firmware Builder](https://kbfirmware.com), copiar y pegar el diseño (RAW Data) desde la web de Keyboard Layout Editor y empezar a modificar la disposición de pines para que pudiese funcionar con la cantidad de pines que tiene el Arduino Pro Micro.
 
@@ -86,7 +86,7 @@ Una vez establecida la disposición de pines y configuradas las capas del teclad
 
 ## 4. Resultado final
 
-![Teclado terminado](/media/art002-keeb-05.jpg)
+![Teclado terminado](/media/blog/art002-keeb-05.jpg)
 
 Es un teclado que sin dudas reúne varias de las características que busco, sin dudas voy a realizar una siguiente versión y quizá con mejor detalle en el proceso de construcción.
 

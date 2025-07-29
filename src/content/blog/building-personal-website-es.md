@@ -5,7 +5,7 @@ date: 2025-07-18
 tags: ["portfolio", "web-development", "design", "astro", "tailwindcss"]
 lang: "es"
 slug: "building-personal-website-es"
-previewImg: "/media/art003-website-preview.jpg"
+previewImg: "/media/blog/art003-website-preview.jpg"
 imageCredit: "https://www.pexels.com/@anthonyshkraba-production/"
 ---
 

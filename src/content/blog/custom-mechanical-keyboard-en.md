@@ -5,7 +5,7 @@ date: 2020-11-20
 tags: ["mechanical-keyboards", "keyboards", "keebs", "hardware", "diy"]
 lang: "en"
 slug: "custom-mechanical-keyboard-en"
-previewImg: "/media/art002-keeb-preview.jpg"
+previewImg: "/media/blog/art002-keeb-preview.jpg"
 imageCredit: "https://www.pexels.com/@hideaki-nagari-563011/"
 ---
 
@@ -34,7 +34,7 @@ In my mind, the keyboard had to meet the following points:
 
 Those were the foundations of the concept I had been planning. In the end, the final design result was as follows:
 
-![Keyboard design](/media/art002-keeb-00.png)
+![Keyboard design](/media/blog/art002-keeb-00.png)
 
 With this in my head, the next step was to get the pieces to start assembling the keyboard.
 
@@ -57,7 +57,7 @@ What I needed to assemble the keyboard, besides the common things like cables an
 9. **Silicone:** to seal the switches through the plate.
 10. **Soldering iron, solder, and a multimeter.**
 
-![Keyboard components](/media/art002-keeb-01.jpg)
+![Keyboard components](/media/blog/art002-keeb-01.jpg)
 
 ## 3. Assembly
 
@@ -67,7 +67,7 @@ The next task was to mount the switches on the MDF plate and then secure them us
 
 Once the silicone dried and the switches were sufficiently secured, I proceeded to solder the diodes to each switch.
 
-![Diode soldering](/media/art002-keeb-03.jpg)
+![Diode soldering](/media/blog/art002-keeb-03.jpg)
 
 Once the diodes were in place, the hand wiring step began, which basically consists of the following:
 
@@ -78,7 +78,7 @@ Once the diodes were in place, the hand wiring step began, which basically consi
 
 With patience, you can successfully perform each solder joint without any cables touching each other.
 
-![Hand wiring](/media/art002-keeb-04.jpg)
+![Hand wiring](/media/blog/art002-keeb-04.jpg)
 
 The next step was to go to the [Keyboard Firmware Builder](https://kbfirmware.com) site, copy and paste the design (RAW Data) from the Keyboard Layout Editor website, and start modifying the pin layout so it would work with the number of pins that the Arduino Pro Micro has.
 
@@ -86,7 +86,7 @@ Once the pin layout was established and the keyboard layers were configured, I e
 
 ## 4. Final result
 
-![Finished keyboard](/media/art002-keeb-05.jpg)
+![Finished keyboard](/media/blog/art002-keeb-05.jpg)
 
 It's a keyboard that undoubtedly brings together several of the characteristics I was looking for. I will definitely make a next version, perhaps with better detail in the construction process.
 

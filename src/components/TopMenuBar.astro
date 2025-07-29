@@ -59,7 +59,7 @@ const homepageBlogUrl = getLocalizedPath("/#blog", lang);
       backToBlogLink.addEventListener("click", (e) => {
         e.preventDefault();
         // Navigate to homepage and scroll to blog section
-        window.location.href = backToBlogLink.href;
+        window.location.href = (backToBlogLink as HTMLAnchorElement).href;
       });
     }
   });

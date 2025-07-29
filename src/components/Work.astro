@@ -2,6 +2,7 @@
 import SectionContainer from "@ui/SectionContainer.astro";
 import SectionTitle from "@ui/SectionTitle.astro";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import WorkGrid from "./WorkGrid.tsx";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,45 +10,115 @@ const t = useTranslations(lang);
 const projects = [
   {
     id: 1,
-    title: "Certificate Pinning",
-    description: "Flutter security implementation with advanced encryption",
-    image: "/media/art001-cp-preview.jpg",
+    title: "Portfolio Website",
+    description: "Personal website design and development",
+    image: "/media/work/yoryer-portfolio-preview.png",
     gridClass: "col-span-2 row-span-2", // Large left card
+    story: "This is my personal website, built with Astro and Tailwind CSS. It's a simple, clean, and responsive design that showcases my work and skills.",
+    images: [
+      "/media/work/yoryer-portfolio.png",
+    ],
+    details: {
+      year: "2025",
+      role: "Designer & Developer",
+      tools: ["Astro", "React", "Tailwind CSS", "TypeScript"],
+    },
   },
   {
     id: 2,
-    title: "Custom Keyboard",
-    description: "Mechanical keyboard build",
-    image: "/media/art002-keeb-preview.jpg",
+    title: "Cefisa",
+    description: "Mobile Banking App Design & Development",
+    image: "/media/work/cefisa-preview.png",
     gridClass: "col-span-2 row-span-1", // Wide top right
+    story: "I designed the mobile app for Cefisa, a financial company based in Paraguay.\r\nThe app's development was made using Flutter, a framework for hybrid development that supports both iOS and Android.",
+    images: [
+      "/media/work/cefisa-login.png",
+      "/media/work/cefisa-pin-pad.png",
+      "/media/work/cefisa-menu.png",
+      "/media/work/cefisa-accounts.png",
+      "/media/work/cefisa-lines.png",
+    ],
+    details: {
+      client: "Cefisa",
+      company: "Open Technologies SA",
+      year: "2019",
+      role: "Designer & Mobile Developer",
+      tools: ["Sketch", "Flutter"],
+    },
   },
   {
     id: 3,
-    title: "Wallet Integration",
-    description: "Payment processing system",
-    image: "/media/art001-cp-firefox-02.png",
+    title: "EdiBarber",
+    description: "Logo Design",
+    image: "/media/work/edibarber-original.png",
     gridClass: "col-span-1 row-span-1", // Small square
+    story: "My nephew started his own barber shop in 2021 and asked me to help him design the logo for his new shop.\r\nHe shared some ideas with me, which he drew on a piece of paper, and I translated them into this.",
+    images: [
+      "/media/work/edibarber-original.png",
+      "/media/work/edibarber-bw.png",
+    ],
+    details: {
+      year: "2021",
+      role: "Designer",
+      tools: ["Figma"],
+    },
   },
   {
     id: 4,
-    title: "Portfolio Website",
-    description: "Personal website design and development",
-    image: "/media/art003-website-preview.jpg",
+    title: "El Santo",
+    description: "Logo Design",
+    image: "/media/work/el-santo-logo.png",
     gridClass: "col-span-1 row-span-1", // Small square
+    story: "This is the first logo I created that was used.\r\nI designed this logo for my cousin, who owned a bar in Madrid, Spain, in 2009.",
+    images: [
+      "/media/work/el-santo-logo.png",
+      "/media/work/el-santo-logo-slogan.png",
+      "/media/work/el-santo-plain.png",
+    ],
+    details: {
+      year: "2009",
+      role: "Designer",
+      tools: ["Adobe Fireworks"],
+    },
   },
   {
     id: 5,
-    title: "Mobile Apps",
-    description: "Cross-platform development",
-    image: "/media/art001-cp-firefox-01.png",
+    title: "Digital Identity",
+    description: "Logo Design",
+    image: "/media/work/yoryer-logo.png",
     gridClass: "col-span-3 row-span-1", // Extra wide bottom left
+    story: "In 2023, when I began considering a redesign of my own website, one of the first things I wanted to establish was a digital identity.\r\nSo, once I had chosen the primary colors I liked for my new website, I started exploring options for a new logo.\r\nAfter some iterations, this was the final result.",
+    images: [
+      "/media/work/yoryer-logo.png",
+      "/media/work/yoryer-logo-variations.png",
+    ],
+    details: {
+      year: "2023",
+      role: "Designer",
+      tools: ["Figma"],
+    },
   },
   {
     id: 6,
-    title: "UI Components",
-    description: "Reusable design system",
-    image: "/media/art002-keeb-00.png",
+    title: "Basa Empresas",
+    description: "Mobile Banking App Design & Development",
+    image: "/media/work/basa-empresas-preview.png",
     gridClass: "col-span-1 row-span-1", // Square bottom right
+    story: "I created this design for Basa, a Paraguayan bank, to cater to their enterprise customers.\r\nThe goal of the app was to allow enterprise customers to authorize different types of transactions.\r\nThe app was built using Flutter for both iOS and Android.",
+    images: [
+      "/media/work/basa-empresas-login.png",
+      "/media/work/basa-empresas-config.png",
+      "/media/work/basa-empresas-transaction.png",
+      "/media/work/basa-empresas-summary.png",
+      "/media/work/basa-empresas-confirmation.png",
+    ],
+    details: {
+      client: "Banco Basa",
+      company: "Open Technologies SA",
+      year: "2020",
+      role: "Designer & Mobile Developer",
+      tools: ["Sketch", "Flutter"],
+    },
   },
 ];
 ---
@@ -62,99 +133,6 @@ const projects = [
     </div>
 
     <!-- Bento Grid -->
-    <div
-      class="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 md:auto-rows-[180px] lg:grid-cols-4 lg:gap-5 lg:auto-rows-[220px]"
-    >
-      {
-        projects.map((project, index) => {
-          // Define tablet-specific classes
-          const tabletClass =
-            index === 0
-              ? "md:col-span-1 md:row-span-2 lg:col-span-2" // First item tall on tablet, wide on desktop
-              : index === 1
-                ? "md:col-span-2 md:row-span-1" // Second item wide
-                : index === 2
-                  ? "md:col-span-1 md:row-span-1" // Third item small
-                  : index === 3
-                    ? "md:col-span-1 md:row-span-1" // Fourth item small
-                    : index === 4
-                      ? "md:col-span-2 md:row-span-1 lg:col-span-3" // Fifth item wide, extra wide on desktop
-                      : "md:col-span-1 md:row-span-1"; // Rest small
-
-          return (
-            <div
-              class={`
-                relative overflow-hidden rounded-2xl lg:rounded-3xl
-                group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-2xl
-                aspect-square md:aspect-auto
-                ${tabletClass}
-                ${project.gridClass.replace(/col-span-\d/g, (match) => `lg:${match}`).replace(/row-span-\d/g, (match) => `lg:${match}`)}
-                ${index % 3 === 0 ? "bg-gradient-to-br from-french-blue/20 to-yankees-blue" : ""}
-                ${index % 3 === 1 ? "bg-gradient-to-br from-rose/20 to-yankees-blue" : ""}
-                ${index % 3 === 2 ? "bg-gradient-to-br from-battery-blue/20 to-yankees-blue" : ""}
-              `}
-            >
-              <div class="absolute inset-0">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black-hard via-black-hard/60 to-transparent opacity-80" />
-              </div>
-
-              <div
-                class={`
-              relative h-full flex flex-col justify-end
-              p-4
-              ${tabletClass.includes("md:col-span-2") || tabletClass.includes("md:row-span-2") ? "md:p-6" : "md:p-4"}
-              ${tabletClass.includes("lg:col-span-3") ? "lg:p-8" : ""}
-              ${project.gridClass.includes("row-span-2") && project.gridClass.includes("col-span-2") ? "lg:p-8" : "lg:p-5"}
-            `}
-              >
-                <h3
-                  class={`
-                font-bold text-white mb-1 transition-all duration-200
-                text-base
-                ${tabletClass.includes("md:row-span-2") || tabletClass.includes("md:col-span-2") ? "md:text-lg" : "md:text-sm"}
-                ${tabletClass.includes("lg:col-span-3") ? "lg:text-2xl" : ""}
-                ${
-                  project.gridClass.includes("row-span-2") &&
-                  project.gridClass.includes("col-span-2")
-                    ? "lg:text-2xl xl:text-3xl"
-                    : project.gridClass.includes("col-span-2") ||
-                        project.gridClass.includes("col-span-3")
-                      ? "lg:text-xl"
-                      : "lg:text-base"
-                }
-              `}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  class={`
-                text-silver/80 transition-all duration-200
-                text-xs
-                ${tabletClass.includes("md:col-span-2") || tabletClass.includes("md:row-span-2") ? "md:text-xs" : ""}
-                ${tabletClass.includes("lg:col-span-3") ? "lg:text-sm" : ""}
-                ${
-                  project.gridClass.includes("row-span-2") &&
-                  project.gridClass.includes("col-span-2")
-                    ? "lg:text-sm xl:text-base"
-                    : project.gridClass.includes("col-span-2") ||
-                        project.gridClass.includes("col-span-3")
-                      ? "lg:text-sm"
-                      : "lg:text-xs"
-                }
-              `}
-                >
-                  {project.description}
-                </p>
-              </div>
-            </div>
-          );
-        })
-      }
-    </div>
+    <WorkGrid projects={projects} client:load />
   </SectionContainer>
 </section>

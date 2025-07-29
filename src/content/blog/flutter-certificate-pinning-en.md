@@ -5,7 +5,7 @@ date: 2020-11-11
 tags: ["flutter", "dart", "certificate", "certificate-pinning"]
 lang: "en"
 slug: "flutter-certificate-pinning-en"
-previewImg: "/media/art001-cp-preview.jpg"
+previewImg: "/media/blog/art001-cp-preview.jpg"
 imageCredit: "https://www.pexels.com/@savvas-stavrinos-270619/"
 ---
 
@@ -30,13 +30,13 @@ The first thing we need to do is obtain the _SSL Certificate_ in _.pem_ format, 
 We go to the _PokeAPI_ website, and to see the certificate, we go to the _Tools → Page Info_ option or use the keyboard shortcut _Cmd + i_.
 
 <div class="flex justify-center">
-<img class="w-[250px]" src="/media/art001-cp-firefox-01.png" alt="Firefox Tools Menu" />
+<img class="w-[250px]" src="/media/blog/art001-cp-firefox-01.png" alt="Firefox Tools Menu" />
 </div>
 
 Once we have selected the option to view the page information, we go to the _Security_ tab and click the _View Certificate_ button.
 
 <div class="flex justify-center">
-<img src="/media/art001-cp-firefox-02.png" alt="Firefox Security Tab" width="550px" />
+<img src="/media/blog/art001-cp-firefox-02.png" alt="Firefox Security Tab" width="550px" />
 </div>
 
 When clicking on the option that allows us to see the certificate, a new tab will open in the browser, showing us a series of headers. Normally there will be three elements, and the first one that is selected is the one we care about.
@@ -46,7 +46,7 @@ The point here is to be able to download the _.pem_ file of the server certifica
 Moving down a bit on the tab that contains the certificate information, we'll find the option to download the certificate within the _Miscellaneous_ section. The option we're interested in is the first one, **PEM (cert)**, which will download only the server certificate.
 
 <div class="flex justify-center">
-<img class="w-[450px]" src="/media/art001-cp-firefox-03.png" alt="Firefox Certificate Download" />
+<img class="w-[450px]" src="/media/blog/art001-cp-firefox-03.png" alt="Firefox Certificate Download" />
 </div>
 After downloading the file to our computer, we should have a file with the _.pem_ extension, which is the certificate we're interested in. Its appearance should be similar to the following.
 
@@ -96,7 +96,7 @@ With this goal in mind, I created a small **gist** that can be used to convert t
 We prepare the directories and the script to execute the conversion of the files.
 
 <div class="not-prose flex justify-center">
-<img class="w-[250px]" src="/media/art001-cp-finder.png">
+<img class="w-[250px]" src="/media/blog/art001-cp-finder.png">
 </div>
 
 To execute the script, we simply go to the directory where our script is located and execute the following:
@@ -181,5 +181,5 @@ With the code above, we're asking PokeAPI for the data of the Pokemon **Pikachu*
 If you want to see a clearer example of certificate pinning implementation, you can check the [Github repository](https://github.com/yoryer/flutter_certificate_pinning) where I show both a successful case and a failed one.
 
 <div class="flex justify-center">
-<img class="w-[250px] p-2" src="/media/art001-cp-pikachu.png" alt="Pikachu Result" />
+<img class="w-[250px] p-2" src="/media/blog/art001-cp-pikachu.png" alt="Pikachu Result" />
 </div>
