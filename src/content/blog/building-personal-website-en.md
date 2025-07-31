@@ -9,8 +9,6 @@ previewImg: "/media/blog/art003-website-preview.jpg"
 imageCredit: "https://www.pexels.com/@anthonyshkraba-production/"
 ---
 
-# Building My Personal Website with Astro
-
 In 2023, I began considering the idea of renovating my personal website. I needed something that truly showcased my experience and the type of work I do. This time I wanted to create something completely my own, as my previous version was simply a modified template developed with Jekyll.
 
 ## Finding Inspiration
