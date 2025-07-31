@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+// Only load in production
+const isProduction = import.meta.env.PROD;
+---
+
+{isProduction && (
+  <>
+    <!-- Google Analytics -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+    <script define:vars={{ id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', id);
+    </script>
+  </>
+)}

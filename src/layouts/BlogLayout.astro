@@ -2,6 +2,7 @@
 import TopMenuBar from "@components/TopMenuBar.astro";
 import Footer from "@components/Footer.astro";
 import SEO from "@components/SEO.astro";
+import GoogleAnalytics from "@components/GoogleAnalytics.astro";
 import "@styles/global.css";
 import { getLangFromUrl } from "@i18n/utils";
 import Contact from "@components/Contact.astro";
@@ -68,6 +69,11 @@ const schema = {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Google Analytics -->
+    {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      <GoogleAnalytics id={import.meta.env.PUBLIC_GA_MEASUREMENT_ID} />
+    )}
   </head>
   <body class="bg-blue text-silver">
     <div class="overflow-x-hidden">

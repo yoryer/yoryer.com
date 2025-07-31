@@ -8,6 +8,7 @@ import Skills from "@components/Skills.astro";
 import Work from "@components/Work.astro";
 import Contact from "@components/Contact.astro";
 import SEO from "@components/SEO.astro";
+import GoogleAnalytics from "@components/GoogleAnalytics.astro";
 import "@styles/global.css";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 
@@ -74,6 +75,11 @@ const schema = {
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Google Analytics -->
+    {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      <GoogleAnalytics id={import.meta.env.PUBLIC_GA_MEASUREMENT_ID} />
+    )}
   </head>
   <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
     <img
