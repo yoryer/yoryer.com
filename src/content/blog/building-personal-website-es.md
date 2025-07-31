@@ -9,102 +9,96 @@ previewImg: "/media/blog/art003-website-preview.jpg"
 imageCredit: "https://www.pexels.com/@anthonyshkraba-production/"
 ---
 
-Como desarrollador de software, siempre he creído que tener un sitio web personal sólido es fundamental para mostrar mis habilidades y proyectos. Después de varios años con mi sitio anterior, decidí que era hora de crear algo completamente nuevo desde cero. Este es el relato completo de cómo nació mi nuevo sitio web.
+En 2023 comencé a plantearme la idea de renovar mi sitio web personal. Necesitaba algo que realmente mostrara mi experiencia y el tipo de trabajo que realizo. Esta vez quería crear algo completamente propio, ya que mi versión anterior era simplemente un template modificado desarrollado con Jekyll.
 
-## La idea
+## Buscando Inspiración
 
-Todo comenzó con una pregunta simple: ¿cómo puedo crear un sitio web que realmente me represente como desarrollador y como persona? Mi objetivo era claro: necesitaba un sitio que fuera:
+Cuando decidí empezar con el diseño, exploré diferentes opciones revisando sitios de otros desarrolladores y diseñadores. Después de unos días, tenía una idea clara: quería un sitio con tema oscuro (pero no completamente negro) y con un estilo [*synthwave*](https://es.wikipedia.org/wiki/Synthwave).
 
-- **Profesional pero personal**: Que mostrara mis habilidades técnicas sin perder mi personalidad
-- **Rápido y eficiente**: Como desarrollador, la performance era no negociable
-- **Fácil de mantener**: Quería poder actualizar contenido sin complicaciones
-- **Multiidioma**: Para conectar con una audiencia más amplia
+Para encontrar inspiración, exploré:
+- El subreddit [r/unixporn](https://www.reddit.com/r/unixporn/)
+- Dribbble
+- Behance
 
-La idea central era crear un espacio digital que funcionara como mi carta de presentación profesional, pero también como un lugar donde pudiera compartir mis pensamientos y experiencias a través de un blog.
+El resultado fue este cuadro de inspiración:
 
-## Inspiration board
+<div class="flex justify-center">
+  <img class="w-full max-w-[600px]" src="/media/blog/art003-website-artboard.png" alt="Cuadro de inspiración del sitio web" />
+</div>
 
-Antes de comenzar con el diseño, dediqué tiempo a crear un tablero de inspiración. Recolecté referencias de:
+## Colores "Synthwave"
 
-- **Sitios web de desarrolladores**: Especialmente aquellos con diseños limpios y modernos
-- **Portafolios de diseñadores**: Para entender cómo presentar el trabajo de manera visual
-- **Blogs técnicos**: Para ver cómo estructurar el contenido de manera efectiva
-- **Tendencias de diseño**: Gradientes suaves, tipografías modernas, espacios en blanco generosos
+Mientras exploraba esquemas de colores para Neovim, los que más me llamaron la atención fueron [**Catppuccin**](https://github.com/catppuccin/catppuccin) y [**Tokyo Night**](https://github.com/enkia/tokyo-night-vscode-theme). Al final me decanté por Tokyo Night, ya que tiene una orientación más *synthwave* con colores más vibrantes que Catppuccin.
 
-Me inspiré particularmente en el concepto de "diseño centrado en el contenido", donde cada elemento visual sirve para destacar la información más importante sin distraer al usuario.
+<div class="flex justify-center">
+  <img class="w-full max-w-[500px]" src="/media/blog/art003-website-tokyo-night.png" alt="Paleta de colores Tokyo Night" />
+</div>
 
-## Picking the colors
+## Esquema de Colores Final
 
-La selección de colores fue uno de los aspectos más desafiantes del proceso. Quería una paleta que fuera:
+Después de explorar variantes de la paleta original de Tokyo Night, este fue el resultado:
 
-- **Profesional**: Que transmitiera seriedad y confianza
-- **Moderna**: Que se sintiera actual y fresca
-- **Accesible**: Con suficiente contraste para todos los usuarios
-- **Versátil**: Que funcionara tanto en modo claro como oscuro
+<div class="flex justify-center">
+  <img class="w-full max-w-[550px]" src="/media/blog/art003-website-colors.png" alt="Esquema de colores final" />
+</div>
 
-Finalmente me decidí por una paleta basada en azules profundos como color principal, complementada con tonos de agua para elementos secundarios, y toques de rosa para acentos y call-to-actions. Esta combinación me permitió crear un diseño que se siente técnico pero no frío, profesional pero no aburrido.
+## Nueva Identidad Digital
 
-## Creating the logo (mi nueva identidad online)
+Con los colores seleccionados, comencé a trabajar en otro punto pendiente: desarrollar una mejor marca personal con mayor presencia digital.
 
-El logo fue quizás la parte más personal del proyecto. Necesitaba algo que fuera:
+Tras varias semanas probando diferentes tipografías y colores, me decidí por este logo que sintetiza perfectamente con los colores seleccionados:
 
-- **Memorable**: Que la gente pudiera recordar fácilmente
-- **Escalable**: Que funcionara desde un favicon hasta una pantalla grande
-- **Representativo**: Que dijera algo sobre mí como desarrollador
+<div class="flex justify-center">
+  <img class="w-full max-w-[500px]" src="/media/blog/art003-website-logo-variations.png" alt="Variaciones del logo" />
+</div>
 
-Después de varios bocetos y iteraciones, llegué a un diseño minimalista que combina mis iniciales con elementos geométricos que sugieren código y estructura. El resultado es un logo que funciona tanto como marca personal como elemento de navegación en el sitio.
+## Stack Tecnológico
 
-## Laying the design foundation
+Elegir **Astro** fue una decisión fácil. Su arquitectura es simple de seguir e implementar, y en combinación con React y Tailwind CSS formaban el stack perfecto para crear un sitio web estático y optimizado con todas las secciones que buscaba desarrollar.
 
-Con la identidad visual definida, era hora de establecer las bases del diseño. Esto incluyó:
+### ¿Por qué Astro?
 
-- **Sistema de tipografía**: Elegí Poppins como fuente principal por su legibilidad y personalidad moderna
-- **Grilla y espaciado**: Definí un sistema de espacios consistente basado en múltiplos de 4px
-- **Componentes base**: Creé un sistema de componentes reutilizables (botones, cards, secciones)
-- **Responsive design**: Aseguré que todo funcionara perfectamente en todos los dispositivos
+- **Performance First**: La arquitectura de islas de Astro asegura zero JavaScript por defecto
+- **Framework Agnóstico**: Puedo usar componentes React donde sea necesario
+- **Excelente DX**: Gran soporte para TypeScript y herramientas modernas
 
-La idea era crear un foundation sólido que me permitiera mantener consistencia visual en todo el sitio sin tener que reinventar la rueda en cada página.
+## Características Principales
 
-## The final design
+### Soporte Multiidioma
 
-El diseño final se estructuró como una single-page application con navegación suave entre secciones:
+Una característica de la que estoy particularmente orgulloso es la implementación i18n. El sitio soporta español e inglés, permitiéndome llegar a una audiencia más amplia. El selector de idioma es intuitivo y mantiene el contexto a través de las secciones.
 
-- **Hero section**: Una introducción impactante con mi propuesta de valor
-- **About**: Mi historia personal y profesional
-- **Skills**: Mis habilidades técnicas organizadas por categorías
-- **Work**: Una selección de mis mejores proyectos
-- **Blog**: Un espacio para compartir conocimientos y experiencias
-- **Contact**: Formas de conectar conmigo
+### Arquitectura de Componentes
 
-Cada sección fue diseñada para contar una parte de mi historia profesional, creando un flujo narrativo que guía al usuario desde el primer contacto hasta la acción final.
+Estructuré el sitio usando componentes reutilizables:
+- `SectionContainer` - Espaciado y layout consistente
+- `SectionTitle` - Tipografía unificada para títulos
+- Patrones de diseño responsivo en todo el sitio
 
-## Tech stack
+## Evolución Durante el Desarrollo
 
-Para la implementación técnica, elegí un stack moderno que me permitiera crear una experiencia rápida y mantenible:
+Si comparas la versión actual con el diseño original, notarás que algunas secciones evolucionaron durante el desarrollo. A medida que iba implementando, encontraba áreas para mejorar y explorar nuevas ideas, como el Bento Grid en la sección de trabajos.
 
-- **Astro**: Como framework principal por su excelente performance y flexibilidad
-- **React**: Para componentes interactivos específicos
-- **Tailwind CSS**: Para un desarrollo de estilos eficiente y consistente
-- **TypeScript**: Para mayor seguridad y productividad en el desarrollo
-- **Markdown**: Para el contenido del blog, permitiendo fácil edición
+Si te interesa ver el diseño original, puedes <a href="/media/blog/art003-website-original-exported.png" target="_blank" rel="noopener noreferrer">descargarlo aquí</a>.
 
-Esta combinación me dio lo mejor de ambos mundos: la velocidad de un sitio estático con la flexibilidad de componentes dinámicos donde los necesitaba.
+## Claude Code y Herramientas de IA
 
-## Deployment
+En los últimos meses, las herramientas de IA se han vuelto populares en programación. Mi sitio web personal fue una excelente oportunidad para explorarlas. Actualmente uso principalmente **Claude Code** para:
 
-Para el deployment, opté por una solución moderna y eficiente:
+- Generación de traducciones
+- Animaciones del sitio
+- Optimización de código JavaScript
 
-- **Vercel**: Por su excelente integración con Astro y deployment automático
-- **Git-based workflow**: Cada push a main activa un nuevo deployment
-- **Preview deployments**: Para revisar cambios antes de publicar
-- **Custom domain**: Con SSL automático y CDN global
+Los resultados han sido excelentes, y sin duda será parte permanente de mi conjunto de herramientas de desarrollo.
 
-El resultado es un sitio que se despliega en segundos y ofrece una experiencia de usuario excepcional en cualquier parte del mundo.
+## Un Proyecto en Constante Evolución
 
-## Reflexiones finales
+Desde su lanzamiento, este sitio se ha convertido en un proyecto vivo. Estoy muy satisfecho con el resultado y planeo seguir añadiendo contenido y mejoras. Algunas ideas futuras incluyen:
 
-Este proyecto me recordó por qué amo el desarrollo web: la capacidad de transformar una idea en una experiencia digital tangible. Cada decisión, desde la elección de colores hasta la arquitectura del código, contribuye al resultado final.
+- Explorar otras herramientas de IA como Gemini CLI
+- Compartir más detalles sobre mis proyectos
+- Documentar el proceso de construcción de teclados mecánicos
 
-El sitio web que tienes ante ti es más que una simple página personal; es una representación digital de mi evolución como desarrollador y mi visión para el futuro. Espero que te inspire a crear algo increíble también.
+Esperen ver más contenido de mi parte a partir de ahora.
 
-¿Tienes alguna pregunta sobre el proceso? ¡No dudes en contactarme!
+¡Hasta la próxima!
