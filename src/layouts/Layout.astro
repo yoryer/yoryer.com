@@ -10,7 +10,7 @@ import Contact from "@components/Contact.astro";
 import SEO from "@components/SEO.astro";
 import GoogleAnalytics from "@components/GoogleAnalytics.astro";
 import "@styles/global.css";
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl } from "@i18n/utils";
 
 interface Props {
   title: string;
@@ -19,7 +19,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 // Schema.org structured data for homepage
 const schema = {

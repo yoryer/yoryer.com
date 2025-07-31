@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl} from "@i18n/utils";
 
 interface Props {
   title: string;
@@ -24,7 +24,6 @@ const {
 } = Astro.props;
 
 const lang = propLang || getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 // Use language-specific OG image for homepage if not provided
 const defaultOgImage = lang === 'es' ? '/og/main-es.png' : '/og/main-en.png';
@@ -85,7 +84,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 
 <!-- Schema.org JSON-LD -->
 {schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 )}
 
 <!-- Preconnect to external domains -->
