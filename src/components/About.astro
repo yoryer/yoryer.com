@@ -1,7 +1,7 @@
 ---
 import SectionContainer from "@ui/SectionContainer.astro";
 import SectionTitle from "@ui/SectionTitle.astro";
-import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
+import { getLangFromUrl, useTranslations, getLocalizedPath, replacePlaceholders } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -9,6 +9,11 @@ const t = useTranslations(lang);
 const currentPath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
 
 const langSwitch = lang === "en" ? "es" : "en";
+
+// Define replacements for dynamic content
+const replacements = {
+  company: { value: "Bird", href: "https://bird.com" }
+};
 ---
 
 <!-- Content Sections -->
@@ -52,15 +57,13 @@ const langSwitch = lang === "en" ? "es" : "en";
         <p>{t.about.paragraph1}</p>
         <p>{t.about.paragraph2}</p>
         <p>{t.about.paragraph3}</p>
-        <p>{t.about.paragraph4}</p>
-        <p>
-          {t.about.paragraph5}
-          
-        </p>
+        <p set:html={replacePlaceholders(t.about.paragraph4, replacements)}></p>
+        <p>{t.about.paragraph5}</p>
+        <p>{t.about.paragraph6}</p>
         <p>
           <a
             href={getLocalizedPath(currentPath, langSwitch)}
-            class="hover:text-rose hover:underline">{t.about.paragraph6}</a
+            class="hover:text-rose hover:underline">{t.about.paragraph7}</a
           >
           <img
             src="/img/translate-icon.svg"

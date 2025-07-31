@@ -24,39 +24,15 @@ const skills = [
   },
 ];
 
-const experiences = [
-  {
-    id: "messagebird",
-    company: "MessageBird",
-  },
-  {
-    id: "open-technologies-2",
-    company: "Open Technologies",
-  },
-  {
-    id: "freelancer",
-    company: "Freelancer",
-  },
-  {
-    id: "open-technologies-1",
-    company: "Open Technologies",
-  },
-  {
-    id: "htc-ltd",
-    company: "HTC Ltd",
-  },
-];
+// Use the new experience array directly from translations
+const experiences = t.skills.experience;
 ---
 
 <section id="skills" class="mt-5 min-h-screen">
   <div class="w-full h-32"></div>
   <SectionContainer class="-mt-32 pb-16">
     <!-- Pass translations to client-side script -->
-    <div id="skills-translations" data-translations={JSON.stringify({
-      roles: t.skills.experience.roles,
-      periods: t.skills.experience.periods,
-      tasks: t.skills.experience.tasks
-    })} class="hidden"></div>
+    <div id="skills-translations" data-experiences={JSON.stringify(experiences)} class="hidden"></div>
     <div class="flex mb-12">
       <div class="w-full">
         <SectionTitle label={t.skills.title.replace(' ', ' &<br/>')} color="battery-blue" />
@@ -115,14 +91,14 @@ const experiences = [
     </div>
 
     <div class="mt-16">
-      <h3 class="md:text-[32px] text-[28px] font-semibold md:mb-8 mb-4 text-left leading-10">
+      <h3 class="md:text-[32px] text-[28px] font-semibold md:mb-8 mb-4 text-left leading-10 text-silver-blue">
         {t.skills.professionalExperience}
       </h3>
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/4 lg:pr-8 md:pr-4 pr-0">
           <ul class="space-y-3 md:space-y-6">
             {
-              experiences.map((exp, idx) => (
+              experiences.map((exp: any, idx: number) => (
                 <li>
                   <button
                     class="text-white text-left w-full py-2 px-4 rounded-md focus:outline-none transition-colors duration-200 bg-battery-blue/10 md:bg-transparent hover:bg-battery-blue/15 hover:text-white/90 data-[active=true]:bg-battery-blue data-[active=true]:text-blue data-[active=true]:font-medium font-light md:text-base"
@@ -150,84 +126,34 @@ const experiences = [
 </section>
 
 <script>
+  interface ExperienceSection {
+    title: string;
+    items: string[];
+  }
+
+  interface KeyAchievement {
+    title: string;
+    period: string;
+    items: string[];
+  }
+
   interface Experience {
     id: string;
     company: string;
     role: string;
     period: string;
-    tasks: string[];
+    location?: string;
+    items?: string[];
+    keyAchievement?: KeyAchievement;
+    sections?: ExperienceSection[];
     tags: string[];
   }
 
-  // Get translations from data attribute
+  // Get experiences from data attribute
   const translationsElement = document.getElementById('skills-translations');
-  const translationsData = translationsElement ? JSON.parse(translationsElement.dataset.translations || '{}') : {};
-
-  const experiencesData: Experience[] = [
-    {
-      id: "messagebird",
-      company: "MessageBird",
-      role: translationsData.roles.frontendEngineer,
-      period: translationsData.periods.current,
-      tasks: [
-        translationsData.tasks.task1,
-        translationsData.tasks.task2,
-        translationsData.tasks.task3,
-        translationsData.tasks.task4,
-        translationsData.tasks.task5,
-        translationsData.tasks.task6,
-      ],
-      tags: ["PHP", "HTML", "CSS", "JS/TS", "Android", "iOS", "React"],
-    },
-    {
-      id: "open-technologies-2",
-      company: "Open Technologies",
-      role: translationsData.roles.softwareEngineer,
-      period: translationsData.periods.period1,
-      tasks: [
-        translationsData.tasks.task7,
-        translationsData.tasks.task8,
-        translationsData.tasks.task9,
-      ],
-      tags: ["Java", "Kotlin", "Swift", "Node.js", "MongoDB"],
-    },
-    {
-      id: "freelancer",
-      company: "Freelancer",
-      role: translationsData.roles.fullstackDeveloper,
-      period: translationsData.periods.period2,
-      tasks: [
-        translationsData.tasks.task10,
-        translationsData.tasks.task11,
-        translationsData.tasks.task12,
-      ],
-      tags: ["PHP", "Laravel", "JavaScript", "Vue.js", "MySQL"],
-    },
-    {
-      id: "open-technologies-1",
-      company: "Open Technologies",
-      role: translationsData.roles.webDeveloper,
-      period: translationsData.periods.period3,
-      tasks: [
-        translationsData.tasks.task13,
-        translationsData.tasks.task14,
-        translationsData.tasks.task15,
-      ],
-      tags: ["PHP", "HTML", "CSS", "JavaScript", "jQuery"],
-    },
-    {
-      id: "htc-ltd",
-      company: "HTC Ltd",
-      role: translationsData.roles.juniorDeveloper,
-      period: translationsData.periods.period4,
-      tasks: [
-        translationsData.tasks.task16,
-        translationsData.tasks.task17,
-        translationsData.tasks.task18,
-      ],
-      tags: ["C#", ".NET", "SQL Server"],
-    },
-  ];
+  const experiencesData: Experience[] = translationsElement 
+    ? JSON.parse(translationsElement.dataset.experiences || '[]') 
+    : [];
 
   let activeExperienceIdx = 0;
 
@@ -237,18 +163,60 @@ const experiences = [
   function renderExperienceDetails(experience: Experience) {
     if (!experienceDetailsContainer) return;
 
-    experienceDetailsContainer.innerHTML = `
+    let content = `
       <h4 class="text-2xl font-medium mb-2">
-        ${experience.role} <span class="text-white/50">@</span> <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-battery-blue hover:underline">${experience.company}</a>
+        ${experience.role ? `${experience.role} <span class="text-white/50">@</span> ` : ''}<a href="#" class="text-battery-blue hover:underline">${experience.company}</a>
       </h4>
-      <p class="text-silver-blue mb-4 font-light">${experience.period}</p>
-      <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
-        ${experience.tasks.map((task: string) => `<li class="leading-loose font-light">${task}</li>`).join("")}
-      </ul>
+      <p class="text-silver-blue mb-4 font-light">
+        ${experience.period}
+        ${experience.location ? `<span class="text-white/30 mx-2">•</span> ${experience.location}` : ''}
+      </p>
+    `;
+
+    // Handle key achievement if present
+    if (experience.keyAchievement) {
+      content += `
+        <div class="mb-6 bg-battery-blue/5 p-4 rounded-lg border-l-4 border-battery-blue">
+          <h5 class="text-lg font-medium mb-2 text-battery-blue">
+            ${experience.keyAchievement.title} 
+            <span class="text-silver-blue font-light text-sm">(${experience.keyAchievement.period})</span>
+          </h5>
+          <ul class="list-disc list-outside space-y-2 pl-5">
+            ${experience.keyAchievement.items.map((item: string) => `<li class="leading-loose font-light">${item}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Handle sections if present
+    if (experience.sections && experience.sections.length > 0) {
+      experience.sections.forEach((section: ExperienceSection) => {
+        content += `
+          <div class="mb-6">
+            <h5 class="text-lg font-medium mb-3 text-battery-blue/90">${section.title}</h5>
+            <ul class="list-disc list-outside space-y-2 pl-5">
+              ${section.items.map((item: string) => `<li class="leading-loose font-light">${item}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+      });
+    } else if (experience.items && experience.items.length > 0) {
+      // Handle simple items list
+      content += `
+        <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
+          ${experience.items.map((item: string) => `<li class="leading-loose font-light">${item}</li>`).join("")}
+        </ul>
+      `;
+    }
+
+    // Add tags
+    content += `
       <div class="flex flex-wrap gap-x-2 md:gap-x-8 gap-y-2 mt-6">
         ${experience.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-1 py-0.5 rounded-md text-xs md:px-2 md:py-1 md:text-sm">${tag}</span>`).join("")}
       </div>
     `;
+
+    experienceDetailsContainer.innerHTML = content;
   }
 
   function renderMobileAccordion() {
@@ -261,20 +229,62 @@ const experiences = [
     const activeExp = experiencesData[activeExperienceIdx];
     const mobileDetails = document.getElementById(`mobile-details-${activeExp.id}`);
     if (mobileDetails) {
-      mobileDetails.innerHTML = `
+      let content = `
         <div class='mt-4 mb-6'>
           <h4 class="text-xl font-medium mb-2">
-            ${activeExp.role} <span class="text-white/50">@</span> <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-battery-blue hover:underline">${activeExp.company}</a>
+            ${activeExp.role ? `${activeExp.role} <span class="text-white/50">@</span> ` : ''}<a href="#" class="text-battery-blue hover:underline">${activeExp.company}</a>
           </h4>
-          <p class="text-silver mb-4 font-light">${activeExp.period}</p>
-          <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
-            ${activeExp.tasks.map((task: string) => `<li class="leading-loose font-light">${task}</li>`).join("")}
-          </ul>
-          <div class="flex flex-wrap gap-x-2 md:gap-x-8 gap-y-2 mt-6">
-            ${activeExp.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-1 py-0.5 rounded-md text-xs md:px-2 md:py-1 md:text-sm">${tag}</span>`).join("")}
+          <p class="text-silver mb-4 font-light">
+            ${activeExp.period}
+            ${activeExp.location ? `<span class="text-white/30 mx-2">•</span> ${activeExp.location}` : ''}
+          </p>
+      `;
+
+      // Handle key achievement if present
+      if (activeExp.keyAchievement) {
+        content += `
+          <div class="mb-4 bg-battery-blue/5 p-3 rounded-lg border-l-4 border-battery-blue">
+            <h5 class="text-base font-medium mb-2 text-battery-blue">
+              ${activeExp.keyAchievement.title} 
+              <span class="text-silver-blue font-light text-xs">(${activeExp.keyAchievement.period})</span>
+            </h5>
+            <ul class="list-disc list-outside space-y-2 pl-5">
+              ${activeExp.keyAchievement.items.map((item: string) => `<li class="leading-loose font-light text-sm">${item}</li>`).join("")}
+            </ul>
           </div>
+        `;
+      }
+
+      // Handle sections if present
+      if (activeExp.sections && activeExp.sections.length > 0) {
+        activeExp.sections.forEach((section: ExperienceSection) => {
+          content += `
+            <div class="mb-4">
+              <h5 class="text-base font-medium mb-2 text-battery-blue/90">${section.title}</h5>
+              <ul class="list-disc list-outside space-y-2 pl-5">
+                ${section.items.map((item: string) => `<li class="leading-loose font-light text-sm">${item}</li>`).join("")}
+              </ul>
+            </div>
+          `;
+        });
+      } else if (activeExp.items && activeExp.items.length > 0) {
+        // Handle simple items list
+        content += `
+          <ul class="list-disc list-outside space-y-2 mb-4 pl-5">
+            ${activeExp.items.map((item: string) => `<li class="leading-loose font-light text-sm">${item}</li>`).join("")}
+          </ul>
+        `;
+      }
+
+      // Add tags
+      content += `
+        <div class="flex flex-wrap gap-x-2 md:gap-x-8 gap-y-2 mt-6">
+          ${activeExp.tags.map((tag: string) => `<span class="border border-battery-blue text-battery-blue px-1 py-0.5 rounded-md text-xs md:px-2 md:py-1 md:text-sm">${tag}</span>`).join("")}
         </div>
       `;
+
+      content += `</div>`;
+      mobileDetails.innerHTML = content;
     }
   }
 

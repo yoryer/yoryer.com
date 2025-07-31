@@ -62,7 +62,12 @@ const t = useTranslations(lang);
       class="grid md:grid-cols-4 grid-cols-2 pt-10 xl:gap-x-4 lg:gap-x-2 gap-x-2"
     >
       <Button type="outline" label={t.hero.readMore} href="#about" />
-      <Button type="primary" label={t.hero.downloadCV} />
+      <Button 
+        type="primary" 
+        label={t.hero.downloadCV} 
+        href={lang === "es" ? "/media/files/CV_Jorge_Noguera_2025_ES.pdf" : "/media/files/CV_Jorge_Noguera_2025_EN.pdf"}
+        download
+      />
     </div>
   </section>
 </SectionContainer>

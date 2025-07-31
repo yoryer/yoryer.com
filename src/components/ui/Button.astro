@@ -3,9 +3,10 @@ interface Props {
   type: "primary" | "outline";
   label: string;
   href?: string;
+  download?: boolean;
 }
 
-const { type, label, href } = Astro.props;
+const { type, label, href, download } = Astro.props;
 
 let buttonClasses =
   "w-full xl:h-14 lg:h-12 h-10 rounded font-poppins font-light xl:text-xl lg:text-lg hover:brightness-125 transition-all duration-500 z-40 ";
@@ -23,6 +24,7 @@ if (type == "primary") {
       class={`inline-flex items-center justify-center ${buttonClasses}`}
       role="button"
       tabindex="0"
+      download={download ? true : undefined}
     >
       {label}
     </a>

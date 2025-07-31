@@ -23,64 +23,143 @@
   },
   "about": {
     "title": "About me",
-    "paragraph1": "Hi there! My name is Jorge Noguera and I'm a software engineer based in Paraguay.",
-    "paragraph2": "My professional journey started in 2008 when I joined a company as a web developer.",
-    "paragraph3": "Later in my career I have the opportunity to work as an Android mobile developer and more recently I was focused on hybrid mobile development using Flutter.",
-    "paragraph4": "I've also worked on more performance oriented software like building API's or scripts for SMS Premium services.",
-    "paragraph5": "Occasionally I do some graphic design.",
-    "paragraph6": "También hablo español."
+    "paragraph1": "Hi! I'm Jorge, a software engineer from Paraguay who loves turning technical constraints into creative solutions.",
+    "paragraph2": "Over the past 12+ years, I've built everything from SMS systems serving 100,000 users to Flutter apps for financial institutions.",
+    "paragraph3": "I'm always looking for simple solutions to complex problems.",
+    "paragraph4": "Currently, I'm diving deep into modern frontend development with React and TypeScript at {company}.",
+    "paragraph5": "When I'm not coding, you might find me exploring graphic design, tinkering with new technologies, or building a new mechanical keyboard.",
+    "paragraph6": "I believe the best solutions come from understanding both the technical and business sides of a challenge.",
+    "paragraph7": "También hablo español."
   },
   "skills": {
     "title": "Skills & Experience",
     "professionalExperience": "Professional experience",
     "frontend": {
       "title": "Frontend",
-      "description": "I care about UI/UX. I build responsive and dynamic web applications using HTML, CSS, JavaScript and React."
+      "description": "Building responsive web applications with React, TypeScript, and Tailwind CSS. Focused on performance and experience."
     },
     "backend": {
       "title": "Backend",
-      "description": "I develop server-side applications and RESTful APIs. I work with databases and implement business logic with various frameworks and languages."
+      "description": "APIs that scale from 1K to 100K users. Database optimizations and RESTful APIs. I work with databases and implement business logic with various frameworks and languages."
     },
     "mobile": {
       "title": "Mobile",
-      "description": "I create cross-platform mobile applications using frameworks like Flutter, delivering native-like experiences on iOS and Android."
+      "description": "I develop cross-platform mobile apps with Flutter, delivering consistent experiences, with a single codebase, for both iOS and Android."
     },
-    "experience": {
-      "roles": {
-        "frontendEngineer": "Front-end Engineer",
-        "softwareEngineer": "Software Engineer",
-        "fullstackDeveloper": "Full-stack Developer",
-        "webDeveloper": "Web Developer",
-        "juniorDeveloper": "Junior Developer"
+    "experience": [
+      {
+        "id": "bird",
+        "company": "Bird B.V.",
+        "role": "Software Engineer",
+        "period": "May 2021 - Present",
+        "location": "Paraguay [Remote]",
+        "items": [
+          "Developed multi-region WebRTC connection quality monitoring tool using AWS CDK (TypeScript) and containerized services (Docker/ECS), reducing support cases by 20%.",
+          "Built React-based marketing tools and help center features with a custom renderer using Go Templates (gotmpl).",
+          "Maintained and expanded Toky Phone JavaScript SDK, inherited the project after a team member transition, and ensured continuity of client integrations.",
+          "Write and maintain tests using Vitest and Playwright for E2E testing.",
+          "Utilized Datadog for application monitoring and performance optimization across distributed services.",
+          "Enhanced the Toky iOS and Android mobile applications, fixing bugs and improving stability."
+        ],
+        "tags": ["TypeScript", "React", "AWS CDK", "Docker", "Go", "WebRTC", "E2E"]
       },
-      "periods": {
-        "current": "February 2021 - Present",
-        "period1": "February 2019 - February 2021",
-        "period2": "March 2017 - February 2019",
-        "period3": "March 2015 - February 2017",
-        "period4": "March 2013 - February 2015"
+      {
+        "id": "open-technologies",
+        "company": "Open Technologies S.A.",
+        "role": "Full-Stack Developer",
+        "period": "June 2012 - January 2021",
+        "location": "Asunción, Paraguay",
+        "keyAchievement": {
+          "title": "SMS Premium System Optimization",
+          "period": "March - December 2016",
+          "items": [
+            "Scaled subscriber base from 1,000 to 100,000 users through system optimization.",
+            "Increased SMS throughput from 100 messages/minute to 600 messages/45 seconds through PostgreSQL query optimization using EXPLAIN ANALYZE and strategic indexing.",
+            "Designed a custom buffer/queue system with a templating engine for personalized messages, processing delivery reports separately to maintain system performance.",
+            "Implemented retry logic with three execution windows (morning, noon, afternoon) for maximum delivery success."
+          ]
+        },
+        "sections": [
+          {
+            "title": "Banking & Financial Services Development",
+            "items": [
+              "Developed RESTful API using Spring Boot/Hibernate for a banking platform with stringent security requirements.",
+              "Integrated PostgreSQL database with REST endpoints to create a robust service layer for transaction processing.",
+              "Built and deployed 4 Flutter mobile applications for financial institutions, each achieving 5,000-10,000 downloads per platform (iOS/Android)."
+            ]
+          },
+          {
+            "title": "Geospatial & Distribution Systems",
+            "items": [
+              "Led a team of 5 developers to build a distribution system for a mobile carrier company from El Salvador using PostgreSQL with PostGIS extension for geographic data processing.",
+              "Implemented location-based features and territory management capabilities.",
+              "Provided mentorship and knowledge sharing across multiple development teams throughout tenure."
+            ]
+          }
+        ],
+        "tags": ["Spring Boot", "Flutter", "PostgreSQL", "PostGIS", "RESTful APIs", "Team Leadership"]
       },
-      "tasks": {
-        "task1": "Development of 6 mobile applications for financial entities using Flutter, 3 of them already published.",
-        "task2": "Analysis and programming of a RESTful API in Spring Boot to manage users and transactions for a bank's corporate area.",
-        "task3": "Implementation of payment gateways for mobile and web applications.",
-        "task4": "Programming and optimization of a Premium SMS system to serve more than 100,000 subscribers.",
-        "task5": "Creation of an Android device tracking application to prevent theft.",
-        "task6": "Coordination of a team of 5 programmers for the development of an application for a telephone operator.",
-        "task7": "Development of mobile applications for Android and iOS.",
-        "task8": "Implementation of RESTful APIs for integration with third-party systems.",
-        "task9": "Database and SQL query optimization.",
-        "task10": "Development of custom websites and applications for clients.",
-        "task11": "Project management and direct communication with clients.",
-        "task12": "Implementation of e-commerce solutions.",
-        "task13": "Development and maintenance of web platforms.",
-        "task14": "Integration of third-party APIs.",
-        "task15": "Web performance optimization.",
-        "task16": "Software development assistance.",
-        "task17": "Testing and debugging code.",
-        "task18": "Technical documentation."
+      {
+        "id": "freelancer-2011",
+        "company": "Freelancer",
+        "role": "Web Programmer and Designer",
+        "period": "2011",
+        "location": "Paraguay",
+        "items": [
+          "Developed a web application for dynamically generating eight different types of Facebook fan page applications with automatic installation, configuration management, user administration, and reporting capabilities.",
+          "Created a WordPress plugin for Contraloría General del Paraguay's intranet system to enable FTP server file access, listing, and download functionality."
+        ],
+        "tags": ["Web Development", "Facebook API", "WordPress", "Plugin Development", "FTP Integration", "Graphic Design"]
+      },
+      {
+        "id": "open-technologies-early",
+        "company": "Open Technologies S.A.",
+        "role": "Web & Mobile Developer",
+        "period": "October 2009 - December 2010",
+        "location": "Asunción, Paraguay",
+        "items": [
+          "Developed automated SMS and WAP Push scripts using Perl and PHP, integrated with Kannel Gateway.",
+          "Created mobile applications using proprietary mobc3 platform for various client projects.",
+          "Gained foundational experience in telecommunications and mobile development."
+        ],
+        "tags": ["Perl", "PHP", "Kannel", "SMS", "Mobile Development"]
+      },
+      {
+        "id": "previous-experience",
+        "company": "Previous Experience",
+        "role": "",
+        "period": "2008 - 2009",
+        "location": "Paraguay",
+        "sections": [
+          {
+            "title": "HITC Ltd - Developer (2009)",
+            "items": [
+              "Developed software for mass email distribution with dynamically generated PDF attachments."
+            ]
+          },
+          {
+            "title": "10 Group - Web Developer (2009)",
+            "items": [
+              "Designed wireframes, database architecture, and developed TodoPublicidad.com.py advertising platform using PHP and MySQL."
+            ]
+          },
+          {
+            "title": "Sinergis Mobile - Developer (2008)",
+            "items": [
+              "Analyzed and designed SMS Premium management system with PHP and MySQL, integrating Kannel SMS/WAP Gateway with billing functionality."
+            ]
+          },
+          {
+            "title": "INAVAN Paraguay - Web Developer (2008)",
+            "items": [
+              "Researched and developed websites using Drupal CMS framework.",
+              "Built custom solutions with PHP and MySQL database integration."
+            ]
+          }
+        ],
+        "tags": ["PHP", "MySQL", "Drupal", "SMS Systems", "Email Systems", "Web Development"]
       }
-    }
+    ]
   },
   "work": {
     "title": "My Work",
