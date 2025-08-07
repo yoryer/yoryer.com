@@ -210,5 +210,11 @@
     "enjoyedArticle": "Enjoyed this article? Share it!",
     "copyCode": "Copy code to clipboard",
     "backToBlogPosts": "Go back to blog posts"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "404",
+    "message": "Oops! The page you're looking for doesn't exist.",
+    "backToHome": "Back to Homepage"
   }
 }

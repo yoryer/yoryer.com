@@ -1,0 +1,110 @@
+---
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Contact from "@components/Contact.astro";
+import SEO from "@components/SEO.astro";
+import GoogleAnalytics from "@components/GoogleAnalytics.astro";
+import "@styles/global.css";
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const homePath = getLocalizedPath("/", lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <SEO 
+      title={`404 - ${t.notFound.title}`}
+      description={t.notFound.message}
+      lang={lang}
+    />
+    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Google Analytics -->
+    {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
+      <GoogleAnalytics id={import.meta.env.PUBLIC_GA_MEASUREMENT_ID} />
+    )}
+    
+    <!-- Language Detection Script -->
+    <script>
+      // Only run language detection on the root 404 page (not on /es/404)
+      if (!window.location.pathname.startsWith('/es/')) {
+        // Get browser language
+        const browserLang = navigator.language;
+        
+        // Check if browser language is Spanish (es, es-ES, es-MX, etc.)
+        if (browserLang && browserLang.toLowerCase().startsWith('es')) {
+          // Get the current path after domain
+          const currentPath = window.location.pathname;
+          
+          // For 404 page, redirect to Spanish version
+          if (currentPath === '/404' || currentPath === '/404/') {
+            window.location.replace('/es/404');
+          } else {
+            // For other non-existent pages, redirect to Spanish 404
+            window.location.replace('/es/404');
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
+    <div class="overflow-x-hidden">
+      <Header />
+      
+      <!-- Main Content -->
+      <main>
+        <!-- 404 Content -->
+        <section class="min-h-[60vh] flex items-center justify-center px-6 py-20">
+          <div class="text-center">
+            <!-- Big 404 Number -->
+            <h1 class="text-[120px] sm:text-[160px] md:text-[200px] font-bold text-rose leading-none">
+              {t.notFound.heading}
+            </h1>
+            
+            <!-- Message -->
+            <p class="text-xl sm:text-2xl text-gray-300 mb-8 max-w-md mx-auto">
+              {t.notFound.message}
+            </p>
+            
+            <!-- Back to Home Button -->
+            <a 
+              href={homePath}
+              class="inline-flex items-center gap-2 px-8 py-4 bg-rose text-white font-medium rounded-lg hover:bg-rose/90 transition-colors"
+            >
+              <svg 
+                class="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              {t.notFound.backToHome}
+            </a>
+          </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <Contact />
+      </main>
+      
+      <Footer />
+    </div>
+  </body>
+</html>

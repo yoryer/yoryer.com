@@ -79,6 +79,30 @@ const schema = {
     {import.meta.env.PUBLIC_GA_MEASUREMENT_ID && (
       <GoogleAnalytics id={import.meta.env.PUBLIC_GA_MEASUREMENT_ID} />
     )}
+    
+    <!-- Language Detection Script -->
+    {lang === 'en' && (
+      <script>
+        // Only run on the English homepage
+        if (window.location.pathname === '/' || window.location.pathname === '') {
+          // Check if we haven't already redirected (to avoid redirect loops)
+          const hasRedirected = sessionStorage.getItem('langRedirected');
+          
+          if (!hasRedirected) {
+            // Get browser language
+            const browserLang = navigator.language;
+            
+            // Check if browser language is Spanish (es, es-ES, es-MX, etc.)
+            if (browserLang && browserLang.toLowerCase().startsWith('es')) {
+              // Set flag to prevent redirect loops
+              sessionStorage.setItem('langRedirected', 'true');
+              // Redirect to Spanish homepage
+              window.location.replace('/es/');
+            }
+          }
+        }
+      </script>
+    )}
   </head>
   <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
     <img

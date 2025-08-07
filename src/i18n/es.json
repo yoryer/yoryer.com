@@ -210,5 +210,11 @@
     "enjoyedArticle": "¿Te gustó este artículo? ¡Compártelo!",
     "copyCode": "Copiar código al portapapeles",
     "backToBlogPosts": "Volver a las publicaciones del blog"
+  },
+  "notFound": {
+    "title": "Página No Encontrada",
+    "heading": "404",
+    "message": "¡Ups! La página que buscas no existe.",
+    "backToHome": "Volver al Inicio"
   }
 }
