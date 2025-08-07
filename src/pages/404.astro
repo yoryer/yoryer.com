@@ -5,24 +5,28 @@ import Contact from "@components/Contact.astro";
 import SEO from "@components/SEO.astro";
 import GoogleAnalytics from "@components/GoogleAnalytics.astro";
 import "@styles/global.css";
-import { getLangFromUrl, useTranslations, getLocalizedPath } from "@i18n/utils";
+import { useTranslations } from "@i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const homePath = getLocalizedPath("/", lang);
+// Get both language translations
+const enTranslations = useTranslations("en");
+const esTranslations = useTranslations("es");
+
+// Serialize translations for client-side use
+const enTranslationsSerialized = JSON.parse(JSON.stringify(enTranslations));
+const esTranslationsSerialized = JSON.parse(JSON.stringify(esTranslations));
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <SEO 
-      title={`404 - ${t.notFound.title}`}
-      description={t.notFound.message}
-      lang={lang}
+      title="404 - Page Not Found"
+      description="The page you're looking for doesn't exist"
+      lang="en"
     />
     
     <link
@@ -35,31 +39,43 @@ const homePath = getLocalizedPath("/", lang);
       <GoogleAnalytics id={import.meta.env.PUBLIC_GA_MEASUREMENT_ID} />
     )}
     
-    <!-- Language Detection Script -->
-    <script>
-      // Only run language detection on the root 404 page (not on /es/404)
-      if (!window.location.pathname.startsWith('/es/')) {
-        // Get browser language
-        const browserLang = navigator.language;
+    <!-- Dynamic Language Detection and Content Script -->
+    <script is:inline define:vars={{ enTranslationsSerialized, esTranslationsSerialized }}>
+      (function() {
+        // Determine language from URL or browser
+        let lang = 'en';
+        let translations = enTranslationsSerialized;
         
-        // Check if browser language is Spanish (es, es-ES, es-MX, etc.)
-        if (browserLang && browserLang.toLowerCase().startsWith('es')) {
-          // Get the current path after domain
-          const currentPath = window.location.pathname;
-          
-          // For 404 page, redirect to Spanish version
-          if (currentPath === '/404' || currentPath === '/404/') {
-            window.location.replace('/es/404');
-          } else {
-            // For other non-existent pages, redirect to Spanish 404
-            window.location.replace('/es/404');
+        const path = window.location.pathname;
+        
+        // Check if URL indicates Spanish
+        if (path.startsWith('/es/') || path === '/es') {
+          lang = 'es';
+          translations = esTranslationsSerialized;
+        } else {
+          // If not in Spanish path, check browser language
+          const browserLang = navigator.language;
+          if (browserLang && browserLang.toLowerCase().startsWith('es')) {
+            lang = 'es';
+            translations = esTranslationsSerialized;
           }
         }
-      }
+        
+        // Store for use in other scripts
+        window.pageLang = lang;
+        window.pageTranslations = translations;
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Update page title
+        document.title = `404 - ${translations.notFound.title}`;
+      })();
     </script>
   </head>
   <body class="bg-blue bg-repeat text-white bg-[url('/img/bg.svg')] bg-cover">
     <div class="overflow-x-hidden">
+      <!-- We'll need to make Header dynamic too, but for now it will show in English -->
       <Header />
       
       <!-- Main Content -->
@@ -69,17 +85,18 @@ const homePath = getLocalizedPath("/", lang);
           <div class="text-center">
             <!-- Big 404 Number -->
             <h1 class="text-[120px] sm:text-[160px] md:text-[200px] font-bold text-rose leading-none">
-              {t.notFound.heading}
+              404
             </h1>
             
-            <!-- Message -->
-            <p class="text-xl sm:text-2xl text-gray-300 mb-8 max-w-md mx-auto">
-              {t.notFound.message}
+            <!-- Message (dynamically updated) -->
+            <p id="error-message" class="text-xl sm:text-2xl text-gray-300 mb-8 max-w-md mx-auto">
+              <!-- Will be filled by JavaScript -->
             </p>
             
-            <!-- Back to Home Button -->
+            <!-- Back to Home Button (dynamically updated) -->
             <a 
-              href={homePath}
+              id="home-link"
+              href="/"
               class="inline-flex items-center gap-2 px-8 py-4 bg-rose text-white font-medium rounded-lg hover:bg-rose/90 transition-colors"
             >
               <svg 
@@ -95,7 +112,7 @@ const homePath = getLocalizedPath("/", lang);
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              {t.notFound.backToHome}
+              <span id="home-link-text"><!-- Will be filled by JavaScript --></span>
             </a>
           </div>
         </section>
@@ -106,5 +123,36 @@ const homePath = getLocalizedPath("/", lang);
       
       <Footer />
     </div>
+    
+    <!-- Update content based on detected language -->
+    <script is:inline>
+      (function() {
+        // Use the language and translations set in the head script
+        const lang = window.pageLang || 'en';
+        const translations = window.pageTranslations || {
+          notFound: {
+            message: "Oops! The page you're looking for doesn't exist.",
+            backToHome: "Back to Homepage"
+          }
+        };
+        
+        // Update error message
+        const errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+          errorMessage.textContent = translations.notFound.message;
+        }
+        
+        // Update home link
+        const homeLink = document.getElementById('home-link');
+        const homeLinkText = document.getElementById('home-link-text');
+        if (homeLink && homeLinkText) {
+          homeLink.setAttribute('href', lang === 'es' ? '/es/' : '/');
+          homeLinkText.textContent = translations.notFound.backToHome;
+        }
+        
+        // Update navigation links if needed
+        // This would require making the Header component dynamic as well
+      })();
+    </script>
   </body>
 </html>
