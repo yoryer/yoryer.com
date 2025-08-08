@@ -1,8 +1,11 @@
 ---
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "@i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const homeHref = getLocalizedPath("/", lang);
+const isHomePage = Astro.url.pathname === homeHref;
+const navLinkBase = isHomePage ? "" : `${homeHref}`;
 
 const menuOptions = [
   { name: t.navigation.about, index: "01", link: "#about", id: "about" },
@@ -19,7 +22,7 @@ const menuOptions = [
 >
   <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
     <!-- Logo -->
-    <a href="#" class="flex-shrink-0">
+    <a href={homeHref} class="flex-shrink-0" aria-label={t.common.logo}>
       <img
         src="/img/logo.svg"
         alt={t.common.logo}
@@ -34,7 +37,7 @@ const menuOptions = [
           menuOptions.map((option) => (
             <li>
               <a
-                href={`#${option.id}`}
+                href={`${navLinkBase}#${option.id}`}
                 class="menu-link text-white hover:text-rose transition-colors xl:text-lg hover:bg-rose/20 active:bg-rose/40 rounded-md px-3 py-2"
               >
                 {option.name}
@@ -66,7 +69,7 @@ const menuOptions = [
           menuOptions.map((option) => (
             <li>
               <a
-                href={`#${option.id}`}
+                href={`${navLinkBase}#${option.id}`}
                 class="menu-link block w-full text-lg px-6 py-4 rounded-md text-center text-white hover:text-rose hover:bg-rose/20 active:bg-rose/40 transition-colors font-semibold"
               >
                 {option.name}
@@ -105,14 +108,16 @@ const menuOptions = [
 
   // Attach click listeners to all nav links (desktop & mobile)
   function setupNavLinks() {
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    document.querySelectorAll('a.menu-link').forEach((link) => {
       (link as HTMLAnchorElement).addEventListener(
         "click",
         function (e: MouseEvent) {
           const hash = (this as HTMLAnchorElement).getAttribute("href");
-          if (hash && hash.startsWith("#")) {
-            const id = hash.slice(1);
-            if (document.getElementById(id)) {
+          if (hash) {
+            const hashIndex = hash.indexOf('#');
+            const id = hashIndex >= 0 ? hash.slice(hashIndex + 1) : '';
+            // If target id exists on this page, do smooth scroll
+            if (id && document.getElementById(id)) {
               e.preventDefault();
               scrollToSectionWithOffset(id);
               // If mobile menu is open, close it
@@ -128,12 +133,18 @@ const menuOptions = [
 
   // Helper: Get all section IDs from menuOptions
   const sectionIds = menuOptions.map((opt) => opt.id);
+  // Filter to IDs that actually exist on this page (404 and others may miss some)
+  function getExistingSectionIds(): string[] {
+    return sectionIds.filter((id) => document.getElementById(id));
+  }
 
   // Helper: Set active menu link
   function setActiveMenu(id: string) {
     document.querySelectorAll(".menu-link").forEach((link) => {
-      const hash = link.getAttribute("href");
-      if (id && hash === `#${id}`) {
+      const href = link.getAttribute("href") || "";
+      const hashIndex = href.indexOf("#");
+      const linkId = hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
+      if (id && linkId === id) {
         link.classList.add("active-menu");
       } else {
         link.classList.remove("active-menu");
@@ -143,25 +154,43 @@ const menuOptions = [
 
   // Scroll event handler to update active menu
   function onScroll(): void {
-    const firstSection = document.getElementById(sectionIds[0]);
     const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    // If we're at (or extremely near) bottom, force last existing section active
+    const doc = document.documentElement;
+    const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= (doc.scrollHeight - 2);
+    if (atBottom) {
+      const existing = sectionIds.filter((id) => document.getElementById(id));
+      if (existing.length > 0) {
+        setActiveMenu(existing[existing.length - 1]);
+        return;
+      }
+    }
+    // If we're above the first section, clear selection
+    const existingIds = getExistingSectionIds();
+    const firstSection = existingIds.length ? document.getElementById(existingIds[0]) : null;
     if (firstSection) {
-      const firstSectionTop =
-        firstSection.getBoundingClientRect().top - headerHeight;
-      // If above the first section, clear all active menu links
-      if (firstSectionTop > 0) {
+      const firstTop = firstSection.getBoundingClientRect().top - headerHeight;
+      if (firstTop > 0) {
         setActiveMenu("");
         return;
       }
     }
-    let current = sectionIds[0];
-    for (const id of sectionIds) {
+
+    let current = existingIds.length ? existingIds[0] : "";
+    for (const id of existingIds) {
       const section = document.getElementById(id);
-      if (section) {
-        const sectionTop = section.getBoundingClientRect().top - headerHeight;
-        if (sectionTop <= 0) {
-          current = id;
-        }
+      if (!section) continue;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top - headerHeight;
+      const sectionBottom = rect.bottom - headerHeight;
+      // Consider section active if header overlaps its vertical range
+      if (sectionTop <= 0 && sectionBottom > 0) {
+        current = id;
+        break;
+      }
+      // Fallback to last section passed when scrolled past all
+      if (sectionTop <= 0) {
+        current = id;
       }
     }
     setActiveMenu(current);
